@@ -3,32 +3,14 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 const updateStorage = (newState) => {
   localStorage.setItem("todoList", JSON.stringify(newState));
 };
-// const STATUS = {
-//   REVIEW:  "review",
-//   IN_PROGRESS: "in_progress",
-//   TEST: {
-//     IN_TEST: "in_test",
-//     FAIL: "test_fail",
-//     SUCCESS: "test_success",
-//   },
-//   DONE: "done",
-// };
+
+const findTodoById = (id, list) => list.find((item) => item.id === id);
 
 const STATUS = {
-  REVIEW: {
-    CURRENT: "REVIEW",
-    SUCCESS: "IN_PROGRESS",
-  },
-  IN_PROGRESS: {
-    SUCCESS: "TEST",
-  },
-  TEST: {
-    FAIL: "IN_PROGRESS",
-    SUCCESS: "DONE",
-  },
-  DONE: {
-    SUCCESS: "",
-  },
+  REVIEW: "review",
+  IN_PROGRESS: "in_progress",
+  TEST: "test",
+  COMPLETED: "completed",
 };
 
 export const todosSlice = createSlice({
@@ -67,21 +49,28 @@ export const todosSlice = createSlice({
       };
       updateStorage(state.items);
     },
-
-    toogleTodoState: (state, action) => {
-      const { id, todoStatusSuccessFail } = action.payload;
-      const todo = state.items.find((item) => item.id === id);
-      todo.status = STATUS[todo.status][todoStatusSuccessFail].NEXT;
-
-      // switch (todo.status) {
-      //   case STATUS.REVIEW:
-      //     todo.status = STATUS.IN_PROGRESS;
-      //     break;
-      //   case STATUS.IN_PROGRESS:
-      //     todo.state = STATUS.TEST;
-      //     break;
-      // }
+    setStatusReview: (state, action) => {
+      const todo = findTodoById((id = action.payload), (list = state.items));
+      todo.status = STATUS.REVIEW;
       updateStorage(state.items);
+    },
+
+    setStatusInProgress: (state, action) => {
+      const todo = findTodoById((id = action.payload), (list = state.items));
+      if (![STATUS.REVIEW, STATUS.TEST].includes(todo.status)) return;
+      todo.status = STATUS.IN_PROGRESS;
+    },
+
+    setStatusTest: (state, action) => {
+      const todo = findTodoById((id = action.payload), (list = state.items));
+      if (todo.status !== STATUS.IN_PROGRESS) return;
+      todo.status = STATUS.TEST;
+    },
+
+    setStatusComplete: (state, action) => {
+      const todo = findTodoById((id = action.payload), (list = state.items));
+      if (todo.status !== STATUS.TEST) return;
+      todo.status = STATUS.COMPLETED;
     },
   },
 });
