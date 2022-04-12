@@ -4,7 +4,7 @@ const updateStorage = (newState) => {
   localStorage.setItem("todoList", JSON.stringify(newState));
 };
 
-const findTodoById = (id, list) => list.find((item) => item.id === id);
+const findTodoById = (obj) => obj.list.find((item) => item.id === obj.id);
 
 const STATUS = {
   REVIEW: "review",
@@ -20,10 +20,11 @@ export const todosSlice = createSlice({
     addTodo: (state, action) => {
       const todo = {
         id: nanoid(),
-        status: STATUS.REVIEW.CURRENT,
+        status: STATUS.REVIEW,
         task: action.payload.task,
         userId: action.payload.userId,
-        // createdAt: new Date(),
+        createdAt: new Date(),
+        // color: "yellow"
       };
       state.items = [todo, ...state.items];
 
@@ -33,7 +34,7 @@ export const todosSlice = createSlice({
     removeTodo: (state, action) => {
       const id = action.payload;
       const todo = state.items.find((todo) => todo.id === id);
-      if (todo.status !== STATUS.REVIEW.CURRENT) return;
+      if (![STATUS.REVIEW, STATUS.COMPLETED].includes(todo.status)) return;
       state.items = state.items.filter((item) => item.id !== id);
       updateStorage(state.items);
     },
@@ -49,32 +50,43 @@ export const todosSlice = createSlice({
       };
       updateStorage(state.items);
     },
+
     setStatusReview: (state, action) => {
-      const todo = findTodoById((id = action.payload), (list = state.items));
+      const todo = findTodoById({ id: action.payload, list: state.items });
       todo.status = STATUS.REVIEW;
       updateStorage(state.items);
     },
 
     setStatusInProgress: (state, action) => {
-      const todo = findTodoById((id = action.payload), (list = state.items));
+      const todo = findTodoById({ id: action.payload, list: state.items });
       if (![STATUS.REVIEW, STATUS.TEST].includes(todo.status)) return;
       todo.status = STATUS.IN_PROGRESS;
+      updateStorage(state.items);
     },
 
     setStatusTest: (state, action) => {
-      const todo = findTodoById((id = action.payload), (list = state.items));
+      const todo = findTodoById({ id: action.payload, list: state.items });
       if (todo.status !== STATUS.IN_PROGRESS) return;
       todo.status = STATUS.TEST;
+      updateStorage(state.items);
     },
 
-    setStatusComplete: (state, action) => {
-      const todo = findTodoById((id = action.payload), (list = state.items));
+    setStatusCompleted: (state, action) => {
+      const todo = findTodoById({ id: action.payload, list: state.items });
       if (todo.status !== STATUS.TEST) return;
       todo.status = STATUS.COMPLETED;
+      updateStorage(state.items);
     },
   },
 });
 
-export const { addTodo, removeTodo, toogleTodoState, editTodo } =
-  todosSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  editTodo,
+  setStatusReview,
+  setStatusInProgress,
+  setStatusTest,
+  setStatusCompleted,
+} = todosSlice.actions;
 export default todosSlice.reducer;

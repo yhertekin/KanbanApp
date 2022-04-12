@@ -40,7 +40,7 @@ const User = ({ user }) => {
           />
         </div>
       </div>
-      {showTodos && <TodoList todos={todos} />}
+      {showTodos && todoCount !== 0 && <TodoList todos={todos} />}
       {showTodos && todoCount === 0 && (
         <Alert
           message="There is not any task here."

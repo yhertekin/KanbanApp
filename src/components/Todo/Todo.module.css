@@ -4,7 +4,7 @@
 
 @layer base {
   .todo {
-    @apply border rounded-md mt-1 bg-yellow-200 w-full overflow-hidden;
+    @apply border rounded-md mt-1 w-full overflow-hidden;
   }
 }
 
@@ -12,6 +12,19 @@
   .todo:hover {
     @apply todo--hover;
   }
+  .review {
+    @apply bg-yellow-200;
+  }
+  .in_progress {
+    @apply bg-yellow-200;
+  }
+  .test {
+    @apply bg-yellow-200;
+  }
+  .completed {
+    @apply bg-yellow-200;
+  }
+
   .todo__header {
     @apply w-full h-10 bg-yellow-300  px-4 py-2 flex justify-between items-center;
   }

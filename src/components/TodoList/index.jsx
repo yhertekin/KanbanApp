@@ -2,7 +2,7 @@ import TodoStatusSection from "../TodoStatusSection";
 import styles from "./TodoList.module.css";
 
 const TodoList = ({ todos }) => {
-  const statusList = ["REVIEW", "IN_PROGRESS", "TEST", "DONE"];
+  const statusList = ["review", "in_progress", "test", "completed"];
 
   return (
     <div className={styles["todo__list"]}>

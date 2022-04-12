@@ -1,9 +1,15 @@
 import React from "react";
 
-import { FaTrashAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaTrashAlt, FaCheck } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
-import { MdOutlineDoNotDisturbOn } from "react-icons/md";
-import { removeTodo, toogleTodoState } from "../../redux/todosSlice";
+import { ImCancelCircle } from "react-icons/im";
+import { MdFormatColorFill } from "react-icons/md";
+import {
+  removeTodo,
+  setStatusTest,
+  setStatusInProgress,
+  setStatusCompleted,
+} from "../../redux/todosSlice";
 import { useDispatch } from "react-redux";
 import IconButton from "../IconButton";
 
@@ -11,16 +17,17 @@ import styles from "./Todo.module.css";
 
 const TodoHeader = ({ todo, setEdit }) => {
   const dispatch = useDispatch();
+  const { id, status } = todo;
 
-  const trashIcon = () => (
+  const TrashIcon = () => (
     <IconButton
       Icon={FaTrashAlt}
-      onClick={() => dispatch(removeTodo(todo.id))}
+      onClick={() => dispatch(removeTodo(id))}
       variant="black"
     />
   );
 
-  const editIcon = () => (
+  const EditIcon = () => (
     <IconButton
       Icon={FiEdit}
       variant="black"
@@ -28,46 +35,63 @@ const TodoHeader = ({ todo, setEdit }) => {
     />
   );
 
-  const successIcon = () => (
+  const SuccessIcon = () => (
     <IconButton
-      Icon={FaChevronRight}
-      onClick={() =>
-        dispatch(
-          toogleTodoState({
-            id: todo.id,
-            todoStatusSuccessFail: "SUCCESS",
-          })
-        )
-      }
+      Icon={FaCheck}
+      onClick={() => {
+        switch (status) {
+          case "review":
+            dispatch(setStatusInProgress(id));
+            break;
+          case "in_progress":
+            dispatch(setStatusTest(id));
+            break;
+          case "test":
+            dispatch(setStatusCompleted(id));
+            break;
+          case "completed":
+            console.log("hello  ");
+            dispatch(removeTodo(id));
+            break;
+        }
+      }}
+      variant="secondary"
     />
   );
 
-  const failIcon = () => (
+  const FailIcon = () => (
     <IconButton
-      Icon={FaChevronLeft}
-      onClick={() =>
-        dispatch(
-          toogleTodoState({
-            id: todo.id,
-            todoStatusSuccessFail: "FAIL",
-          })
-        )
-      }
+      Icon={ImCancelCircle}
+      onClick={() => dispatch(setStatusInProgress(id))}
+      variant="danger"
     />
   );
-
-  const todoStatusIcons = {
-    REVIEW: [trashIcon, editIcon, successIcon],
-    IN_PROGRESS: [successIcon],
-    TEST: [failIcon, successIcon],
-    DONE: [successIcon],
-  };
 
   return (
     <div className={styles["todo__header"]}>
-      {todoStatusIcons[todo.status].map((Iconbtn, key) => (
-        <Iconbtn key={key} />
-      ))}
+      {status === "review" ? (
+        <>
+          <TrashIcon />
+          <EditIcon />
+          <SuccessIcon />
+          <IconButton Icon={MdFormatColorFill} className="font-lg" />
+        </>
+      ) : status === "in_progress" ? (
+        <>
+          <SuccessIcon />
+        </>
+      ) : status === "test" ? (
+        <>
+          <FailIcon />
+          <SuccessIcon />
+        </>
+      ) : (
+        status === "completed" && (
+          <>
+            <SuccessIcon />
+          </>
+        )
+      )}
     </div>
   );
 };

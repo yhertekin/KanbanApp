@@ -8,7 +8,7 @@ const Todo = ({ todo }) => {
   const [edit, setEdit] = useState(false);
 
   return (
-    <div className={styles.todo}>
+    <div className={`${styles.todo} ${styles[todo.status]}`}>
       <TodoHeader todo={todo} setEdit={setEdit} />
       <div className={styles.content}>
         {edit ? (

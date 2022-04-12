@@ -14,7 +14,10 @@ const TodoStatusSection = ({ status, todoList }) => {
       >
         {status}
       </Button>
-      {showTodos && todoList.map((todo) => <Todo todo={todo} key={todo.id} />)}
+      <div>
+        {showTodos &&
+          todoList.map((todo) => <Todo todo={todo} key={todo.id} />)}
+      </div>
     </div>
   );
 };

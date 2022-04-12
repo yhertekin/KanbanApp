@@ -16,7 +16,7 @@
     @apply primary--hover;
   }
   .secondary {
-    @apply text-yellow-500;
+    @apply text-green-500;
   }
   .secondary:hover {
     @apply secondary--hover;
@@ -46,7 +46,7 @@
     @apply text-blue-300;
   }
   .secondary--hover {
-    @apply text-yellow-300;
+    @apply text-green-300;
   }
   .danger--hover {
     @apply text-red-300;
