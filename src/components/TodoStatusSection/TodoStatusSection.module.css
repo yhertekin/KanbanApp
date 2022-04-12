@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .status__section {
+    @apply flex flex-col;
+  }
+
+  .status__section__header {
+    @apply p-1 text-center mt-1 bg-blue-500 text-white rounded-md;
+  }
+  .status__section__header:hover {
+    @apply status__section__header--hover;
+  }
+}
+
+@variants hover {
+  .status__section__header--hover {
+    @apply bg-blue-700;
+  }
+}

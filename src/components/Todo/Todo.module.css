@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .todo {
+    @apply border rounded-md mt-1 bg-yellow-200 w-full overflow-hidden;
+  }
+}
+
+@layer components {
+  .todo:hover {
+    @apply todo--hover;
+  }
+  .todo__header {
+    @apply w-full h-10 bg-yellow-300  px-4 py-2 flex justify-between items-center;
+  }
+  .content {
+    @apply h-36 p-4 break-words overflow-auto;
+  }
+
+  .todo__footer {
+    @apply w-full h-10 bg-yellow-300  px-4 py-2 flex justify-between items-center;
+  }
+}
+
+@variants hover {
+  .todo--hover {
+    @apply bg-yellow-300;
+  }
+}

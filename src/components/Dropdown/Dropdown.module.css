@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .dropdown {
+    @apply p-1 border rounded-md w-full;
+  }
+}

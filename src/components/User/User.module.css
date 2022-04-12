@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  li {
+    @apply flex flex-col;
+  }
+}
+
+@layer components {
+  .user {
+    @apply grid items-center grid-cols-6 bg-gray-200 p-2 mt-1 rounded-md;
+  }
+  .user:hover {
+    @apply user--hover;
+  }
+
+  .buttons {
+    @apply col-start-6 flex justify-between;
+  }
+}
+
+@variants hover {
+  .user--hover {
+    @apply hover:bg-gray-300;
+  }
+}

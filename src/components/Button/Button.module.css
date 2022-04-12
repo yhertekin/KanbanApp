@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .btn {
+    @apply p-1 rounded-md border w-full;
+  }
+}
+
+@layer components {
+  .primary {
+    @apply btn bg-blue-500 text-white active:primary--active;
+  }
+
+  .secondary {
+    @apply btn text-white bg-yellow-500 active:secondary--active;
+  }
+
+  .danger {
+    @apply btn bg-red-500 text-white active:danger--active;
+  }
+}
+
+@variants active {
+  .primary--active {
+    @apply bg-white text-blue-500;
+  }
+  .secondary--active {
+    @apply bg-white text-yellow-500;
+  }
+  .danger--active {
+    @apply bg-white text-red-500;
+  }
+}

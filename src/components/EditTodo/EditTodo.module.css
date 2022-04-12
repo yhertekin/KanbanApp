@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .edit {
+    @apply flex flex-col justify-around items-center h-28;
+  }
+}
