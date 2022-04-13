@@ -5,19 +5,17 @@ import { FiEdit } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
 import { MdFormatColorFill } from "react-icons/md";
 import {
-    removeTodo,
     setStatusTest,
     setStatusInProgress,
     setStatusCompleted,
 } from "../../redux/todosSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import IconButton from "../IconButton";
 
 import styles from "./Todo.module.css";
 
-const TodoHeader = ({ todo, setEdit }) => {
+const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
     const dispatch = useDispatch();
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const { id, status } = todo;
 
     const EditIcon = () => (
@@ -57,11 +55,15 @@ const TodoHeader = ({ todo, setEdit }) => {
     );
 
     const ColorIcon = () => (
-        <IconButton Icon={MdFormatColorFill} className="font-lg" />
+        <IconButton
+            Icon={MdFormatColorFill}
+            className="font-lg"
+            onClick={() => setColorPicker((prevState) => !prevState)}
+        />
     );
 
     return (
-        <div className={styles["todo__header"]}>
+        <div className={`${styles["todo__header"]} ${todo.color.dark} `}>
             {status === "review" ? (
                 <>
                     <ColorIcon />
@@ -76,7 +78,6 @@ const TodoHeader = ({ todo, setEdit }) => {
             ) : status === "test" ? (
                 <>
                     <ColorIcon />
-
                     <FailIcon />
                     <SuccessIcon />
                 </>

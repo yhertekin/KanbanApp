@@ -24,6 +24,7 @@ export const todosSlice = createSlice({
                 task: action.payload.task,
                 userId: action.payload.userId,
                 createdAt: new Date(),
+                color: { light: "bg-yellow-200", dark: "bg-yellow-300" },
                 // color: "yellow"
             };
             state.items = [todo, ...state.items];
@@ -90,6 +91,15 @@ export const todosSlice = createSlice({
             todo.status = STATUS.COMPLETED;
             updateStorage(state.items);
         },
+
+        changeColor: (state, action) => {
+            const todo = findTodoById({
+                id: action.payload.id,
+                list: state.items,
+            });
+            todo.color = action.payload.color;
+            updateStorage(state.items);
+        },
     },
 });
 
@@ -101,5 +111,6 @@ export const {
     setStatusInProgress,
     setStatusTest,
     setStatusCompleted,
+    changeColor,
 } = todosSlice.actions;
 export default todosSlice.reducer;

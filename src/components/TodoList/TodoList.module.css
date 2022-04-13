@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .todo__list {
-    @apply grid gap-1 grid-cols-4;
-  }
+    .todo__list {
+        @apply grid gap-2 grid-cols-4;
+    }
 }

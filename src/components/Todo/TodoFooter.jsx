@@ -27,18 +27,14 @@ const TodoFooter = ({ todo }) => {
     );
 
     const CalendarIcon = () => (
-        <IconButton
-            Icon={BsCalendarDate}
-            variant="black"
-            className="justify-self-start mr-1"
-        />
+        <IconButton Icon={BsCalendarDate} variant="black" className="mr-1" />
     );
     const user = useSelector((state) => state.users.items).find(
         (user) => user.id === todo.userId
     );
 
     return (
-        <div className={styles["todo__footer"]}>
+        <div className={`${styles["todo__footer"]} ${todo.color.dark}`}>
             <div className={styles["todo__footer__date"]}>
                 <CalendarIcon />
                 <span>{formatDate(todo.createdAt)}</span>
