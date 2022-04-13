@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .login {
+    @apply mt-4 grid gap-2 w-6/12 mx-auto;
+  }
+}

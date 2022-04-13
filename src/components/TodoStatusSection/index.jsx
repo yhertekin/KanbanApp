@@ -12,7 +12,7 @@ const TodoStatusSection = ({ status, todoList }) => {
         className={styles["status__section__header"]}
         onClick={() => setShowTodos((prev) => !prev)}
       >
-        {status}
+        {status.split(/\d|_/).join(" ").toUpperCase()}
       </Button>
       <div>
         {showTodos &&

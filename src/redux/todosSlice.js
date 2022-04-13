@@ -23,7 +23,11 @@ export const todosSlice = createSlice({
         status: STATUS.REVIEW,
         task: action.payload.task,
         userId: action.payload.userId,
-        createdAt: new Date(),
+        createdAt: new Date().toLocaleString("tr", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
         // color: "yellow"
       };
       state.items = [todo, ...state.items];

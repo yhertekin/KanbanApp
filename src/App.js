@@ -2,6 +2,7 @@ import Header from "./components/Header";
 
 import TodoPage from "./pages/TodoPage";
 import UsersPage from "./pages/UsersPage";
+import LoginPage from "./pages/LoginPage";
 
 import { store } from "./redux/store";
 
@@ -9,6 +10,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Routes>
               <Route path="/" element={<TodoPage />} />
               <Route path="/users" element={<UsersPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
             </Routes>
           </div>
         </Router>
