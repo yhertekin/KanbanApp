@@ -13,23 +13,26 @@ import "./App.css";
 import RegisterPage from "./pages/RegisterPage";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <div>
-        <Router>
-          <Header />
-          <div className="container mx-auto">
-            <Routes>
-              <Route path="/" element={<TodoPage />} />
-              <Route path="/users" element={<UsersPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-            </Routes>
-          </div>
-        </Router>
-      </div>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <div>
+                <Router>
+                    <Header />
+                    <div className="container mx-auto">
+                        <Routes>
+                            <Route path="/" element={<TodoPage />} />
+                            <Route path="/users" element={<UsersPage />} />
+                            <Route path="/login" element={<LoginPage />} />
+                            <Route
+                                path="/register"
+                                element={<RegisterPage />}
+                            />
+                        </Routes>
+                    </div>
+                </Router>
+            </div>
+        </Provider>
+    );
 }
 
 export default App;

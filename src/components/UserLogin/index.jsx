@@ -8,29 +8,38 @@ import Button from "../Button";
 import styles from "./UserLogin.module.css";
 
 const UserLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  return (
-    <div className={styles.login}>
-      <Input
-        type="email"
-        value={email}
-        setValue={setEmail}
-        placeholder="Email"
-      />
-      <Input
-        type="password"
-        value={password}
-        setValue={setPassword}
-        placeholder="Password"
-      />
-      <Button onClick={() => dispatch(loginUser({ email, password }))}>
-        Login
-      </Button>
-    </div>
-  );
+    const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+
+    const onChangeHandler = (e) => {
+        setLoginForm((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    return (
+        <div className={styles.login}>
+            <Input
+                type="email"
+                name="email"
+                value={loginForm.email}
+                onChange={onChangeHandler}
+                placeholder="Email"
+            />
+            <Input
+                name="password"
+                type="password"
+                value={loginForm.password}
+                onChange={onChangeHandler}
+                placeholder="Password"
+            />
+            <Button onClick={() => dispatch(loginUser(loginForm))}>
+                Login
+            </Button>
+        </div>
+    );
 };
 
 export default UserLogin;

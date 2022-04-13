@@ -9,47 +9,60 @@ import Dropdown from "../Dropdown";
 import styles from "./UserRegister.module.css";
 
 const UserRegister = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("");
+    const dispatch = useDispatch();
+    const [registerForm, setRegisterForm] = useState({
+        username: "",
+        email: "",
+        password: "",
+        userType: "",
+    });
 
-  const userTypes = [
-    { key: "user", value: "user" },
-    { key: "admin", value: "admin" },
-  ];
+    const userTypes = [
+        { key: "user", value: "user" },
+        { key: "admin", value: "admin" },
+    ];
 
-  const dispatch = useDispatch();
-  return (
-    <div className={styles.register}>
-      <Input value={username} setValue={setUsername} placeholder="Username" />
-      <Input
-        type="email"
-        value={email}
-        setValue={setEmail}
-        placeholder="Email"
-      />
-      <Input
-        type="password"
-        value={password}
-        setValue={setPassword}
-        placeholder="Password"
-      />
-      <Dropdown
-        dropdownValue={userType}
-        setDropdownValue={setUserType}
-        placeholder="Select user type"
-        items={userTypes}
-      />
-      <Button
-        onClick={() =>
-          dispatch(addUser({ email, password, username, userType }))
-        }
-      >
-        Register
-      </Button>
-    </div>
-  );
+    const onChangeHandler = (e) => {
+        setRegisterForm((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    return (
+        <div className={styles.register}>
+            <Input
+                name="username"
+                value={registerForm.username}
+                onChange={onChangeHandler}
+                placeholder="Username"
+            />
+            <Input
+                name="email"
+                type="email"
+                value={registerForm.email}
+                onChange={onChangeHandler}
+                placeholder="Email"
+            />
+            <Input
+                name="password"
+                type="password"
+                value={registerForm.password}
+                onChange={onChangeHandler}
+                placeholder="Password"
+            />
+            <Dropdown
+                name="userType"
+                value={registerForm.userType}
+                onChange={onChangeHandler}
+                placeholder="Select user type"
+                items={userTypes}
+            />
+            <Button onClick={() => dispatch(addUser(registerForm))}>
+                Register
+            </Button>
+        </div>
+    );
 };
 
 export default UserRegister;

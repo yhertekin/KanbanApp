@@ -4,36 +4,39 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/usersSlice";
 
 const Header = () => {
-  const currentUser = useSelector((state) => state.users.currentUser);
-  const dispatch = useDispatch();
-  return (
-    <header className={styles}>
-      <div>
-        <Link className={styles.link} to="/">
-          Todo
-        </Link>
-        <Link className={styles.link} to="/users">
-          Users
-        </Link>
-      </div>
-      <div>
-        {currentUser?.isLoggedIn ? (
-          <Link to="" onClick={() => dispatch(logoutUser(currentUser.id))}>
-            Logout
-          </Link>
-        ) : (
-          <>
-            <Link className={styles.link} to="/login">
-              Login
-            </Link>
-            <Link className={styles.link} to="/register">
-              Register
-            </Link>
-          </>
-        )}
-      </div>
-    </header>
-  );
+    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const dispatch = useDispatch();
+
+    const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
+
+    return (
+        <header className={styles}>
+            <div>
+                <Link className={styles.link} to="/">
+                    Todo
+                </Link>
+                <Link className={styles.link} to="/users">
+                    Users
+                </Link>
+            </div>
+            <div>
+                {isLoggedIn ? (
+                    <Link to="/login" onClick={() => dispatch(logoutUser())}>
+                        Logout
+                    </Link>
+                ) : (
+                    <>
+                        <Link className={styles.link} to="/login">
+                            Login
+                        </Link>
+                        <Link className={styles.link} to="/register">
+                            Register
+                        </Link>
+                    </>
+                )}
+            </div>
+        </header>
+    );
 };
 
 export default Header;
