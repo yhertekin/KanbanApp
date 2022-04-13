@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FaTrashAlt, FaCheck } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
 import { MdFormatColorFill } from "react-icons/md";
@@ -19,16 +19,6 @@ const TodoHeader = ({ todo, setEdit }) => {
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const { id, status } = todo;
-
-    const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
-
-    const TrashIcon = () => (
-        <IconButton
-            Icon={FaTrashAlt}
-            onClick={() => dispatch(removeTodo(id))}
-            variant="black"
-        />
-    );
 
     const EditIcon = () => (
         <IconButton
@@ -52,10 +42,6 @@ const TodoHeader = ({ todo, setEdit }) => {
                     case "test":
                         dispatch(setStatusCompleted(id));
                         break;
-                    case "completed":
-                        console.log("hello  ");
-                        dispatch(removeTodo(id));
-                        break;
                 }
             }}
             variant="secondary"
@@ -70,31 +56,31 @@ const TodoHeader = ({ todo, setEdit }) => {
         />
     );
 
+    const ColorIcon = () => (
+        <IconButton Icon={MdFormatColorFill} className="font-lg" />
+    );
+
     return (
         <div className={styles["todo__header"]}>
             {status === "review" ? (
                 <>
+                    <ColorIcon />
                     <EditIcon />
-                    {loggedInUser?.userType === "admin" && <TrashIcon />}
                     <SuccessIcon />
-                    <IconButton Icon={MdFormatColorFill} className="font-lg" />
                 </>
             ) : status === "in_progress" ? (
                 <>
+                    <ColorIcon />
                     <SuccessIcon />
                 </>
             ) : status === "test" ? (
                 <>
+                    <ColorIcon />
+
                     <FailIcon />
                     <SuccessIcon />
                 </>
-            ) : (
-                status === "completed" && (
-                    <>
-                        <SuccessIcon />
-                    </>
-                )
-            )}
+            ) : null}
         </div>
     );
 };

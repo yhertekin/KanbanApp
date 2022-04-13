@@ -43,7 +43,7 @@ export const todosSlice = createSlice({
         editTodo: (state, action) => {
             const { id, task, userId } = action.payload;
             const index = state.items.findIndex((todo) => todo.id === id);
-            if (state.items[index].status !== STATUS.REVIEW.CURRENT) return;
+            if (state.items[index].status !== STATUS.REVIEW) return;
             state.items[index] = {
                 ...state.items[index],
                 task: task,

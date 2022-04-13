@@ -33,7 +33,10 @@
     }
 
     .todo__footer {
-        @apply w-full h-10 bg-yellow-300  px-4 py-2 flex justify-between items-center;
+        @apply w-full h-10 bg-yellow-300 px-4 py-2 grid grid-cols-3 place-items-center;
+    }
+    .todo__footer__date {
+        @apply flex items-center justify-self-start;
     }
 }
 
