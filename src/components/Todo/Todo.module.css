@@ -12,28 +12,17 @@
     /* .todo:hover {
         @apply todo--hover;
     } */
-    /* .review {
-        @apply bg-yellow-200;
-    }
-    .in_progress {
-        @apply bg-yellow-200;
-    }
-    .test {
-        @apply bg-yellow-200;
-    }
-    .completed {
-        @apply bg-yellow-200;
-    } */
 
     .todo__header {
         @apply w-full h-10 px-4 py-2 flex justify-between items-center;
     }
+
     .content {
         @apply h-36 p-4 break-words overflow-auto;
     }
 
     .todo__footer {
-        @apply w-full h-10  px-4 py-2 grid grid-cols-3 place-items-center;
+        @apply w-full h-10 px-4 py-2 grid grid-cols-3 place-items-center;
     }
     .todo__footer__date {
         @apply flex items-center justify-self-start;

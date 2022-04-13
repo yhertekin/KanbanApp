@@ -8,7 +8,7 @@ import ColorPicker from "../ColorPicker";
 const Todo = ({ todo }) => {
     const [edit, setEdit] = useState(false);
     const [colorPicker, setColorPicker] = useState(false);
-
+    console.log("todo light color", todo.color.light);
     return (
         <div className={`${styles.todo}`}>
             <TodoHeader
@@ -22,9 +22,7 @@ const Todo = ({ todo }) => {
                 ) : colorPicker ? (
                     <ColorPicker todo={todo} />
                 ) : (
-                    <div className={`${todo.completed && "line-through"}`}>
-                        {todo.task}
-                    </div>
+                    <div>{todo.task}</div>
                 )}
             </div>
             <TodoFooter todo={todo} />

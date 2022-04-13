@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .register {
-    @apply mt-4 grid gap-2 w-6/12 mx-auto;
-  }
+    .register {
+        @apply grid gap-2 w-5/12 mx-auto border p-4 rounded-md shadow-md shadow-gray-200;
+    }
 }

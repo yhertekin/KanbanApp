@@ -5,9 +5,9 @@ import { logoutUser } from "../../redux/usersSlice";
 
 const Header = () => {
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
-    const dispatch = useDispatch();
-
     const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
+
+    const dispatch = useDispatch();
 
     return (
         <header className={styles}>

@@ -61,9 +61,9 @@ const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
             onClick={() => setColorPicker((prevState) => !prevState)}
         />
     );
-
+    console.log(todo.color.dark);
     return (
-        <div className={`${styles["todo__header"]} ${todo.color.dark} `}>
+        <div className={`${styles["todo__header"]} ${todo.color.dark}`}>
             {status === "review" ? (
                 <>
                     <ColorIcon />

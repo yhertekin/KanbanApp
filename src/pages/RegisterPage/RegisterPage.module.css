@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .register__page {
+        @apply flex place-items-center h-96;
+    }
+}

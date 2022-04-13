@@ -9,47 +9,53 @@ import IconButton from "../IconButton";
 import styles from "./User.module.css";
 
 const User = ({ user }) => {
-  const todoList = useSelector((state) => state.todos.items);
-  const todos = todoList.filter((todo) => todo.userId === user.id);
-  const [showTodos, setShowTodos] = useState(false);
+    const todoList = useSelector((state) => state.todos.items);
+    const todos = todoList.filter((todo) => todo.userId === user.id);
+    const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
-  const dispatch = useDispatch();
+    const [showTodos, setShowTodos] = useState(false);
 
-  const todoCount = todos.length;
+    const dispatch = useDispatch();
 
-  const toogleShowTodos = () => setShowTodos((prevState) => !prevState);
-  let iconType = showTodos ? BiShowAlt : BiHide;
+    const todoCount = todos.length;
 
-  return (
-    <li className={styles}>
-      <div className={styles.user}>
-        <div className="col-span-2">{user.username}</div>
-        <div className="col-span-2">
-          You have {todoCount} todo{todoCount > 1 ? "s" : ""}.
-        </div>
-        <div className={styles.buttons}>
-          <IconButton
-            Icon={iconType}
-            onClick={toogleShowTodos}
-            variant="black"
-          />
-          <IconButton
+    const toogleShowTodos = () => setShowTodos((prevState) => !prevState);
+    let iconType = showTodos ? BiShowAlt : BiHide;
+
+    const ToggleTodosButton = () => (
+        <IconButton Icon={iconType} onClick={toogleShowTodos} variant="black" />
+    );
+
+    const TrashButton = () => (
+        <IconButton
             Icon={FaTrashAlt}
-            variant="danger"
+            variant="black"
             onClick={() => dispatch(removeUser(user.id))}
-          />
-        </div>
-      </div>
-      {showTodos && todoCount !== 0 && <TodoList todos={todos} />}
-      {showTodos && todoCount === 0 && (
-        <Alert
-          message="There is not any task here."
-          variant="danger"
-          className="mt-1"
         />
-      )}
-    </li>
-  );
+    );
+
+    return (
+        <li className={styles}>
+            <div className={styles.user}>
+                <div className="col-span-2">{user.username}</div>
+                <div className="col-span-2">
+                    You have {todoCount} todo{todoCount > 1 ? "s" : ""}.
+                </div>
+                <div className={styles.buttons}>
+                    <ToggleTodosButton />
+                    {loggedInUser.userType === "admin" ? <TrashButton /> : null}
+                </div>
+            </div>
+            {showTodos && todoCount !== 0 && <TodoList todos={todos} />}
+            {showTodos && todoCount === 0 && (
+                <Alert
+                    message="There is not any task here."
+                    variant="danger"
+                    className="mt-1"
+                />
+            )}
+        </li>
+    );
 };
 
 export default User;
