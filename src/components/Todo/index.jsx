@@ -8,15 +8,25 @@ import ColorPicker from "../ColorPicker";
 const Todo = ({ todo }) => {
     const [edit, setEdit] = useState(false);
     const [colorPicker, setColorPicker] = useState(false);
-    console.log("todo light color", todo.color.light);
     return (
         <div className={`${styles.todo}`}>
-            <TodoHeader
-                todo={todo}
-                setEdit={setEdit}
-                setColorPicker={setColorPicker}
-            />
-            <div className={`${styles.content} ${todo.color.light}`}>
+            {todo.status !== "completed" ? (
+                <TodoHeader
+                    todo={todo}
+                    setEdit={setEdit}
+                    setColorPicker={setColorPicker}
+                />
+            ) : null}
+
+            <div
+                className={`${
+                    styles[
+                        todo.status === "completed"
+                            ? "content__completed"
+                            : "content__not__completed"
+                    ]
+                } ${todo.color.dark}`}
+            >
                 {edit ? (
                     <EditTodo todo={todo} setEdit={setEdit} />
                 ) : colorPicker ? (

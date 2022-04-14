@@ -17,12 +17,15 @@
         @apply w-full h-10 px-4 py-2 flex justify-between items-center;
     }
 
-    .content {
-        @apply h-36 p-4 break-words overflow-auto;
+    .content__not__completed {
+        @apply p-4 h-36 break-words overflow-auto;
+    }
+    .content__completed {
+        @apply px-4 py-2 h-10 break-words overflow-auto;
     }
 
     .todo__footer {
-        @apply w-full h-10 px-4 py-2 grid grid-cols-3 place-items-center;
+        @apply w-full h-10 px-4 py-2 flex justify-between items-center;
     }
     .todo__footer__date {
         @apply flex items-center justify-self-start;

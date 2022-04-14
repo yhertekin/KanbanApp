@@ -22,7 +22,6 @@ const TodoFooter = ({ todo }) => {
             Icon={FaTrashAlt}
             onClick={() => dispatch(removeTodo(todo.id))}
             variant="black"
-            className="justify-self-end"
         />
     );
 
@@ -34,15 +33,15 @@ const TodoFooter = ({ todo }) => {
     );
 
     return (
-        <div className={`${styles["todo__footer"]} ${todo.color.dark}`}>
+        <div className={`${styles["todo__footer"]} ${todo.color.light}`}>
             <div className={styles["todo__footer__date"]}>
                 <CalendarIcon />
                 <span>{formatDate(todo.createdAt)}</span>
             </div>
             <div>{user.username}</div>
-            {todo.status === "review" && loggedInUser?.userType === "admin" && (
+            {todo.status === "review" && loggedInUser?.userType === "admin" ? (
                 <TrashIcon />
-            )}
+            ) : null}
         </div>
     );
 };

@@ -22,7 +22,10 @@ const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
         <IconButton
             Icon={FiEdit}
             variant="black"
-            onClick={() => setEdit((prevState) => !prevState)}
+            onClick={() => {
+                setEdit((prevState) => !prevState);
+                setColorPicker(false);
+            }}
         />
     );
 
@@ -58,12 +61,14 @@ const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
         <IconButton
             Icon={MdFormatColorFill}
             className="font-lg"
-            onClick={() => setColorPicker((prevState) => !prevState)}
+            onClick={() => {
+                setEdit(false);
+                setColorPicker((prevState) => !prevState);
+            }}
         />
     );
-    console.log(todo.color.dark);
     return (
-        <div className={`${styles["todo__header"]} ${todo.color.dark}`}>
+        <div className={`${styles["todo__header"]} ${todo.color.light}`}>
             {status === "review" ? (
                 <>
                     <ColorIcon />

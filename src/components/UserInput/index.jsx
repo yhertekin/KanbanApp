@@ -8,8 +8,9 @@ import styles from "./UserInput.module.css";
 
 const UserInput = () => {
     const [input, setInput] = useState("");
-    const dispatch = useDispatch();
     const [warningMessage, setWarningMessage] = useState("");
+
+    const dispatch = useDispatch();
 
     const buttonHandler = () => {
         if (input === "") {
