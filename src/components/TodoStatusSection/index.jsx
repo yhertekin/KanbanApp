@@ -24,15 +24,20 @@ const TodoStatusSection = ({ status, todoList }) => {
     );
 
     return (
-        <div className={styles["status__section"]}>
-            <header className={styles["status__section__header"]}>
-                <span>{status.split(/\d|_/).join(" ").toUpperCase()}</span>
-                {showTodos ? <ArrowUp /> : <ArrowDown />}
-            </header>
+        <div>
+            <div className={styles["status__section"]}>
+                <header className={styles["status__section__header"]}>
+                    <span>{status.split(/\d|_/).join(" ").toUpperCase()}</span>
+                    {showTodos ? <ArrowUp /> : <ArrowDown />}
+                </header>
 
-            <div className={styles["status__section__content"]}>
-                {showTodos &&
-                    todoList.map((todo) => <Todo todo={todo} key={todo.id} />)}
+                {showTodos && (
+                    <div className={styles["status__section__content"]}>
+                        {todoList.map((todo) => (
+                            <Todo todo={todo} key={todo.id} />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     );

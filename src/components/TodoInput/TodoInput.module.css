@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  .input__grid {
-    @apply grid gap-2 grid-cols-4 mt-3 items-center;
-  }
+    .todo__input {
+        @apply border border-black rounded-md bg-white h-48 p-4 w-96;
+    }
 }

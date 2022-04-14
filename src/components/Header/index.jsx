@@ -10,7 +10,7 @@ const Header = () => {
     const dispatch = useDispatch();
 
     return (
-        <header className={styles}>
+        <header className={styles.header}>
             <div>
                 <Link className={styles.link} to="/">
                     Todo

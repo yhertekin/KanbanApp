@@ -4,8 +4,45 @@
 
 @layer base {
     .todo {
-        @apply border rounded-md mt-1 w-full overflow-hidden;
+        @apply border rounded-md mt-2 w-full overflow-hidden;
     }
+}
+
+.blue--dark {
+    @apply bg-blue-300;
+}
+.blue--light {
+    @apply bg-blue-200;
+}
+.yellow--dark {
+    @apply bg-yellow-300;
+}
+.yellow--light {
+    @apply bg-yellow-200;
+}
+.red--dark {
+    @apply bg-red-300;
+}
+.red--light {
+    @apply bg-red-200;
+}
+.green--dark {
+    @apply bg-green-300;
+}
+.green--light {
+    @apply bg-green-200;
+}
+.teal--dark {
+    @apply bg-teal-300;
+}
+.teal--light {
+    @apply bg-teal-200;
+}
+.purple--dark {
+    @apply bg-purple-300;
+}
+.purple--light {
+    @apply bg-purple-200;
 }
 
 @layer components {
@@ -18,10 +55,10 @@
     }
 
     .content__not__completed {
-        @apply p-4 h-36 break-words overflow-auto;
+        @apply p-4 h-auto break-words overflow-auto;
     }
     .content__completed {
-        @apply px-4 py-2 h-10 break-words overflow-auto;
+        @apply px-4 py-2 h-auto break-words overflow-auto;
     }
 
     .todo__footer {

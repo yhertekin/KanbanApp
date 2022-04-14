@@ -9,10 +9,7 @@ const ColorPicker = ({ todo }) => {
         dispatch(
             changeColor({
                 id: todo.id,
-                color: {
-                    light: `bg-${color}-200`,
-                    dark: `bg-${color}-300`,
-                },
+                color: color,
             })
         );
     };

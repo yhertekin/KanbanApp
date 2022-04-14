@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 @layer base {
-  header {
-    @apply p-3 text-white  bg-blue-500 flex justify-between;
-  }
+    .header {
+        @apply p-3 text-white  bg-blue-500 flex justify-between;
+    }
 }
 
 @layer components {
-  .link {
-    @apply mx-2;
-  }
-  .link:hover {
-    @apply link--hover;
-  }
+    .link {
+        @apply mx-2;
+    }
+    .link:hover {
+        @apply link--hover;
+    }
 }
 
 @variants hover {
-  .link--hover {
-    @apply hover:underline;
-  }
+    .link--hover {
+        @apply hover:underline;
+    }
 }

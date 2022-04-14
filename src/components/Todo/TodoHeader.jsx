@@ -68,7 +68,11 @@ const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
         />
     );
     return (
-        <div className={`${styles["todo__header"]} ${todo.color.light}`}>
+        <div
+            className={`${styles["todo__header"]}  ${
+                styles[`${todo.color}--light`]
+            }`}
+        >
             {status === "review" ? (
                 <>
                     <ColorIcon />

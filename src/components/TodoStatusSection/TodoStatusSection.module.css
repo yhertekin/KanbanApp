@@ -4,7 +4,7 @@
 
 @layer components {
     .status__section {
-        @apply flex flex-col border mt-2 rounded-md;
+        @apply flex flex-col border my-2 rounded-md  bg-gray-100;
     }
 
     .status__section__header {
@@ -12,7 +12,7 @@
     }
 
     .status__section__content {
-        @apply p-2 bg-gray-100;
+        @apply px-2 pb-2;
     }
     /* .status__section__header:hover {
         @apply status__section__header--hover;

@@ -33,7 +33,11 @@ const TodoFooter = ({ todo }) => {
     );
 
     return (
-        <div className={`${styles["todo__footer"]} ${todo.color.light}`}>
+        <div
+            className={`${styles["todo__footer"]} ${
+                styles[`${todo.color}--light`]
+            }`}
+        >
             <div className={styles["todo__footer__date"]}>
                 <CalendarIcon />
                 <span>{formatDate(todo.createdAt)}</span>
