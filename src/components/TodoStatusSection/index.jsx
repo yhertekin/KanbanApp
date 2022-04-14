@@ -13,7 +13,6 @@ const TodoStatusSection = ({ status, todoList }) => {
             Icon={IoIosArrowUp}
             variant="black"
             onClick={() => setShowTodos((prevState) => !prevState)}
-            className="font-lg"
         />
     );
     const ArrowDown = () => (

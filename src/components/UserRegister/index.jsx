@@ -1,21 +1,26 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/usersSlice";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../Button";
 import Input from "../Input";
 import Dropdown from "../Dropdown";
+import Alert from "../Alert";
 
 import styles from "./UserRegister.module.css";
 
 const UserRegister = () => {
-    const dispatch = useDispatch();
+    const [warningMessage, setWarningMessage] = useState("");
     const [registerForm, setRegisterForm] = useState({
         username: "",
         email: "",
         password: "",
         userType: "",
     });
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const userTypes = [
         { key: "user", value: "user" },
@@ -29,8 +34,24 @@ const UserRegister = () => {
         }));
     };
 
+    const onSubmitHandler = () => {
+        if (
+            Object.keys(registerForm).find((key) => registerForm[key] === "")
+                ?.length > 0
+        ) {
+            setWarningMessage("Please fill in all fields");
+            return;
+        }
+        setWarningMessage("");
+        dispatch(addUser(registerForm));
+        navigate("/login");
+    };
+
     return (
         <div className={styles.register}>
+            {warningMessage && (
+                <Alert message={warningMessage} variant="danger" />
+            )}
             <Input
                 name="username"
                 value={registerForm.username}
@@ -58,9 +79,7 @@ const UserRegister = () => {
                 placeholder="Select user type"
                 items={userTypes}
             />
-            <Button onClick={() => dispatch(addUser(registerForm))}>
-                Register
-            </Button>
+            <Button onClick={onSubmitHandler}>Register</Button>
         </div>
     );
 };
