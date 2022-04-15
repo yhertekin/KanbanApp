@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../../redux/usersSlice";
 import { useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
 import { BiShowAlt, BiHide } from "react-icons/bi";
+import { Link } from "react-router-dom";
+
+import { removeUser } from "../../redux/usersSlice";
 import TodoList from "../TodoList";
 import Alert from "../Alert";
 import IconButton from "../IconButton";
+
 import styles from "./User.module.css";
 
 const User = ({ user }) => {
@@ -37,7 +40,14 @@ const User = ({ user }) => {
     return (
         <li className={styles}>
             <div className={styles.user}>
-                <div className="col-span-2">{user.username}</div>
+                <div className="col-span-2">
+                    <Link to={`/profile/${user.id}`}>
+                        <div className="flex items-center">
+                            <IconButton Icon={FaUserAlt} className="mr-2" />
+                            <span>{user.username}</span>
+                        </div>
+                    </Link>
+                </div>
                 <div className="col-span-2">
                     You have {todoCount} todo{todoCount > 1 ? "s" : ""}.
                 </div>

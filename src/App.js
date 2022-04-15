@@ -4,6 +4,7 @@ import TodoPage from "./pages/TodoPage";
 import UsersPage from "./pages/UsersPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
@@ -22,6 +23,10 @@ function App() {
                             <Route path="/" element={<TodoPage />} />
                             <Route path="/users" element={<UsersPage />} />
                             <Route path="/login" element={<LoginPage />} />
+                            <Route
+                                path="/profile/:id"
+                                element={<ProfilePage />}
+                            />
                             <Route
                                 path="/register"
                                 element={<RegisterPage />}
