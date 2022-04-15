@@ -58,7 +58,11 @@ const EditTodo = ({ todo, className, setEdit }) => {
                     value: user.username,
                 }))}
             />
-            <Button children="Edit" onClick={buttonHandler} />
+            <Button
+                children="Edit"
+                className="w-full"
+                onClick={buttonHandler}
+            />
         </div>
     );
 };

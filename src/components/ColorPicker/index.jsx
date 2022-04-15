@@ -15,7 +15,7 @@ const ColorPicker = ({ todo }) => {
     };
 
     return (
-        <div className="grid gap-1 grid-cols-3 grid-rows-2 w-full h-full">
+        <div className="grid gap-1 grid-cols-3 grid-rows-2 w-full h-20">
             <div
                 className="bg-blue-200 rounded-md"
                 onClick={onClickHandler}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/usersSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,8 @@ import Alert from "../Alert";
 const UserLogin = () => {
     const [loginForm, setLoginForm] = useState({ email: "", password: "" });
     const [warningMessage, setWarningMessage] = useState("");
+
+    const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -31,8 +33,13 @@ const UserLogin = () => {
             setWarningMessage("Please fill in all fields");
             return;
         }
+
+        dispatch(loginUser(loginForm)); // try login
+        // if (!loggedInUser?.id) {
+        //     setWarningMessage("Failed to login!");
+        //     return;
+        // }
         setWarningMessage("");
-        dispatch(loginUser(loginForm));
         navigate("/");
     };
 

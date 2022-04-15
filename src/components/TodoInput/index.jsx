@@ -32,13 +32,23 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
         setInputValue("");
         setDropdownValue("");
         setWarningMessage("");
+        cancelButtonHandler();
     };
 
     return (
-        <div className="absolute flex justify-center items-center bg-black w-screen h-screen top-0 left-0 bg-opacity-50">
+        <div
+            className="absolute flex justify-center items-center 
+        bg-black w-screen h-screen
+         top-0 left-0 bg-opacity-50
+         "
+        >
             <div className={`${styles["todo__input"]} ${className ?? ""}`}>
                 {warningMessage && (
-                    <Alert message={warningMessage} variant="warning" />
+                    <Alert
+                        message={warningMessage}
+                        variant="warning"
+                        className="mb-2"
+                    />
                 )}
                 <div className="">
                     <Input
@@ -46,26 +56,30 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
                         variant="primary"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        className="col-span-2"
+                        className=""
                     />
 
                     <Dropdown
                         value={dropdownValue}
                         onChange={(e) => setDropdownValue(e.target.value)}
-                        className="flex"
+                        className="mt-2"
                         placeholder="Select a user"
                         items={dropdownItems}
                     />
-                    <Button
-                        children="Add"
-                        variant="secondary"
-                        onClick={addButtonHandler}
-                    />
-                    <Button
-                        children="Cancel"
-                        variant="primary"
-                        onClick={() => cancelButtonHandler(false)}
-                    />
+                    <div className="flex justify-between items-center mt-2">
+                        <Button
+                            children="Cancel"
+                            variant="danger"
+                            onClick={() => cancelButtonHandler(false)}
+                            className="w-5/12"
+                        />
+                        <Button
+                            children="Add"
+                            variant="primary"
+                            onClick={addButtonHandler}
+                            className="w-5/12"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
