@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .user--input {
+.user__form {
     @apply grid gap-2 grid-cols-4 mt-3 items-center;
-  }
 }

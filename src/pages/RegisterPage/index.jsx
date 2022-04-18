@@ -1,9 +1,9 @@
 import UserRegister from "../../components/UserRegister";
-import styles from "./RegisterPage.module.css";
+import "./RegisterPage.css";
 
 const RegisterPage = () => {
     return (
-        <div className={styles["register__page"]}>
+        <div className="register__page">
             <UserRegister />
         </div>
     );

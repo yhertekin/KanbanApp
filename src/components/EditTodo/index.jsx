@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editTodo } from "../../redux/todosSlice";
 
-import styles from "./EditTodo.module.css";
+import { editTodo } from "../../redux/todosSlice";
 import Input from "../Input";
 import Dropdown from "../Dropdown";
 import Button from "../Button";
 import Alert from "../Alert";
+
+import "./EditTodo.css";
 
 const EditTodo = ({ todo, className, setEdit }) => {
     const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const EditTodo = ({ todo, className, setEdit }) => {
     };
 
     return (
-        <div className={`${styles.edit} ${className ?? ""}`}>
+        <div className={`edit ${className ?? ""}`}>
             {warningMessage && (
                 <Alert
                     message={warningMessage}

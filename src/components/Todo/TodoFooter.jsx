@@ -1,10 +1,11 @@
-import React from "react";
-import styles from "./Todo.module.css";
-import IconButton from "../IconButton";
+import { useSelector, useDispatch } from "react-redux";
 import { BsCalendarDate } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
-import { useSelector, useDispatch } from "react-redux";
+
+import IconButton from "../IconButton";
 import { removeTodo } from "../../redux/todosSlice";
+
+import "./Todo.css";
 
 const formatDate = (date) => {
     if (typeof date === "string") date = new Date(date);
@@ -33,12 +34,8 @@ const TodoFooter = ({ todo }) => {
     );
 
     return (
-        <div
-            className={`${styles["todo__footer"]} ${
-                styles[`${todo.color}--light`]
-            }`}
-        >
-            <div className={styles["todo__footer__date"]}>
+        <div className={`todo__footer todo--${todo.color}_light`}>
+            <div className="todo__footer__date">
                 <CalendarIcon />
                 <span>{formatDate(todo.createdAt)}</span>
             </div>

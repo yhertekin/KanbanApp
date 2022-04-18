@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/usersSlice";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { loginUser } from "../../redux/usersSlice";
 import Input from "../Input";
 import Button from "../Button";
-
-import styles from "./UserLogin.module.css";
 import Alert from "../Alert";
+
+import "./UserLogin.css";
 
 const UserLogin = () => {
     const [loginForm, setLoginForm] = useState({ email: "", password: "" });
     const [warningMessage, setWarningMessage] = useState("");
-
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -34,17 +32,13 @@ const UserLogin = () => {
             return;
         }
 
-        dispatch(loginUser(loginForm)); // try login
-        // if (!loggedInUser?.id) {
-        //     setWarningMessage("Failed to login!");
-        //     return;
-        // }
+        dispatch(loginUser(loginForm));
         setWarningMessage("");
         navigate("/");
     };
 
     return (
-        <div className={styles.login}>
+        <div className="login__form">
             {warningMessage && (
                 <Alert message={warningMessage} variant="danger" />
             )}

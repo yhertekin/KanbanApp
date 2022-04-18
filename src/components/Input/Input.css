@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  .input {
+.input {
     @apply border rounded-md p-1 pl-2 w-full;
-  }
 }
 
-@layer components {
-  .primary {
+.input--primary {
     @apply bg-white;
-  }
 }

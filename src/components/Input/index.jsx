@@ -1,9 +1,9 @@
-import styles from "./Input.module.css";
+import "./Input.css";
 
 const Input = ({ className, variant, ...props }) => {
     return (
         <input
-            className={`${styles.input} ${styles[variant ?? "primary"]} ${
+            className={`input input--${variant ?? "primary"} ${
                 className ?? ""
             }`}
             {...props}

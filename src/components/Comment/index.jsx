@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 
 import IconButton from "../IconButton";
+import "./Comment.css";
 
 const Comment = ({ comment }) => {
     const users = useSelector((state) => state.users.items);
     const user = users.find((user) => user.id === comment.userId);
+
     return (
-        <div className="bg-stone-200 px-2 py-1 mt-1 hover:bg-stone-300 rounded-md flex justify-between items-center">
+        <div className="comment">
             <div>{comment.text}</div>
             <Link to={`/profile/${user?.id}`}>
-                <div className="flex justify-between items-center">
+                <div className="comment__profile">
                     <IconButton Icon={FaUserAlt} className="mr-1" />
                     <span>{user?.username}</span>
                 </div>

@@ -1,5 +1,4 @@
-import React from "react";
-
+import { useDispatch } from "react-redux";
 import { FaCheck } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { ImCancelCircle } from "react-icons/im";
@@ -9,10 +8,9 @@ import {
     setStatusInProgress,
     setStatusCompleted,
 } from "../../redux/todosSlice";
-import { useDispatch } from "react-redux";
 import IconButton from "../IconButton";
 
-import styles from "./Todo.module.css";
+import "./Todo.css";
 
 const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
     const dispatch = useDispatch();
@@ -68,11 +66,7 @@ const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
         />
     );
     return (
-        <div
-            className={`${styles["todo__header"]}  ${
-                styles[`${todo.color}--light`]
-            }`}
-        >
+        <div className={`todo__header todo--${todo.color}_light`}>
             {status === "review" ? (
                 <>
                     <ColorIcon />

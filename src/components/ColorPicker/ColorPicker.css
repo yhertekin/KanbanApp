@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.colorpicker {
+    @apply grid gap-1 grid-cols-3 grid-rows-2 w-full h-20;
+}
+
+.colorpicker--blue {
+    @apply bg-blue-200 rounded-md;
+}
+
+.colorpicker--red {
+    @apply bg-red-200 rounded-md;
+}
+
+.colorpicker--green {
+    @apply bg-green-200 rounded-md;
+}
+
+.colorpicker--yellow {
+    @apply bg-yellow-200 rounded-md;
+}
+
+.colorpicker--teal {
+    @apply bg-teal-200 rounded-md;
+}
+
+.colorpicker--purple {
+    @apply bg-purple-200 rounded-md;
+}

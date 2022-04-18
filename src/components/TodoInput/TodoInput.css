@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.todo__input {
+    @apply border rounded-md bg-white h-auto p-5 w-96 flex flex-col justify-between;
+}
+
+.todo__input__footer {
+    @apply flex justify-between items-center mt-2;
+}

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.alert {
+    @apply p-1 rounded-md border text-white;
+}
+.alert--primary {
+    @apply alert bg-blue-500;
+}
+.alert--secondary {
+    @apply alert bg-yellow-500;
+}
+.alert--warning {
+    @apply alert bg-orange-500;
+}
+.alert--danger {
+    @apply alert bg-red-500;
+}
+
+.alert--primary:hover {
+    @apply bg-blue-600;
+}
+.alert--secondary:hover {
+    @apply bg-yellow-600;
+}
+.alert--warning:hover {
+    @apply bg-orange-600;
+}
+.alert--danger:hover {
+    @apply bg-red-600;
+}

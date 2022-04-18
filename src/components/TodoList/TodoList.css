@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.todo__list {
+    @apply grid gap-2 grid-cols-4;
+}

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import { addUser } from "../../redux/usersSlice";
 import Input from "../Input";
 import Button from "../Button";
 import Alert from "../Alert";
-import styles from "./UserInput.module.css";
+
+import "./UserInput.css";
 
 const UserInput = () => {
     const [input, setInput] = useState("");
@@ -25,7 +27,7 @@ const UserInput = () => {
     const keyHandler = (e) => e.key === "Enter" && buttonHandler();
     return (
         <div>
-            <div className={styles["user--input"]}>
+            <div className="user__form">
                 <Input
                     className="col-span-3"
                     type="text"

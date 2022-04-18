@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import TodoList from "../TodoList";
 import Alert from "../Alert";
 import IconButton from "../IconButton";
 
-import styles from "./User.module.css";
+import "./User.css";
 
 const User = ({ user }) => {
     const todoList = useSelector((state) => state.todos.items);
@@ -38,8 +38,8 @@ const User = ({ user }) => {
     );
 
     return (
-        <li className={styles}>
-            <div className={styles.user}>
+        <li>
+            <div className="user">
                 <div className="col-span-2">
                     <Link to={`/profile/${user.id}`}>
                         <div className="flex items-center">
@@ -51,19 +51,21 @@ const User = ({ user }) => {
                 <div className="col-span-2">
                     You have {todoCount} todo{todoCount > 1 ? "s" : ""}.
                 </div>
-                <div className={styles.buttons}>
+                <div className="buttons">
                     <ToggleTodosButton />
                     {loggedInUser.userType === "admin" ? <TrashButton /> : null}
                 </div>
             </div>
-            {showTodos && todoCount !== 0 && <TodoList todos={todos} />}
-            {showTodos && todoCount === 0 && (
-                <Alert
-                    message="There is not any task here."
-                    variant="danger"
-                    className="mt-1"
-                />
-            )}
+            {showTodos &&
+                (todoCount !== 0 ? (
+                    <TodoList todos={todos} />
+                ) : (
+                    <Alert
+                        message="There is not any task here."
+                        variant="danger"
+                        className="mt-1"
+                    />
+                ))}
         </li>
     );
 };

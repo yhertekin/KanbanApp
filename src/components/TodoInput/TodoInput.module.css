@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-    .todo__input {
-        @apply border rounded-md bg-white h-auto p-5 w-96 flex flex-col justify-between;
-    }
-}

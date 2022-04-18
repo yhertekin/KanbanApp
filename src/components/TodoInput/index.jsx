@@ -5,7 +5,9 @@ import Dropdown from "../Dropdown";
 import Input from "../Input";
 import Button from "../Button";
 import Alert from "../Alert";
-import styles from "./TodoInput.module.css";
+import Modal from "../Modal";
+
+import "./TodoInput.css";
 
 const TodoInput = ({ className, cancelButtonHandler }) => {
     const [inputValue, setInputValue] = useState("");
@@ -36,13 +38,8 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
     };
 
     return (
-        <div
-            className="absolute flex justify-center items-center 
-        bg-black w-screen h-screen
-         top-0 left-0 bg-opacity-50
-         "
-        >
-            <div className={`${styles["todo__input"]} ${className ?? ""}`}>
+        <Modal cancelModal={cancelButtonHandler}>
+            <div className={`todo__input ${className ?? ""}`}>
                 {warningMessage && (
                     <Alert
                         message={warningMessage}
@@ -50,13 +47,12 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
                         className="mb-2"
                     />
                 )}
-                <div className="">
+                <div>
                     <Input
                         placeholder="Todo"
                         variant="primary"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        className=""
                     />
 
                     <Dropdown
@@ -66,7 +62,7 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
                         placeholder="Select a user"
                         items={dropdownItems}
                     />
-                    <div className="flex justify-between items-center mt-2">
+                    <div className="todo__input__footer">
                         <Button
                             children="Cancel"
                             variant="danger"
@@ -82,7 +78,7 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Modal>
     );
 };
 

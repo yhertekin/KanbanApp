@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.icon {
+    @apply hover:cursor-pointer text-lg;
+}
+
+.icon-primary {
+    @apply text-blue-500;
+}
+.icon--primary:hover {
+    @apply text-blue-300;
+}
+.icon--secondary {
+    @apply text-green-500;
+}
+.icon--secondary:hover {
+    @apply text-green-300;
+}
+.icon--danger {
+    @apply text-red-500;
+}
+.icon--danger:hover {
+    @apply text-red-300;
+}
+.icon--black {
+    @apply text-black;
+}
+.icon--black:hover {
+    @apply text-red-600;
+}
+.icon--white {
+    @apply text-white;
+}
+.icon--white:hover {
+    @apply text-gray-500;
+}

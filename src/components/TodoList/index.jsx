@@ -1,11 +1,11 @@
 import TodoStatusSection from "../TodoStatusSection";
-import styles from "./TodoList.module.css";
+import "./TodoList.css";
 
 const TodoList = ({ todos }) => {
     const statusList = ["review", "in_progress", "test", "completed"];
 
     return (
-        <div className={styles["todo__list"]}>
+        <div className="todo__list">
             {statusList.map((status, index) => (
                 <TodoStatusSection
                     key={index}

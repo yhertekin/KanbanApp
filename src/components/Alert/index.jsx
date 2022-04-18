@@ -1,11 +1,15 @@
-import styles from "./Alert.module.css";
+import "./Alert.css";
 
 const Alert = ({ message, className, variant }) => {
-  return (
-    <div className={`${styles[variant ?? "primary"]} ${className ?? ""}`}>
-      {message}
-    </div>
-  );
+    return (
+        <div
+            className={`alert alert--${variant ?? "primary"} ${
+                className ?? ""
+            }`}
+        >
+            {message}
+        </div>
+    );
 };
 
 export default Alert;

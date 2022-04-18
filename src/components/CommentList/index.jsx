@@ -1,10 +1,10 @@
-import React from "react";
-import CommentInput from "../CommentInput";
 import Comment from "../Comment";
+
+import "./CommentList.css";
 
 const CommentList = ({ comments }) => {
     return (
-        <div>
+        <div className="comment__list">
             {comments.map((comment) => (
                 <Comment key={comment.id} comment={comment} />
             ))}

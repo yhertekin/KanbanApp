@@ -1,11 +1,14 @@
 import { useDispatch } from "react-redux";
 import { changeColor } from "../../redux/todosSlice";
 
+import "./ColorPicker.css";
+
 const ColorPicker = ({ todo }) => {
     const dispatch = useDispatch();
 
     const onClickHandler = (e) => {
-        const color = e.target.className.split("-")[1];
+        const color = e.target.className.split("--")[1];
+        console.log(color);
         dispatch(
             changeColor({
                 id: todo.id,
@@ -15,31 +18,13 @@ const ColorPicker = ({ todo }) => {
     };
 
     return (
-        <div className="grid gap-1 grid-cols-3 grid-rows-2 w-full h-20">
-            <div
-                className="bg-blue-200 rounded-md"
-                onClick={onClickHandler}
-            ></div>
-            <div
-                className="bg-red-200 rounded-md"
-                onClick={onClickHandler}
-            ></div>
-            <div
-                className="bg-green-200 rounded-md"
-                onClick={onClickHandler}
-            ></div>
-            <div
-                className="bg-yellow-200 rounded-md"
-                onClick={onClickHandler}
-            ></div>
-            <div
-                className="bg-teal-200 rounded-md"
-                onClick={onClickHandler}
-            ></div>
-            <div
-                className="bg-purple-200 rounded-md"
-                onClick={onClickHandler}
-            ></div>
+        <div className="colorpicker">
+            <div className="colorpicker--blue" onClick={onClickHandler}></div>
+            <div className="colorpicker--red" onClick={onClickHandler}></div>
+            <div className="colorpicker--green" onClick={onClickHandler}></div>
+            <div className="colorpicker--yellow" onClick={onClickHandler}></div>
+            <div className="colorpicker--teal" onClick={onClickHandler}></div>
+            <div className="colorpicker--purple" onClick={onClickHandler}></div>
         </div>
     );
 };

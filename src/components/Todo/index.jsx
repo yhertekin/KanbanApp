@@ -1,56 +1,22 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { BiCommentDetail } from "react-icons/bi";
 
 import EditTodo from "../EditTodo";
 import TodoHeader from "./TodoHeader";
 import TodoFooter from "./TodoFooter";
 import ColorPicker from "../ColorPicker";
-import CommentList from "../CommentList";
-import CommentInput from "../CommentInput";
 import CommentSection from "../CommentSection";
 import IconButton from "../IconButton";
 
-import styles from "./Todo.module.css";
+import "./Todo.css";
 
 const Todo = ({ todo }) => {
     const [edit, setEdit] = useState(false);
     const [colorPicker, setColorPicker] = useState(false);
     const [toggleCommentSection, setToggleCommentSection] = useState(false);
 
-    const [dragData, setDragData] = useState(); // id, origin, and destination
-
-    const handleDragStart = (e, id, status) => {
-        setDragData({ id, status });
-    };
-
-    const handleDragEnter = (e, status, target, index) => {
-        // add alert
-        console.log(e.target.draggable);
-        if (status !== target.status) return;
-    };
-
-    const handleDragOver = (e) => {
-        e.preventDefault();
-        if (e.target.draggable);
-        {
-            e.target.classList.add("mb-10");
-        }
-    };
-
-    const handleDrop = (e) => {
-        if (e.target.draggable) {
-            console.log("enter");
-        }
-    };
-
     return (
-        <div
-            className={`${styles.todo}`}
-            // draggable
-            // onDragOver={handleDragOver}
-            // onDrop={handleDrop}
-        >
+        <div className="todo">
             {todo.status !== "completed" ? (
                 <TodoHeader
                     todo={todo}
@@ -59,15 +25,7 @@ const Todo = ({ todo }) => {
                 />
             ) : null}
 
-            <div
-                className={`${
-                    styles[
-                        todo.status === "completed"
-                            ? "content__completed"
-                            : "content__not__completed"
-                    ]
-                } ${styles[`${todo.color}--dark`]}`}
-            >
+            <div className={`todo__content todo--${todo.color}_dark`}>
                 {edit ? (
                     <EditTodo todo={todo} setEdit={setEdit} />
                 ) : colorPicker ? (
@@ -83,7 +41,6 @@ const Todo = ({ todo }) => {
                                     )
                                 }
                                 Icon={BiCommentDetail}
-                                className="my-2"
                                 variant="black"
                             />
                         </div>

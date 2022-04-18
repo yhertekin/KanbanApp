@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "../../redux/usersSlice";
 import { useNavigate } from "react-router-dom";
 
+import { addUser } from "../../redux/usersSlice";
 import Button from "../Button";
 import Input from "../Input";
 import Dropdown from "../Dropdown";
 import Alert from "../Alert";
 
-import styles from "./UserRegister.module.css";
+import "./UserRegister.css";
 
 const UserRegister = () => {
     const [warningMessage, setWarningMessage] = useState("");
@@ -48,7 +48,7 @@ const UserRegister = () => {
     };
 
     return (
-        <div className={styles.register}>
+        <div className="register__form">
             {warningMessage && (
                 <Alert message={warningMessage} variant="danger" />
             )}

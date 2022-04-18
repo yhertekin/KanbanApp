@@ -1,9 +1,9 @@
 import UserLogin from "../../components/UserLogin";
-import styles from "./LoginPage.module.css";
+import "./LoginPage.css";
 
 const LoginPage = () => {
     return (
-        <div className={styles["login__page"]}>
+        <div className="login__page">
             <UserLogin />
         </div>
     );

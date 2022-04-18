@@ -7,7 +7,7 @@ const ProfilePage = () => {
     const user = users.find((user) => user.id === id);
 
     return (
-        <div className="">
+        <div>
             <div>{user.username}</div>
         </div>
     );

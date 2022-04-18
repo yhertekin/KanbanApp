@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.comment__input__section__footer {
+    @apply w-full flex justify-between items-center mt-1;
+}

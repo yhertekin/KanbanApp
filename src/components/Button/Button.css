@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply p-1 rounded-md border;
+}
+
+.btn--primary {
+    @apply bg-blue-500 text-white;
+}
+
+.btn--secondary {
+    @apply text-white bg-blue-400 border shadow shadow-black;
+}
+
+.btn--danger {
+    @apply bg-red-500 text-white;
+}
+
+.btn--primary:active {
+    @apply bg-white text-blue-500;
+}
+.btn--secondary:active {
+    @apply bg-white text-gray-500;
+}
+.btn--danger:active {
+    @apply bg-white text-red-500;
+}

@@ -1,16 +1,16 @@
-import styles from "./Dropdown.module.css";
+import "./Dropdown.css";
 
 const Dropdown = ({ className, items, placeholder, ...props }) => {
     return (
-        <select className={`${styles.dropdown} ${className ?? ""}`} {...props}>
-            <option value="" className={styles.option}>
+        <select className={`dropdown ${className ?? ""}`} {...props}>
+            <option value="" className="dropdown__option">
                 {placeholder}
             </option>
             {items.map((item) => (
                 <option
                     value={item.key}
                     key={item.key}
-                    className={styles.option}
+                    className="dropdown__option"
                 >
                     {item.value}
                 </option>

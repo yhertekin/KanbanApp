@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login__form {
+    @apply grid gap-2 w-5/12 mx-auto border p-4 rounded-md shadow-md shadow-gray-200;
+}
