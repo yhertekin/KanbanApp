@@ -9,7 +9,7 @@ import Modal from "../Modal";
 
 import "./TodoInput.css";
 
-const TodoInput = ({ className, cancelButtonHandler }) => {
+const TodoInput = ({ className, setShowTodoInput }) => {
     const [inputValue, setInputValue] = useState("");
     const dispatch = useDispatch();
     const users = useSelector((state) => state.users.items);
@@ -34,11 +34,11 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
         setInputValue("");
         setDropdownValue("");
         setWarningMessage("");
-        cancelButtonHandler();
+        setShowTodoInput(false);
     };
 
     return (
-        <Modal cancelModal={cancelButtonHandler}>
+        <Modal showModal={setShowTodoInput}>
             <div className={`todo__input ${className ?? ""}`}>
                 {warningMessage && (
                     <Alert
@@ -66,7 +66,7 @@ const TodoInput = ({ className, cancelButtonHandler }) => {
                         <Button
                             children="Cancel"
                             variant="danger"
-                            onClick={() => cancelButtonHandler(false)}
+                            onClick={() => setShowTodoInput(false)}
                             className="w-5/12"
                         />
                         <Button

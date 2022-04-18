@@ -15,7 +15,7 @@ const TodoPage = () => {
     return (
         <div>
             <Button
-                onClick={() => setShowTodoInput((prevState) => !prevState)}
+                onClick={() => setShowTodoInput(true)}
                 variant="black" // override default
                 className="absolute 
                 top-15 left-8 mt-2 w-32 h-12 flex 
@@ -26,7 +26,7 @@ const TodoPage = () => {
                 Add
             </Button>
             {showTodoInput ? (
-                <TodoInput cancelButtonHandler={setShowTodoInput} />
+                <TodoInput setShowTodoInput={setShowTodoInput} />
             ) : null}
 
             <TodoList todos={todos} />

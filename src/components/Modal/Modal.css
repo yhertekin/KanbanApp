@@ -5,3 +5,11 @@
 .modal {
     @apply absolute flex justify-center items-center bg-black w-screen h-screen top-0 left-0 bg-opacity-50;
 }
+
+.modal__close {
+    @apply relative -top-6 -right-6 ml-auto;
+}
+
+.modal__content {
+    @apply flex flex-col justify-between items-center mt-2 p-10 bg-white rounded-md;
+}
