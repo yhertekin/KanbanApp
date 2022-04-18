@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .icon {
-    @apply hover:cursor-pointer text-lg;
+    @apply hover:cursor-pointer;
 }
 
 .icon-primary {

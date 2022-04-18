@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .header {
-    @apply p-3 text-white  bg-blue-500 flex justify-between;
+    @apply p-3 text-white h-12 bg-blue-500 flex justify-between;
 }
 
 .header__profile {

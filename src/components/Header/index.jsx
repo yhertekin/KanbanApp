@@ -2,17 +2,22 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUserAlt } from "react-icons/fa";
+import { CgMenuLeft, CgMenuRight } from "react-icons/cg";
 
 import IconButton from "../IconButton";
 import Menu from "./Menu";
+import SidePanel from "../SidePanel";
 
 import "./Header.css";
 
 const Header = () => {
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
+    const [showSidePanel, setShowSidePanel] = useState(false);
 
     const [showMenu, setShowMenu] = useState(false);
+
+    const sidePanelIcon = showSidePanel ? CgMenuLeft : CgMenuRight;
 
     const handleShowMenu = (e) => {
         e.preventDefault();
@@ -35,13 +40,14 @@ const Header = () => {
     return (
         <header className="header">
             <div>
-                <Link className="link" to="/">
-                    Todo
-                </Link>
-                <Link className="link" to="/users">
-                    Users
-                </Link>
+                <IconButton
+                    Icon={sidePanelIcon}
+                    className={`text-2xl ${showSidePanel ? "ml-80" : ""}`}
+                    onClick={() => setShowSidePanel((prevState) => !prevState)}
+                />
             </div>
+            {showSidePanel ? <SidePanel showSidePanel={showSidePanel} /> : null}
+
             <div>
                 {isLoggedIn ? (
                     <div>
