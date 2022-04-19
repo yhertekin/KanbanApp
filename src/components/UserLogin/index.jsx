@@ -31,10 +31,15 @@ const UserLogin = () => {
             setWarningMessage("Please fill in all fields");
             return;
         }
-
-        dispatch(loginUser(loginForm));
-        setWarningMessage("");
-        navigate("/");
+        try {
+            dispatch(loginUser(loginForm));
+            setWarningMessage("");
+            navigate("/");
+        } catch (e) {
+            setWarningMessage(
+                "Failed to login! Password or email address is wrong!"
+            );
+        }
     };
 
     return (
