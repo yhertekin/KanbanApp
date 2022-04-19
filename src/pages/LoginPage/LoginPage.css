@@ -3,5 +3,17 @@
 @tailwind utilities;
 
 .login__page {
-    @apply flex place-items-center h-96;
+    @apply flex flex-col justify-center items-center h-96;
+}
+
+.login__page__footer {
+    @apply text-slate-500 mt-5 text-center;
+}
+
+.login__page__footer__link {
+    @apply text-blue-400 font-bold;
+}
+
+.login__page__footer__link:hover {
+    @apply text-blue-300 font-bold;
 }

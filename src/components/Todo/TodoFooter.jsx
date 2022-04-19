@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { BsCalendarDate } from "react-icons/bs";
 import { FaTrashAlt } from "react-icons/fa";
@@ -39,7 +40,7 @@ const TodoFooter = ({ todo }) => {
                 <CalendarIcon />
                 <span>{formatDate(todo.createdAt)}</span>
             </div>
-            <div>{user.username}</div>
+            <Link to={`/profile/${user.id}`}>{user.username}</Link>
             {todo.status === "review" && loggedInUser?.userType === "admin" ? (
                 <TrashIcon />
             ) : null}

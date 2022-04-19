@@ -39,19 +39,23 @@ const Header = () => {
 
     return (
         <header className="header">
-            <div>
-                <IconButton
-                    Icon={CgMenuLeft}
-                    className="text-2xl"
-                    onClick={showSidePanelHandler}
-                />
-            </div>
-            <SidePanel
-                showSidePanel={showSidePanel}
-                setShowSidePanel={setShowSidePanel}
-            />
+            {isLoggedIn ? (
+                <>
+                    <div>
+                        <IconButton
+                            Icon={CgMenuLeft}
+                            className="text-2xl"
+                            onClick={showSidePanelHandler}
+                        />
+                    </div>
+                    <SidePanel
+                        showSidePanel={showSidePanel}
+                        setShowSidePanel={setShowSidePanel}
+                    />
+                </>
+            ) : null}
 
-            <div>
+            <div className="ml-auto">
                 {isLoggedIn ? (
                     <div>
                         <div
@@ -63,14 +67,14 @@ const Header = () => {
                         {showMenu && <Menu setShowMenu={setShowMenu} />}
                     </div>
                 ) : (
-                    <>
+                    <div>
                         <Link className="link" to="/login">
                             Login
                         </Link>
                         <Link className="link" to="/register">
                             Register
                         </Link>
-                    </>
+                    </div>
                 )}
             </div>
         </header>
