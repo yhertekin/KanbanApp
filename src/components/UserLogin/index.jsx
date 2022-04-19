@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loginUser } from "../../redux/usersSlice";
@@ -13,8 +13,21 @@ const UserLogin = () => {
     const [loginForm, setLoginForm] = useState({ email: "", password: "" });
     const [warningMessage, setWarningMessage] = useState("");
 
+    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const notInitialRender = useRef(false);
+    useEffect(() => {
+        if (notInitialRender.current) {
+            setWarningMessage("");
+            navigate("/");
+        } else {
+            notInitialRender.current = true;
+        }
+    }, [isLoggedIn]);
 
     const onChangeHandler = (e) => {
         setLoginForm((prevState) => ({
@@ -31,15 +44,11 @@ const UserLogin = () => {
             setWarningMessage("Please fill in all fields");
             return;
         }
-        try {
-            dispatch(loginUser(loginForm));
-            setWarningMessage("");
-            navigate("/");
-        } catch (e) {
-            setWarningMessage(
-                "Failed to login! Password or email address is wrong!"
-            );
-        }
+
+        dispatch(loginUser(loginForm));
+        setWarningMessage(
+            "Failed to login! Password or email address is wrong!"
+        );
     };
 
     return (

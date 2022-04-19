@@ -1,9 +1,9 @@
 .header {
-    @apply p-3 text-white h-12 bg-blue-500 flex justify-between;
+    @apply p-3 text-white h-12 bg-blue-500 flex justify-between items-center;
 }
 
 .header__profile {
-    @apply rounded-full text-blue-500 bg-blue-100 p-2 absolute right-5 top-2;
+    @apply rounded-full text-blue-500 bg-blue-100 p-2;
 }
 
 .link {

@@ -5,8 +5,11 @@ import { FaTrashAlt } from "react-icons/fa";
 
 import IconButton from "../IconButton";
 import { removeTodo } from "../../redux/todosSlice";
+import Modal from "../Modal";
+import TodoRemoveAlert from "../TodoRemoveAlert";
 
 import "./Todo.css";
+import { useState } from "react";
 
 const formatDate = (date) => {
     if (typeof date === "string") date = new Date(date);
@@ -16,13 +19,14 @@ const formatDate = (date) => {
 };
 
 const TodoFooter = ({ todo }) => {
+    const [showTodoRemoveAlert, setShowTodoRemoveAlert] = useState(false);
     const dispatch = useDispatch();
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
 
     const TrashIcon = () => (
         <IconButton
             Icon={FaTrashAlt}
-            onClick={() => dispatch(removeTodo(todo.id))}
+            onClick={() => setShowTodoRemoveAlert(true)}
             variant="black"
         />
     );
@@ -42,7 +46,17 @@ const TodoFooter = ({ todo }) => {
             </div>
             <Link to={`/profile/${user.id}`}>{user.username}</Link>
             {todo.status === "review" && loggedInUser?.userType === "admin" ? (
-                <TrashIcon />
+                <>
+                    <TrashIcon />
+                    {showTodoRemoveAlert && (
+                        <Modal showModal={setShowTodoRemoveAlert}>
+                            <TodoRemoveAlert
+                                todo={todo}
+                                setShowTodoRemoveAlert={setShowTodoRemoveAlert}
+                            />
+                        </Modal>
+                    )}
+                </>
             ) : null}
         </div>
     );

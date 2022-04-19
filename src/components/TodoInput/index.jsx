@@ -43,47 +43,45 @@ const TodoInput = ({ className, setShowTodoInput }) => {
     }));
 
     return (
-        <Modal showModal={setShowTodoInput}>
-            <div className={`todo__input ${className ?? ""}`}>
-                {warningMessage && (
-                    <Alert
-                        message={warningMessage}
-                        variant="warning"
-                        className="mb-2"
-                    />
-                )}
-                <div>
-                    <Input
-                        placeholder="Todo"
-                        variant="primary"
-                        value={inputValue}
-                        onChange={inputChangeHandler}
-                    />
+        <div className={`todo__input ${className ?? ""}`}>
+            {warningMessage && (
+                <Alert
+                    message={warningMessage}
+                    variant="warning"
+                    className="mb-2"
+                />
+            )}
+            <div>
+                <Input
+                    placeholder="Todo"
+                    variant="primary"
+                    value={inputValue}
+                    onChange={inputChangeHandler}
+                />
 
-                    <Dropdown
-                        value={dropdownValue}
-                        onChange={dropdownChangeHandler}
-                        className="mt-2"
-                        placeholder="Select a user"
-                        items={dropdownItems}
+                <Dropdown
+                    value={dropdownValue}
+                    onChange={dropdownChangeHandler}
+                    className="mt-2"
+                    placeholder="Select a user"
+                    items={dropdownItems}
+                />
+                <div className="todo__input__footer">
+                    <Button
+                        children="Cancel"
+                        variant="danger"
+                        onClick={showTodoHandler}
+                        className="w-5/12"
                     />
-                    <div className="todo__input__footer">
-                        <Button
-                            children="Cancel"
-                            variant="danger"
-                            onClick={showTodoHandler}
-                            className="w-5/12"
-                        />
-                        <Button
-                            children="Add"
-                            variant="primary"
-                            onClick={addButtonHandler}
-                            className="w-5/12"
-                        />
-                    </div>
+                    <Button
+                        children="Add"
+                        variant="primary"
+                        onClick={addButtonHandler}
+                        className="w-5/12"
+                    />
                 </div>
             </div>
-        </Modal>
+        </div>
     );
 };
 

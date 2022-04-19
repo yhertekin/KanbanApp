@@ -5,8 +5,8 @@ import TodoList from "./../components/TodoList";
 
 const TodoPage = () => {
     const todos = useSelector((state) => state.todos.items);
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const navigate = useNavigate();
+    const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
 
     if (!isLoggedIn) {

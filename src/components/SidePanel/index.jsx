@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CgMenuRight } from "react-icons/cg";
+import { FaTasks } from "react-icons/fa";
+import { FiUsers } from "react-icons/fi";
+import { MdCreate } from "react-icons/md";
 
 import IconButton from "../IconButton";
 import Button from "../Button";
 import TodoInput from "../TodoInput";
+import Modal from "../Modal";
 
 import "./SidePanel.css";
 
@@ -20,19 +24,24 @@ const SidePanel = ({ showSidePanel, setShowSidePanel }) => {
                 <IconButton Icon={CgMenuRight} onClick={showSidePanelHandler} />
             </div>
             <Link className="side-panel__link" to="/">
-                Todo
+                <IconButton Icon={FaTasks} />
+                <span className="side-panel__link__text">Todo</span>
             </Link>
             <Link className="side-panel__link" to="/users">
-                Users
+                <IconButton Icon={FiUsers} />
+                <span className="side-panel__link__text">Users</span>
             </Link>
-            <Button className="side-panel__link" onClick={showTodoHandler}>
-                Create
+            <Button className="side-panel__button" onClick={showTodoHandler}>
+                <IconButton Icon={MdCreate} />
+                <span className="ml-1">Create</span>
             </Button>
             {showTodoInput ? (
-                <TodoInput
-                    setShowTodoInput={setShowTodoInput}
-                    className="text-black"
-                />
+                <Modal showModal={setShowTodoInput}>
+                    <TodoInput
+                        setShowTodoInput={setShowTodoInput}
+                        className="text-black"
+                    />
+                </Modal>
             ) : null}
         </div>
     );
