@@ -1,27 +1,38 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { CgMenuRight } from "react-icons/cg";
+
+import IconButton from "../IconButton";
 import Button from "../Button";
 import TodoInput from "../TodoInput";
 
-const SidePanel = ({ showSidePanel }) => {
+import "./SidePanel.css";
+
+const SidePanel = ({ showSidePanel, setShowSidePanel }) => {
     const [showTodoInput, setShowTodoInput] = useState(false);
+    const showTodoHandler = () => setShowTodoInput(true);
+    const showSidePanelHandler = () => setShowSidePanel(false);
+    const translate = showSidePanel ? "translate-x-full" : "translate-x-0";
 
     return (
-        <div
-            className={`h-full top-0 left-0 flex flex-col w-80 bg-blue-500 fixed p-3 ease-in-out duration-1000 
-            `}
-        >
-            <Link className="" to="/">
+        <div className={`side-panel ${translate}`}>
+            <div className="side-panel__icon">
+                <IconButton Icon={CgMenuRight} onClick={showSidePanelHandler} />
+            </div>
+            <Link className="side-panel__link" to="/">
                 Todo
             </Link>
-            <Link className="" to="/users">
+            <Link className="side-panel__link" to="/users">
                 Users
             </Link>
-            <Button className="" onClick={() => setShowTodoInput(true)}>
+            <Button className="side-panel__link" onClick={showTodoHandler}>
                 Create
             </Button>
             {showTodoInput ? (
-                <TodoInput setShowTodoInput={setShowTodoInput} />
+                <TodoInput
+                    setShowTodoInput={setShowTodoInput}
+                    className="text-black"
+                />
             ) : null}
         </div>
     );
