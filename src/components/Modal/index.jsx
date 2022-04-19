@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 import IconButton from "../IconButton";
@@ -6,6 +5,8 @@ import IconButton from "../IconButton";
 import "./Modal.css";
 
 const Modal = ({ children, showModal }) => {
+    const showModalHandler = () => showModal(false);
+
     return (
         <div className="modal">
             <div className="modal__content">
@@ -13,7 +14,7 @@ const Modal = ({ children, showModal }) => {
                     <IconButton
                         Icon={AiOutlineClose}
                         variant="danger"
-                        onClick={() => showModal(false)}
+                        onClick={showModalHandler}
                     />
                 </div>
                 {children}

@@ -25,6 +25,7 @@ const UserInput = () => {
     };
 
     const keyHandler = (e) => e.key === "Enter" && buttonHandler();
+
     return (
         <div>
             <div className="user__form">

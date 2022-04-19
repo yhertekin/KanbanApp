@@ -16,6 +16,8 @@ const EditTodo = ({ todo, className, setEdit }) => {
     const users = useSelector((state) => state.users.items);
     const [warningMessage, setWarningMessage] = useState("");
 
+    const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
+    const inputChangeHandler = (e) => setInputValue(e.target.value);
     const buttonHandler = () => {
         if (!inputValue) {
             setWarningMessage("Please provide a task!");
@@ -36,6 +38,11 @@ const EditTodo = ({ todo, className, setEdit }) => {
         setEdit((prevState) => !prevState);
     };
 
+    const dropdownItems = users.map((user) => ({
+        key: user.id,
+        value: user.username,
+    }));
+
     return (
         <div className={`edit ${className ?? ""}`}>
             {warningMessage && (
@@ -47,21 +54,19 @@ const EditTodo = ({ todo, className, setEdit }) => {
             )}
             <Input
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={inputChangeHandler}
                 placeholder="Edit todo"
             />
             <Dropdown
                 placeholder="Select a user"
                 value={dropdownValue}
-                onChange={(e) => setDropdownValue(e.target.value)}
-                items={users.map((user) => ({
-                    key: user.id,
-                    value: user.username,
-                }))}
+                onChange={dropdownChangeHandler}
+                items={dropdownItems}
+                className="mt-1"
             />
             <Button
                 children="Edit"
-                className="w-full"
+                className="w-full mt-1"
                 onClick={buttonHandler}
             />
         </div>

@@ -9,18 +9,20 @@ import "./TodoStatusSection.css";
 const TodoStatusSection = ({ status, todoList }) => {
     const [showTodos, setShowTodos] = useState(true);
 
+    const showTodoHandler = () => setShowTodos((prevState) => !prevState);
+
     const ArrowUp = () => (
         <IconButton
             Icon={IoIosArrowUp}
             variant="black"
-            onClick={() => setShowTodos(false)}
+            onClick={showTodoHandler}
         />
     );
     const ArrowDown = () => (
         <IconButton
             Icon={IoIosArrowDown}
             variant="black"
-            onClick={() => setShowTodos(true)}
+            onClick={showTodoHandler}
         />
     );
 
@@ -34,7 +36,7 @@ const TodoStatusSection = ({ status, todoList }) => {
 
                 {showTodos && (
                     <div className="status__section__content">
-                        {todoList.map((todo, index) => (
+                        {todoList.map((todo) => (
                             <Todo todo={todo} key={todo.id} />
                         ))}
                     </div>

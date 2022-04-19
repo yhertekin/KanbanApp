@@ -15,6 +15,9 @@ const Todo = ({ todo }) => {
     const [colorPicker, setColorPicker] = useState(false);
     const [toggleCommentSection, setToggleCommentSection] = useState(false);
 
+    const commentSectionHandler = () =>
+        setToggleCommentSection((prevState) => !prevState);
+
     return (
         <div className="todo">
             {todo.status !== "completed" ? (
@@ -35,11 +38,7 @@ const Todo = ({ todo }) => {
                         <div className="flex justify-between items-start">
                             <div className="w-11/12">{todo.task}</div>
                             <IconButton
-                                onClick={() =>
-                                    setToggleCommentSection(
-                                        (prevState) => !prevState
-                                    )
-                                }
+                                onClick={commentSectionHandler}
                                 Icon={BiCommentDetail}
                                 variant="black"
                             />

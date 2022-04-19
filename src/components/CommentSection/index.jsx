@@ -8,6 +8,7 @@ import "./CommentSection.css";
 const CommentSection = ({ todoId }) => {
     const comments = useSelector((state) => state.comments.items);
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
+
     return (
         <div className="comment__section">
             <CommentInput todoId={todoId} userId={loggedInUser.id} />

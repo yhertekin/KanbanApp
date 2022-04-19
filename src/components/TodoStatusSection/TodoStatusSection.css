@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 .status__section {
-    @apply flex flex-col border my-2 rounded-md bg-gray-100;
+    @apply flex flex-col border my-2 rounded-sm bg-gray-50 shadow-md shadow-gray-300;
 }
 
 .status__section__header {
-    @apply flex justify-between items-center py-1 px-2 bg-gray-300 text-black font-bold rounded-t-md;
+    @apply flex justify-between items-center py-1 px-2 bg-gray-300 text-black font-bold rounded-t-sm;
 }
 
 .status__section__header:hover {
-    @apply bg-gray-100;
+    @apply bg-gray-50;
 }
 
 .status__section__content {

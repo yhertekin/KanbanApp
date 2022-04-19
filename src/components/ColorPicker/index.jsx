@@ -17,14 +17,16 @@ const ColorPicker = ({ todo }) => {
         );
     };
 
+    const colorList = ["blue", "red", "green", "yellow", "teal", "purple"];
+
     return (
         <div className="colorpicker">
-            <div className="colorpicker--blue" onClick={onClickHandler}></div>
-            <div className="colorpicker--red" onClick={onClickHandler}></div>
-            <div className="colorpicker--green" onClick={onClickHandler}></div>
-            <div className="colorpicker--yellow" onClick={onClickHandler}></div>
-            <div className="colorpicker--teal" onClick={onClickHandler}></div>
-            <div className="colorpicker--purple" onClick={onClickHandler}></div>
+            {colorList.map((color) => (
+                <div
+                    className={`colorpicker--${color}`}
+                    onClick={onClickHandler}
+                ></div>
+            ))}
         </div>
     );
 };

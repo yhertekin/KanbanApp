@@ -15,10 +15,10 @@ const TodoInput = ({ className, setShowTodoInput }) => {
     const users = useSelector((state) => state.users.items);
     const [dropdownValue, setDropdownValue] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
-    const dropdownItems = users.map((user) => ({
-        key: user.id,
-        value: user.username,
-    }));
+
+    const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
+    const inputChangeHandler = (e) => setInputValue(e.target.value);
+    const showTodoHandler = (e) => setShowTodoInput(false);
 
     const addButtonHandler = () => {
         if (inputValue === "") {
@@ -37,6 +37,11 @@ const TodoInput = ({ className, setShowTodoInput }) => {
         setShowTodoInput(false);
     };
 
+    const dropdownItems = users.map((user) => ({
+        key: user.id,
+        value: user.username,
+    }));
+
     return (
         <Modal showModal={setShowTodoInput}>
             <div className={`todo__input ${className ?? ""}`}>
@@ -52,12 +57,12 @@ const TodoInput = ({ className, setShowTodoInput }) => {
                         placeholder="Todo"
                         variant="primary"
                         value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
+                        onChange={inputChangeHandler}
                     />
 
                     <Dropdown
                         value={dropdownValue}
-                        onChange={(e) => setDropdownValue(e.target.value)}
+                        onChange={dropdownChangeHandler}
                         className="mt-2"
                         placeholder="Select a user"
                         items={dropdownItems}
@@ -66,7 +71,7 @@ const TodoInput = ({ className, setShowTodoInput }) => {
                         <Button
                             children="Cancel"
                             variant="danger"
-                            onClick={() => setShowTodoInput(false)}
+                            onClick={showTodoHandler}
                             className="w-5/12"
                         />
                         <Button

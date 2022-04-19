@@ -12,18 +12,17 @@ import IconButton from "../IconButton";
 import "./User.css";
 
 const User = ({ user }) => {
-    const todoList = useSelector((state) => state.todos.items);
-    const todos = todoList.filter((todo) => todo.userId === user.id);
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
-
     const [showTodos, setShowTodos] = useState(false);
-
+    const todoList = useSelector((state) => state.todos.items);
+    const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const dispatch = useDispatch();
 
+    const todos = todoList.filter((todo) => todo.userId === user.id);
     const todoCount = todos.length;
-
-    const toogleShowTodos = () => setShowTodos((prevState) => !prevState);
     let iconType = showTodos ? BiShowAlt : BiHide;
+
+    const removeUserHandler = () => dispatch(removeUser(user.id));
+    const toogleShowTodos = () => setShowTodos((prevState) => !prevState);
 
     const ToggleTodosButton = () => (
         <IconButton Icon={iconType} onClick={toogleShowTodos} variant="black" />
@@ -33,7 +32,7 @@ const User = ({ user }) => {
         <IconButton
             Icon={FaTrashAlt}
             variant="black"
-            onClick={() => dispatch(removeUser(user.id))}
+            onClick={removeUserHandler}
         />
     );
 

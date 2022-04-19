@@ -9,10 +9,15 @@ import { logoutUser } from "../../redux/usersSlice";
 const Menu = ({ setShowMenu }) => {
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const dispatch = useDispatch();
+
     const stopClosing = (e) => {
         e.preventDefault();
         e.stopPropagation();
     };
+
+    const showMenuHandler = () => setShowMenu(false);
+    const logoutHandler = () => dispatch(logoutUser());
+
     return (
         <div onClick={stopClosing} className="header__menu">
             <div className="header__menu__item">
@@ -21,7 +26,7 @@ const Menu = ({ setShowMenu }) => {
                     Icon={AiOutlineClose}
                     variant="black"
                     className="ml-auto"
-                    onClick={() => setShowMenu(false)}
+                    onClick={showMenuHandler}
                 />
             </div>
             <div className="header__menu__item">
@@ -35,8 +40,8 @@ const Menu = ({ setShowMenu }) => {
                     <div>{loggedInUser.email}</div>
                 </div>
             </div>
-            <div className="py-4" onClick={() => setShowMenu(false)}>
-                <Link to="/login" onClick={() => dispatch(logoutUser())}>
+            <div className="py-4" onClick={showMenuHandler}>
+                <Link to="/login" onClick={logoutHandler}>
                     Logout
                 </Link>
             </div>
