@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .user__form {
     @apply grid gap-2 grid-cols-4 mt-3 items-center;
 }
