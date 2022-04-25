@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FaCheck } from "react-icons/fa";
-import { AiOutlineClose, AiOutlineEdit } from "react-icons/ai";
+import { FaCheck, FaTimes } from "react-icons/fa";
+import { AiOutlineEdit } from "react-icons/ai";
 
 import {
     setStatusTest,
@@ -44,13 +44,13 @@ const TodoHeader = ({ todo }) => {
 
     const FailIcon = () => (
         <IconButton
-            Icon={AiOutlineClose}
+            Icon={FaTimes}
             onClick={() => {
                 setShowModal(true);
                 setDialogBoxType("task__fail");
             }}
             variant="danger"
-            className="text-lg mr-2"
+            className="text-xl mr-2"
         />
     );
 

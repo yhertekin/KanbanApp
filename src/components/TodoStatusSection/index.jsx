@@ -36,8 +36,8 @@ const TodoStatusSection = ({ status, todoList }) => {
 
                 {showTodos && (
                     <div className="status__section__content">
-                        {todoList.map((todo) => (
-                            <Todo todo={todo} key={todo.id} />
+                        {todoList.map((todo, index) => (
+                            <Todo todo={todo} key={index} />
                         ))}
                     </div>
                 )}

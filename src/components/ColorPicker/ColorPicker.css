@@ -7,25 +7,25 @@
 }
 
 .colorpicker--blue {
-    @apply bg-blue-200 rounded-md;
+    @apply bg-blue-400 rounded-md;
 }
 
 .colorpicker--red {
-    @apply bg-red-200 rounded-md;
+    @apply bg-red-400 rounded-md;
 }
 
 .colorpicker--green {
-    @apply bg-green-200 rounded-md;
+    @apply bg-green-400 rounded-md;
 }
 
 .colorpicker--yellow {
-    @apply bg-yellow-200 rounded-md;
+    @apply bg-yellow-400 rounded-md;
 }
 
 .colorpicker--teal {
-    @apply bg-teal-200 rounded-md;
+    @apply bg-teal-400 rounded-md;
 }
 
 .colorpicker--purple {
-    @apply bg-purple-200 rounded-md;
+    @apply bg-purple-400 rounded-md;
 }

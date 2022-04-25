@@ -8,7 +8,6 @@ const ColorPicker = ({ todo }) => {
 
     const onClickHandler = (e) => {
         const color = e.target.className.split("--")[1].split(" ")[0];
-        console.log(color);
         dispatch(
             changeColor({
                 id: todo.id,

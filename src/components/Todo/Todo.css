@@ -3,7 +3,7 @@
 }
 
 .edit__icon {
-    @apply opacity-40 text-lg mr-auto;
+    @apply text-lg mr-auto;
 }
 .todo__header {
     @apply w-full h-7 p-2 flex justify-end items-center;

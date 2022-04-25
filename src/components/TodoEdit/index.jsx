@@ -94,7 +94,7 @@ const TodoEdit = ({ todo }) => {
                                             showModal={setShowTodoRemoveAlert}
                                         >
                                             <DialogBox
-                                                text="Are you sure to remove?"
+                                                text={`Are you sure to remove ${todo.task}?`}
                                                 setCancelButton={
                                                     setShowTodoRemoveAlert
                                                 }

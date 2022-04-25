@@ -6,8 +6,8 @@ const UserList = () => {
 
     return (
         <ul>
-            {users.map((user) => (
-                <User key={user.id} user={user} />
+            {users.map((user, index) => (
+                <User key={index} user={user} />
             ))}
         </ul>
     );

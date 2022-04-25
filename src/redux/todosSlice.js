@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
 
 const updateStorage = (newState) => {
     localStorage.setItem("todoList", JSON.stringify(newState));
@@ -13,23 +13,35 @@ const STATUS = {
     COMPLETED: "completed",
 };
 
+export const getTodosAsync = createAsyncThunk(
+    "/todos/getTodosAsync",
+    async () => {
+        const response = await fetch("http://localhost:5500/todos");
+        return await response.json();
+    }
+);
+
 export const todosSlice = createSlice({
     name: "todos",
     initialState: { items: JSON.parse(localStorage.getItem("todoList")) || [] },
     reducers: {
-        addTodo: (state, action) => {
-            const todo = {
-                id: nanoid(),
-                status: STATUS.REVIEW,
-                task: action.payload.task,
-                userId: action.payload.userId,
-                createdAt: new Date(),
-                color: "yellow",
-                // color: "yellow"
-            };
-            state.items = [todo, ...state.items];
-
-            updateStorage(state.items);
+        addTodo: {
+            reducer: (state, action) => {
+                state.items = [action.payload, ...state.items];
+                updateStorage(state.items);
+            },
+            prepare: ({ task, userId }) => {
+                const todo = {
+                    id: nanoid(),
+                    status: STATUS.REVIEW,
+                    task: task,
+                    userId: userId,
+                    createdAt: new Date(),
+                    color: "yellow",
+                    // color: "yellow"
+                };
+                return { payload: todo };
+            },
         },
 
         removeTodo: (state, action) => {
@@ -101,6 +113,11 @@ export const todosSlice = createSlice({
             });
             todo.color = action.payload.color;
             updateStorage(state.items);
+        },
+    },
+    extraReducers: {
+        [getTodosAsync.fulfilled]: (state, action) => {
+            state.items = action.payload;
         },
     },
 });

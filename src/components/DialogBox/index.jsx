@@ -14,7 +14,9 @@ const DialogBox = ({ text, setCancelButton, setConfirmButton }) => {
         <div className="">
             <p className="text-lg">{text}</p>
             <div className="grid grid-cols-2 w-full gap-2 mt-2">
-                <Button onClick={cancelButtonHandler}>No</Button>
+                <Button onClick={cancelButtonHandler} variant="danger">
+                    No
+                </Button>
                 <Button onClick={confirmButtonHandler} variant="primary">
                     Yes
                 </Button>

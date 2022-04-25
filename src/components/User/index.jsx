@@ -8,11 +8,14 @@ import { removeUser } from "../../redux/usersSlice";
 import TodoList from "../TodoList";
 import Alert from "../Alert";
 import IconButton from "../IconButton";
+import Modal from "../Modal";
+import DialogBox from "../DialogBox";
 
 import "./User.css";
 
 const User = ({ user }) => {
     const [showTodos, setShowTodos] = useState(false);
+    const [showUserRemoveAlert, setShowUserRemoveAlert] = useState(false);
     const todoList = useSelector((state) => state.todos.items);
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
     const dispatch = useDispatch();
@@ -21,18 +24,17 @@ const User = ({ user }) => {
     const todoCount = todos.length;
     let iconType = showTodos ? BiShowAlt : BiHide;
 
-    const removeUserHandler = () => dispatch(removeUser(user.id));
     const toogleShowTodos = () => setShowTodos((prevState) => !prevState);
 
     const ToggleTodosButton = () => (
         <IconButton Icon={iconType} onClick={toogleShowTodos} variant="black" />
     );
 
-    const TrashButton = () => (
+    const TrashIcon = () => (
         <IconButton
             Icon={FaTrashAlt}
             variant="black"
-            onClick={removeUserHandler}
+            onClick={() => setShowUserRemoveAlert(true)}
         />
     );
 
@@ -52,7 +54,22 @@ const User = ({ user }) => {
                 </div>
                 <div className="buttons">
                     <ToggleTodosButton />
-                    {loggedInUser.userType === "admin" ? <TrashButton /> : null}
+                    {loggedInUser?.userType === "admin" ? (
+                        <>
+                            <TrashIcon />
+                            {showUserRemoveAlert && (
+                                <Modal showModal={setShowUserRemoveAlert}>
+                                    <DialogBox
+                                        text={`Are you sure to remove ${user.username}?`}
+                                        setCancelButton={setShowUserRemoveAlert}
+                                        setConfirmButton={() =>
+                                            dispatch(removeUser(user.id))
+                                        }
+                                    />
+                                </Modal>
+                            )}
+                        </>
+                    ) : null}
                 </div>
             </div>
             {showTodos &&
