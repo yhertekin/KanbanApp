@@ -32,9 +32,7 @@ export const usersSlice = createSlice({
         // },
 
         loginUser: (state, action) => {
-            const { email, password } = action.payload;
-            const user = state.items.find((user) => user.email === email);
-            if (!user || user.password !== password) return;
+            const user = action.payload;
             state.loggedInUser = user;
             updateStorage("loggedInUser", state.loggedInUser);
         },

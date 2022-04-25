@@ -1,29 +1,32 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaCheck } from "react-icons/fa";
-import { FiEdit } from "react-icons/fi";
-import { ImCancelCircle } from "react-icons/im";
-import { MdFormatColorFill } from "react-icons/md";
+import { AiOutlineClose, AiOutlineEdit } from "react-icons/ai";
+
 import {
     setStatusTest,
     setStatusInProgress,
     setStatusCompleted,
 } from "../../redux/todosSlice";
 import IconButton from "../IconButton";
+import Modal from "../Modal";
+import DialogBox from "../DialogBox";
 
 import "./Todo.css";
+import TodoEdit from "../TodoEdit";
 
-const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
+const TodoHeader = ({ todo }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [dialogBoxType, setDialogBoxType] = useState("task__success");
+    const [showEditTodo, setShowEditTodo] = useState(false);
     const dispatch = useDispatch();
     const { id, status } = todo;
 
     const EditIcon = () => (
         <IconButton
-            Icon={FiEdit}
-            variant="black"
-            onClick={() => {
-                setEdit((prevState) => !prevState);
-                setColorPicker(false);
-            }}
+            Icon={AiOutlineEdit}
+            className="edit__icon"
+            onClick={() => setShowEditTodo(true)}
         />
     );
 
@@ -31,59 +34,72 @@ const TodoHeader = ({ todo, setEdit, setColorPicker }) => {
         <IconButton
             Icon={FaCheck}
             onClick={() => {
-                switch (status) {
-                    case "review":
-                        dispatch(setStatusInProgress(id));
-                        break;
-                    case "in_progress":
-                        dispatch(setStatusTest(id));
-                        break;
-                    case "test":
-                        dispatch(setStatusCompleted(id));
-                        break;
-                }
+                setShowModal(true);
+                setDialogBoxType("task__success");
             }}
-            variant="secondary"
+            variant="primary"
+            className="text-lg"
         />
     );
 
     const FailIcon = () => (
         <IconButton
-            Icon={ImCancelCircle}
-            onClick={() => dispatch(setStatusInProgress(id))}
+            Icon={AiOutlineClose}
+            onClick={() => {
+                setShowModal(true);
+                setDialogBoxType("task__fail");
+            }}
             variant="danger"
+            className="text-lg mr-2"
         />
     );
 
-    const ColorIcon = () => (
-        <IconButton
-            Icon={MdFormatColorFill}
-            className="font-lg"
-            onClick={() => {
-                setEdit(false);
-                setColorPicker((prevState) => !prevState);
-            }}
-        />
-    );
+    const taskFailedDialogHandler = () => {
+        dispatch(setStatusInProgress(id));
+    };
+
+    const taskSuccessDialogHandler = () => {
+        setDialogBoxType("task__success");
+        switch (status) {
+            case "review":
+                dispatch(setStatusInProgress(id));
+                break;
+            case "in_progress":
+                dispatch(setStatusTest(id));
+                break;
+            case "test":
+                dispatch(setStatusCompleted(id));
+                break;
+        }
+    };
+
     return (
-        <div className={`todo__header todo--${todo.color}_light`}>
-            {status === "review" ? (
-                <>
-                    <ColorIcon />
-                    <EditIcon />
-                    <SuccessIcon />
-                </>
-            ) : status === "in_progress" ? (
-                <>
-                    <ColorIcon />
-                    <SuccessIcon />
-                </>
-            ) : status === "test" ? (
-                <>
-                    <ColorIcon />
-                    <FailIcon />
-                    <SuccessIcon />
-                </>
+        <div className={`todo__header todo--${todo.color}`}>
+            <EditIcon />
+            {showEditTodo ? (
+                <Modal showModal={setShowEditTodo}>
+                    <TodoEdit todo={todo} setShowEditTodo={setShowEditTodo} />
+                </Modal>
+            ) : null}
+
+            {status === "test" ? <FailIcon /> : null}
+            {status !== "completed" ? <SuccessIcon /> : null}
+            {showModal ? (
+                <Modal showModal={setShowModal}>
+                    {dialogBoxType === "task__fail" ? (
+                        <DialogBox
+                            text="Failed on test?"
+                            setCancelButton={setShowModal}
+                            setConfirmButton={taskFailedDialogHandler}
+                        />
+                    ) : (
+                        <DialogBox
+                            text="Success on task?"
+                            setCancelButton={setShowModal}
+                            setConfirmButton={taskSuccessDialogHandler}
+                        />
+                    )}
+                </Modal>
             ) : null}
         </div>
     );

@@ -1,59 +1,52 @@
 .todo {
-    @apply border rounded-md mt-2 w-full overflow-hidden;
+    @apply border rounded-sm mt-2 w-full overflow-hidden shadow-sm;
 }
 
-.todo:hover {
-    @apply bg-yellow-300;
+.edit__icon {
+    @apply opacity-40 text-lg mr-auto;
 }
-
 .todo__header {
-    @apply w-full h-10 px-4 py-2 flex justify-between items-center;
+    @apply w-full h-7 p-2 flex justify-end items-center;
 }
+/* .todo__header:hover .edit__icon {
+    @apply visible;
+} */
 
 .todo__content {
-    @apply px-4 py-2 h-auto break-words overflow-auto;
+    @apply px-1 py-2 h-auto font-bold break-words overflow-auto bg-gray-50;
+}
+
+.todo__content:hover {
+    @apply bg-gray-100;
 }
 
 .todo__footer {
-    @apply w-full h-10 px-4 py-2 flex justify-between items-center;
+    @apply w-full h-8 px-4 py-2 flex justify-between items-center text-sm;
 }
 .todo__footer__date {
-    @apply flex items-center justify-self-start;
+    @apply flex items-center justify-self-start text-gray-400;
 }
 
-.todo--blue_dark {
-    @apply bg-blue-300;
+.todo--blue {
+    @apply bg-blue-400;
 }
-.todo--blue_light {
-    @apply bg-blue-200;
+
+.todo--yellow {
+    @apply bg-yellow-400;
 }
-.todo--yellow_dark {
-    @apply bg-yellow-300;
+
+.todo--red {
+    @apply bg-red-400;
 }
-.todo--yellow_light {
-    @apply bg-yellow-200;
+
+.todo--green {
+    @apply bg-green-400;
 }
-.todo--red_dark {
-    @apply bg-red-300;
+
+.todo--teal {
+    @apply bg-teal-400;
 }
-.todo--red_light {
-    @apply bg-red-200;
-}
-.todo--green_dark {
-    @apply bg-green-300;
-}
-.todo--green_light {
-    @apply bg-green-200;
-}
-.todo--teal_dark {
-    @apply bg-teal-300;
-}
-.todo--teal_light {
-    @apply bg-teal-200;
-}
-.todo--purple_dark {
-    @apply bg-purple-300;
-}
-.todo--purple_light {
-    @apply bg-purple-200;
+
+.todo--purple {
+    @apply bg-purple-400;
 }

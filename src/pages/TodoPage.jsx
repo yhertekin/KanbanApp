@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -7,12 +8,12 @@ const TodoPage = () => {
     const todos = useSelector((state) => state.todos.items);
     const navigate = useNavigate();
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
-    const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
 
-    if (!isLoggedIn) {
-        navigate("/login");
-        return;
-    }
+    useEffect(() => {
+        if (loggedInUser.username === undefined) {
+            navigate("/login");
+        }
+    }, [loggedInUser]);
 
     return (
         <div>

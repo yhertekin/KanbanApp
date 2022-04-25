@@ -6,7 +6,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import IconButton from "../IconButton";
 import { removeTodo } from "../../redux/todosSlice";
 import Modal from "../Modal";
-import TodoRemoveAlert from "../TodoRemoveAlert";
+import DialogBox from "../DialogBox";
 
 import "./Todo.css";
 import { useState } from "react";
@@ -27,16 +27,14 @@ const TodoFooter = ({ todo }) => {
         <IconButton
             Icon={FaTrashAlt}
             onClick={() => setShowTodoRemoveAlert(true)}
-            variant="black"
         />
     );
 
     const CalendarIcon = () => (
         <IconButton Icon={BsCalendarDate} variant="black" className="mr-1" />
     );
-    const user = useSelector((state) => state.users.items).find(
-        (user) => user.id === todo.userId
-    );
+    const users = useSelector((state) => state.users.items);
+    const user = users.find((user) => user.id === todo.userId);
 
     return (
         <div className={`todo__footer todo--${todo.color}_light`}>
@@ -50,7 +48,7 @@ const TodoFooter = ({ todo }) => {
                     <TrashIcon />
                     {showTodoRemoveAlert && (
                         <Modal showModal={setShowTodoRemoveAlert}>
-                            <TodoRemoveAlert
+                            <DialogBox
                                 todo={todo}
                                 setShowTodoRemoveAlert={setShowTodoRemoveAlert}
                             />

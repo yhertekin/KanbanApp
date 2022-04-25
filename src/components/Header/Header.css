@@ -3,7 +3,11 @@
 }
 
 .header__profile {
-    @apply rounded-full text-blue-500 bg-blue-100 p-2;
+    @apply rounded-full text-blue-500 bg-blue-100 p-2 hover:cursor-pointer;
+}
+
+.header__create-button {
+    @apply flex justify-center items-center w-24 ml-5;
 }
 
 .link {

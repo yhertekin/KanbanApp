@@ -3,19 +3,24 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaUserAlt } from "react-icons/fa";
 import { CgMenuLeft } from "react-icons/cg";
+import { MdCreate } from "react-icons/md";
 
 import IconButton from "../IconButton";
 import Menu from "./Menu";
 import SidePanel from "../SidePanel";
+import TodoInput from "../TodoInput";
+import Button from "../Button";
+import Modal from "../Modal";
 
 import "./Header.css";
 
 const Header = () => {
     const [showSidePanel, setShowSidePanel] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [showTodoInput, setShowTodoInput] = useState(false);
+    const showTodoHandler = () => setShowTodoInput(true);
 
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
-    const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
 
     const showSidePanelHandler = () => setShowSidePanel(true);
 
@@ -39,7 +44,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            {isLoggedIn ? (
+            {loggedInUser?.username ? (
                 <>
                     <div>
                         <IconButton
@@ -48,6 +53,26 @@ const Header = () => {
                             onClick={showSidePanelHandler}
                         />
                     </div>
+                    <Link to="/" className="font-Major text-3xl ml-5">
+                        TASKER
+                    </Link>
+                    <Button
+                        className="header__create-button"
+                        onClick={showTodoHandler}
+                        variant="primary"
+                    >
+                        <MdCreate />
+                        <span className="ml-1">Create</span>
+                    </Button>
+                    {showTodoInput ? (
+                        <Modal showModal={setShowTodoInput}>
+                            <TodoInput
+                                setShowTodoInput={setShowTodoInput}
+                                className="text-black"
+                            />
+                        </Modal>
+                    ) : null}
+
                     <SidePanel
                         showSidePanel={showSidePanel}
                         setShowSidePanel={setShowSidePanel}
@@ -56,13 +81,13 @@ const Header = () => {
             ) : null}
 
             <div className="ml-auto">
-                {isLoggedIn ? (
+                {loggedInUser?.username ? (
                     <div>
                         <div
                             className="header__profile"
                             onClick={handleShowMenu}
                         >
-                            <IconButton Icon={FaUserAlt} />
+                            <FaUserAlt />
                         </div>
                         {showMenu && <Menu setShowMenu={setShowMenu} />}
                     </div>

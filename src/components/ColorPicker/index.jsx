@@ -7,7 +7,7 @@ const ColorPicker = ({ todo }) => {
     const dispatch = useDispatch();
 
     const onClickHandler = (e) => {
-        const color = e.target.className.split("--")[1];
+        const color = e.target.className.split("--")[1].split(" ")[0];
         console.log(color);
         dispatch(
             changeColor({
@@ -21,9 +21,10 @@ const ColorPicker = ({ todo }) => {
 
     return (
         <div className="colorpicker">
-            {colorList.map((color) => (
+            {colorList.map((color, index) => (
                 <div
-                    className={`colorpicker--${color}`}
+                    key={index}
+                    className={`colorpicker--${color} colorpicker__item`}
                     onClick={onClickHandler}
                 ></div>
             ))}

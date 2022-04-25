@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -14,20 +14,16 @@ const UserLogin = () => {
     const [warningMessage, setWarningMessage] = useState("");
 
     const loggedInUser = useSelector((state) => state.users.loggedInUser);
-    const isLoggedIn = loggedInUser && Object.keys(loggedInUser).length !== 0;
+    const users = useSelector((state) => state.users.items);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const notInitialRender = useRef(false);
     useEffect(() => {
-        if (notInitialRender.current) {
-            setWarningMessage("");
+        if (loggedInUser.username) {
             navigate("/");
-        } else {
-            notInitialRender.current = true;
         }
-    }, [isLoggedIn]);
+    }, [loggedInUser]);
 
     const onChangeHandler = (e) => {
         setLoginForm((prevState) => ({
@@ -45,10 +41,13 @@ const UserLogin = () => {
             return;
         }
 
-        dispatch(loginUser(loginForm));
-        setWarningMessage(
-            "Failed to login! Password or email address is wrong!"
-        );
+        const user = users.find((user) => user.email === loginForm.email);
+        if (!user || loginForm.password !== user.password) {
+            setWarningMessage("Email or password is wrong! Failed to login.");
+        } else {
+            dispatch(loginUser(user));
+            setWarningMessage("");
+        }
     };
 
     return (
@@ -70,7 +69,9 @@ const UserLogin = () => {
                 onChange={onChangeHandler}
                 placeholder="Password"
             />
-            <Button onClick={onSubmitHandler}>Login</Button>
+            <Button onClick={onSubmitHandler} variant="primary">
+                Login
+            </Button>
         </div>
     );
 };

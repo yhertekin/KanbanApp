@@ -1,5 +1,5 @@
 .side-panel {
-    @apply h-full top-0 -left-80 flex flex-col w-80 bg-blue-500 fixed p-3 transition ease-linear duration-300 shadow-lg shadow-black;
+    @apply z-10 h-full top-0 -left-80 flex flex-col w-80 bg-blue-500 fixed p-3 transition ease-linear duration-300 shadow-lg shadow-black;
 }
 
 .side-panel__icon {
@@ -11,8 +11,4 @@
 }
 .side-panel__link__text {
     @apply ml-2;
-}
-
-.side-panel__button {
-    @apply flex justify-center items-center;
 }

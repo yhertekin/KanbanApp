@@ -10,29 +10,29 @@
     @apply text-blue-500;
 }
 .icon--primary:hover {
-    @apply text-blue-300;
+    @apply opacity-20;
 }
 .icon--secondary {
     @apply text-green-500;
 }
 .icon--secondary:hover {
-    @apply text-green-300;
+    @apply opacity-20;
 }
 .icon--danger {
     @apply text-red-500;
 }
 .icon--danger:hover {
-    @apply text-red-300;
+    @apply opacity-20;
 }
 .icon--black {
     @apply text-black;
 }
 .icon--black:hover {
-    @apply text-red-600;
+    @apply opacity-20;
 }
 .icon--white {
     @apply text-white;
 }
 .icon--white:hover {
-    @apply text-gray-500;
+    @apply opacity-20;
 }

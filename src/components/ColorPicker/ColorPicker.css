@@ -2,6 +2,10 @@
     @apply grid gap-1 grid-cols-3 grid-rows-2 w-full h-20;
 }
 
+.colorpicker__item:hover {
+    @apply scale-110;
+}
+
 .colorpicker--blue {
     @apply bg-blue-200 rounded-md;
 }

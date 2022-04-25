@@ -3,7 +3,7 @@
 }
 
 .status__section__header {
-    @apply flex justify-between items-center py-1 px-2 bg-gray-300 text-black font-bold rounded-t-sm;
+    @apply h-11 flex justify-between items-center py-1 px-2 bg-gray-300 text-black font-bold rounded-t-sm;
 }
 
 .status__section__header:hover {

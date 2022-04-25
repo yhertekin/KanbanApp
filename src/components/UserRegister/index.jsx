@@ -79,7 +79,9 @@ const UserRegister = () => {
                 placeholder="Select user type"
                 items={userTypes}
             />
-            <Button onClick={onSubmitHandler}>Register</Button>
+            <Button onClick={onSubmitHandler} variant="primary">
+                Register
+            </Button>
         </div>
     );
 };

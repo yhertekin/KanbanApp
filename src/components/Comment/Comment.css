@@ -1,5 +1,8 @@
 .comment {
-    @apply bg-stone-200 px-2 py-1 mt-1 hover:bg-stone-300 rounded-md flex justify-between items-center;
+    @apply bg-stone-100 px-2 py-1 mt-1 shadow-sm rounded-sm flex justify-between items-center;
+}
+.comment:hover {
+    @apply hover:bg-stone-200;
 }
 
 .comment__profile {

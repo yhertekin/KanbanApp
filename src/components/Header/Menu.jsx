@@ -25,16 +25,17 @@ const Menu = ({ setShowMenu }) => {
                 <IconButton
                     Icon={AiOutlineClose}
                     variant="black"
-                    className="ml-auto"
+                    className="ml-auto text-xl"
                     onClick={showMenuHandler}
                 />
             </div>
             <div className="header__menu__item">
-                <div className="header__menu__item__profile">
-                    <Link to={`/profile/${loggedInUser.id}`}>
-                        <IconButton Icon={FaUserAlt} />
-                    </Link>
-                </div>
+                <Link
+                    to={`/profile/${loggedInUser.id}`}
+                    className="header__menu__item__profile"
+                >
+                    <FaUserAlt />
+                </Link>
                 <div className="text-sm ml-2">
                     <div>{loggedInUser.username}</div>
                     <div>{loggedInUser.email}</div>
