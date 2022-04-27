@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { RiSendPlaneLine } from "react-icons/ri";
 
 import { addComment } from "../../redux/commentsSlice";
 import Button from "../Button";
 import Input from "../Input";
 import Alert from "../Alert";
+import { GetLoggedInUser } from "../../selectors";
 
 import "./CommentInput.css";
 
@@ -14,7 +15,7 @@ const CommentInput = ({ todoId, userId }) => {
     const [warningMessage, setWarningMessage] = useState("");
 
     const dispatch = useDispatch();
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const loggedInUser = GetLoggedInUser();
 
     const buttonHandler = () => {
         if (text === "") {

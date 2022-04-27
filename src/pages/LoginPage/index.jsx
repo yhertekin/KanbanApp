@@ -7,7 +7,7 @@ import "./LoginPage.css";
 const LoginPage = () => {
     return (
         <div className="login__page">
-            <div className="font-Major text-7xl mb-10 text-shadow-lg">
+            <div className="font-Major text-7xl mb-10 text-shadow-lg drop-shadow-md">
                 TASKER
             </div>
             <UserLogin />

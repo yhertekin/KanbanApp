@@ -1,62 +1,42 @@
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { BsCalendarDate } from "react-icons/bs";
-import { FaTrashAlt } from "react-icons/fa";
-
-import IconButton from "../IconButton";
-import { removeTodo } from "../../redux/todosSlice";
-import Modal from "../Modal";
-import DialogBox from "../DialogBox";
+import { BiComment } from "react-icons/bi";
 
 import "./Todo.css";
 import { useState } from "react";
-
-const formatDate = (date) => {
-    if (typeof date === "string") date = new Date(date);
-    return date
-        ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-        : null;
-};
+import { FindUserById, GetLoggedInUser } from "../../selectors";
+import Label from "../LabelPicker/Label";
+import IconButton from "../IconButton";
+import CommentSection from "../CommentSection";
 
 const TodoFooter = ({ todo }) => {
-    const [showTodoRemoveAlert, setShowTodoRemoveAlert] = useState(false);
-    const dispatch = useDispatch();
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const [toggleCommentSection, setToggleCommentSection] = useState(false);
+    const user = FindUserById(todo.userId);
 
-    const TrashIcon = () => (
-        <IconButton
-            Icon={FaTrashAlt}
-            onClick={() => setShowTodoRemoveAlert(true)}
-        />
-    );
-
-    const CalendarIcon = () => (
-        <IconButton Icon={BsCalendarDate} variant="black" className="mr-1" />
-    );
-    const users = useSelector((state) => state.users.items);
-    const user = users.find((user) => user.id === todo.userId);
+    const commentSectionHandler = () =>
+        setToggleCommentSection((prevState) => !prevState);
 
     return (
-        <div className={`todo__footer todo--${todo.color}_light`}>
-            <div className="todo__footer__date">
-                <CalendarIcon />
-                <span>{formatDate(todo.createdAt)}</span>
+        <>
+            <div className={`todo__footer`}>
+                <div className="">
+                    <Link to={`/profile/${user?.id}`} className="opacity-75">
+                        {user?.username}
+                    </Link>
+                    <div className="todo__footer__label-list">
+                        {todo.labelList.map((label, index) => (
+                            <Label key={index} label={label} />
+                        ))}
+                    </div>
+                </div>
+                <IconButton
+                    onClick={commentSectionHandler}
+                    Icon={BiComment}
+                    variant="black"
+                    className="text-lg"
+                />
             </div>
-            <Link to={`/profile/${user.id}`}>{user.username}</Link>
-            {todo.status === "review" && loggedInUser?.userType === "admin" ? (
-                <>
-                    <TrashIcon />
-                    {showTodoRemoveAlert && (
-                        <Modal showModal={setShowTodoRemoveAlert}>
-                            <DialogBox
-                                todo={todo}
-                                setShowTodoRemoveAlert={setShowTodoRemoveAlert}
-                            />
-                        </Modal>
-                    )}
-                </>
-            ) : null}
-        </div>
+            {toggleCommentSection ? <CommentSection todoId={todo.id} /> : null}
+        </>
     );
 };
 

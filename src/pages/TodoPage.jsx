@@ -1,26 +1,22 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { GetAllTodos, GetLoggedInUser } from "../selectors";
 
-import { getTodosAsync } from "../redux/todosSlice";
 import TodoList from "./../components/TodoList";
 
 const TodoPage = () => {
-    const todos = useSelector((state) => state.todos.items);
     const navigate = useNavigate();
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
-
     const dispatch = useDispatch();
+
+    const todos = GetAllTodos();
+    const loggedInUser = GetLoggedInUser();
 
     useEffect(() => {
         if (loggedInUser.username === undefined) {
             navigate("/login");
         }
     }, [loggedInUser]);
-
-    useEffect(() => {
-        dispatch(getTodosAsync());
-    }, []);
 
     return (
         <div>

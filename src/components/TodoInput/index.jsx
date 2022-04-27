@@ -7,14 +7,17 @@ import Button from "../Button";
 import Alert from "../Alert";
 import Modal from "../Modal";
 
+import { GetAllUsers } from "../../selectors";
+
 import "./TodoInput.css";
 
 const TodoInput = ({ className, setShowTodoInput }) => {
-    const [inputValue, setInputValue] = useState("");
     const dispatch = useDispatch();
-    const users = useSelector((state) => state.users.items);
+    const [inputValue, setInputValue] = useState("");
     const [dropdownValue, setDropdownValue] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
+
+    const users = GetAllUsers();
 
     const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
     const inputChangeHandler = (e) => setInputValue(e.target.value);

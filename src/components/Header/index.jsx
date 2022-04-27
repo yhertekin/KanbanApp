@@ -13,6 +13,7 @@ import Button from "../Button";
 import Modal from "../Modal";
 
 import "./Header.css";
+import { GetLoggedInUser } from "../../selectors";
 
 const Header = () => {
     const [showSidePanel, setShowSidePanel] = useState(false);
@@ -20,7 +21,7 @@ const Header = () => {
     const [showTodoInput, setShowTodoInput] = useState(false);
     const showTodoHandler = () => setShowTodoInput(true);
 
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const loggedInUser = GetLoggedInUser();
 
     const showSidePanelHandler = () => setShowSidePanel(true);
 

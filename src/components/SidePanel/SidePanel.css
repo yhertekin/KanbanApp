@@ -1,5 +1,13 @@
 .side-panel {
-    @apply z-10 h-full top-0 -left-80 flex flex-col w-80 bg-blue-500 fixed p-3 transition ease-linear duration-300 shadow-lg shadow-black;
+    @apply z-10 h-full top-0 -left-80 flex flex-col w-80 bg-blue-500 fixed p-3 transition ease-linear duration-300;
+}
+
+.side-panel--open {
+    @apply translate-x-full shadow-lg shadow-black;
+}
+
+.side-panel--close {
+    @apply translate-x-0 shadow-none;
 }
 
 .side-panel__icon {

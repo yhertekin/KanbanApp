@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
+import { FindUserById } from "../../selectors";
 
 import "./Comment.css";
 
 const Comment = ({ comment }) => {
-    const users = useSelector((state) => state.users.items);
-    const user = users.find((user) => user.id === comment.userId);
+    const user = FindUserById(comment.userId);
 
     return (
         <div className="comment">

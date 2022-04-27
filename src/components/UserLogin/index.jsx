@@ -8,13 +8,14 @@ import Button from "../Button";
 import Alert from "../Alert";
 
 import "./UserLogin.css";
+import { GetAllUsers, GetLoggedInUser } from "../../selectors";
 
 const UserLogin = () => {
     const [loginForm, setLoginForm] = useState({ email: "", password: "" });
     const [warningMessage, setWarningMessage] = useState("");
 
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
-    const users = useSelector((state) => state.users.items);
+    const loggedInUser = GetLoggedInUser();
+    const users = GetAllUsers();
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

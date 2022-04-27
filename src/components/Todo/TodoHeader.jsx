@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FaCheck, FaTimes } from "react-icons/fa";
-import { AiOutlineEdit } from "react-icons/ai";
 
 import {
     setStatusTest,
@@ -13,22 +12,13 @@ import Modal from "../Modal";
 import DialogBox from "../DialogBox";
 
 import "./Todo.css";
-import TodoEdit from "../TodoEdit";
 
 const TodoHeader = ({ todo }) => {
     const [showModal, setShowModal] = useState(false);
     const [dialogBoxType, setDialogBoxType] = useState("task__success");
-    const [showEditTodo, setShowEditTodo] = useState(false);
+
     const dispatch = useDispatch();
     const { id, status } = todo;
-
-    const EditIcon = () => (
-        <IconButton
-            Icon={AiOutlineEdit}
-            className="edit__icon"
-            onClick={() => setShowEditTodo(true)}
-        />
-    );
 
     const SuccessIcon = () => (
         <IconButton
@@ -74,14 +64,7 @@ const TodoHeader = ({ todo }) => {
     };
 
     return (
-        <div className={`todo__header todo--${todo.color}`}>
-            <EditIcon />
-            {showEditTodo ? (
-                <Modal showModal={setShowEditTodo}>
-                    <TodoEdit todo={todo} setShowEditTodo={setShowEditTodo} />
-                </Modal>
-            ) : null}
-
+        <div className={`todo__header`}>
             {status === "test" ? <FailIcon /> : null}
             {status !== "completed" ? <SuccessIcon /> : null}
             {showModal ? (

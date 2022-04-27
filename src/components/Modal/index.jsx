@@ -5,7 +5,10 @@ import IconButton from "../IconButton";
 import "./Modal.css";
 
 const Modal = ({ children, showModal }) => {
-    const showModalHandler = () => showModal(false);
+    const showModalHandler = () => {
+        showModal((prevState) => !prevState);
+        console.log("modal close");
+    };
 
     return (
         <div className="modal">

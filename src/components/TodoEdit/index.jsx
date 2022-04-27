@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaUser, FaCalendarAlt, FaEdit, FaTrashAlt } from "react-icons/fa";
@@ -12,15 +12,11 @@ import ColorPicker from "../ColorPicker";
 import IconButton from "../IconButton";
 import Modal from "../Modal";
 import DialogBox from "../DialogBox";
+import { FindUserById, GetAllUsers, GetLoggedInUser } from "../../selectors";
+import { formatDate } from "../../functions";
 
 import "./TodoEdit.css";
-
-const formatDate = (date) => {
-    if (typeof date === "string") date = new Date(date);
-    return date
-        ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-        : null;
-};
+import LabelPicker from "../LabelPicker";
 
 const TodoEdit = ({ todo }) => {
     const dispatch = useDispatch();
@@ -28,15 +24,18 @@ const TodoEdit = ({ todo }) => {
     const [dropdownValue, setDropdownValue] = useState(todo.userId);
     const [warningMessage, setWarningMessage] = useState("");
     const [showTodoRemoveAlert, setShowTodoRemoveAlert] = useState(false);
-    const users = useSelector((state) => state.users.items);
-    const user = users.find((user) => user.id === todo.userId);
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+
+    const users = GetAllUsers();
+    // const user = useMemo(() => FindUserById(todo.userId), [users, todo]);
+    const user = FindUserById(todo.userId);
+    console.log(user);
+    const loggedInUser = GetLoggedInUser();
 
     const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
     const inputChangeHandler = (e) => setInputValue(e.target.value);
     const buttonHandler = () => {
         if (!inputValue) {
-            setWarningMessage("Please provide a task!");
+            setWarningMessage("Input field can not be empty!");
             return;
         }
         if (!dropdownValue) {
@@ -72,10 +71,10 @@ const TodoEdit = ({ todo }) => {
                     <div className="flex justify-start items-center mr-10">
                         <FaUser className="mr-1" /> Task for
                         <Link
-                            to={`/profile/${user.id}`}
+                            to={`/profile/${user?.id}`}
                             className="font-bold ml-1"
                         >
-                            {user.username}
+                            {user?.username}
                         </Link>
                     </div>
                     <div className="flex justify-between items-center">
@@ -115,7 +114,7 @@ const TodoEdit = ({ todo }) => {
                     {warningMessage && (
                         <Alert message={warningMessage} variant="danger" />
                     )}
-                    <ColorPicker todo={todo} />
+                    <LabelPicker todo={todo} />
                     <Input
                         value={inputValue}
                         onChange={inputChangeHandler}

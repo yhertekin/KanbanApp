@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
+import { GetAllUsers } from "../../selectors";
 import User from "../User";
 
 const UserList = () => {
-    const users = useSelector((state) => state.users.items);
+    const users = GetAllUsers();
 
     return (
         <ul>

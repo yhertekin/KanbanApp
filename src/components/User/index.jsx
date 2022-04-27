@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -11,14 +11,17 @@ import IconButton from "../IconButton";
 import Modal from "../Modal";
 import DialogBox from "../DialogBox";
 
+import { GetAllTodos, GetLoggedInUser } from "../../selectors";
+
 import "./User.css";
 
 const User = ({ user }) => {
+    const dispatch = useDispatch();
     const [showTodos, setShowTodos] = useState(false);
     const [showUserRemoveAlert, setShowUserRemoveAlert] = useState(false);
-    const todoList = useSelector((state) => state.todos.items);
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
-    const dispatch = useDispatch();
+
+    const todoList = GetAllTodos();
+    const loggedInUser = GetLoggedInUser();
 
     const todos = todoList.filter((todo) => todo.userId === user.id);
     const todoCount = todos.length;

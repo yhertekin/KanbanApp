@@ -1,4 +1,5 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+import data from "../data/todoData.json";
 
 const updateStorage = (newState) => {
     localStorage.setItem("todoList", JSON.stringify(newState));
@@ -13,17 +14,11 @@ const STATUS = {
     COMPLETED: "completed",
 };
 
-export const getTodosAsync = createAsyncThunk(
-    "/todos/getTodosAsync",
-    async () => {
-        const response = await fetch("http://localhost:5500/todos");
-        return await response.json();
-    }
-);
-
 export const todosSlice = createSlice({
     name: "todos",
-    initialState: { items: JSON.parse(localStorage.getItem("todoList")) || [] },
+    initialState: {
+        items: JSON.parse(localStorage.getItem("todoList")) || [],
+    },
     reducers: {
         addTodo: {
             reducer: (state, action) => {
@@ -38,6 +33,7 @@ export const todosSlice = createSlice({
                     userId: userId,
                     createdAt: new Date(),
                     color: "yellow",
+                    labelList: [],
                     // color: "yellow"
                 };
                 return { payload: todo };
@@ -114,10 +110,22 @@ export const todosSlice = createSlice({
             todo.color = action.payload.color;
             updateStorage(state.items);
         },
-    },
-    extraReducers: {
-        [getTodosAsync.fulfilled]: (state, action) => {
-            state.items = action.payload;
+
+        addLabel: (state, action) => {
+            const todo = state.items.find(
+                (item) => item.id === action.payload.todoId
+            );
+            todo.labelList = [action.payload.label, ...todo.labelList];
+            updateStorage(state.items);
+        },
+        removeLabel: (state, action) => {
+            const todo = state.items.find(
+                (item) => item.id === action.payload.todoId
+            );
+            todo.labelList = todo.labelList.filter(
+                (label) => label.id !== action.payload.labelId
+            );
+            updateStorage(state.items);
         },
     },
 });
@@ -131,5 +139,7 @@ export const {
     setStatusTest,
     setStatusCompleted,
     changeColor,
+    addLabel,
+    removeLabel,
 } = todosSlice.actions;
 export default todosSlice.reducer;

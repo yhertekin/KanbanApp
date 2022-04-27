@@ -9,10 +9,9 @@ import Alert from "../Alert";
 import "./UserInput.css";
 
 const UserInput = () => {
+    const dispatch = useDispatch();
     const [input, setInput] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
-
-    const dispatch = useDispatch();
 
     const buttonHandler = () => {
         if (input === "") {

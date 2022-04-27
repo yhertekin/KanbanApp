@@ -1,13 +1,13 @@
-import { useSelector } from "react-redux";
-
 import CommentInput from "../CommentInput";
 import CommentList from "../CommentList";
+
+import { GetAllComments, GetLoggedInUser } from "../../selectors";
 
 import "./CommentSection.css";
 
 const CommentSection = ({ todoId }) => {
-    const comments = useSelector((state) => state.comments.items);
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const comments = GetAllComments();
+    const loggedInUser = GetLoggedInUser();
 
     return (
         <div className="comment__section">

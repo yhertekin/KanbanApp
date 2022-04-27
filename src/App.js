@@ -9,6 +9,7 @@ import UsersPage from "./pages/UsersPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
+import SettingsPage from "./pages/SettingsPage";
 
 import "./App.css";
 
@@ -30,6 +31,10 @@ function App() {
                             <Route
                                 path="/register"
                                 element={<RegisterPage />}
+                            />
+                            <Route
+                                path="/settings"
+                                element={<SettingsPage />}
                             />
                         </Routes>
                     </div>
