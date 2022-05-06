@@ -5,8 +5,11 @@ module.exports = {
             fontFamily: {
                 Major: ["Major Mono Display", "monospace"],
                 OpenSans: ["Open Sans", "sans-serif"],
-                Monoserrat: ["Montserrat", "sans-serif"],
+                Montserrat: ["Montserrat", "sans-serif"],
                 Roboto: ["Roboto", "sans-serif"],
+                Poppins: ["Poppins", "sans-serif"],
+                Canada: ["Radio Canada", "sans-serif"],
+                Rubik: ["Rubik", "sans-serif"],
             },
         },
     },

@@ -1,27 +1,11 @@
-.label__list {
-    @apply flex  items-center;
+.label-picker {
+    @apply mt-1;
 }
 
-.tooltip {
-    @apply w-3 h-3 rounded-full mr-1;
+.label-picker__item {
+    @apply m-1;
 }
 
-.tooltip__text {
-    @apply bg-black rounded-md text-white px-2 absolute z-50 hidden -mt-7 -ml-8 text-center;
-}
-
-.important {
-    background: #940a5a;
-}
-
-.important--not {
-    background: #0e86d4;
-}
-
-.urgent {
-    background: #d40e81;
-}
-
-.urgent--not {
-    background: #d4b60e;
+.label-picker__item:hover {
+    @apply cursor-pointer;
 }

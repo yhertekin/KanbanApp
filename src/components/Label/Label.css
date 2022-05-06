@@ -1,0 +1,35 @@
+.label {
+    @apply mr-1 px-2 py-1 text-sm text-black inline-block rounded-md font-Poppins;
+}
+
+.label:hover {
+    @apply scale-125;
+}
+
+.label--blue {
+    @apply bg-blue-200;
+}
+
+.label--blue {
+    @apply bg-blue-200;
+}
+
+.label--red {
+    @apply bg-red-200;
+}
+
+.label--green {
+    @apply bg-green-200;
+}
+
+.label--yellow {
+    @apply bg-yellow-200;
+}
+
+.label--teal {
+    @apply bg-teal-200;
+}
+
+.label--purple {
+    @apply bg-purple-200;
+}

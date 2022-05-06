@@ -29,9 +29,11 @@ const SettingsTodo = ({ todo }) => {
                     <EditIcon />
                     {user?.username}
                 </div>
-                <div className="text-center">{todo.task}</div>
-                <div className="text-center">{formatDate(todo.createdAt)}</div>
-                <div className="text-center">{todo.status}</div>
+                <div>{todo.task}</div>
+                <div className="settings__list__item__field">
+                    {formatDate(todo.createdAt)}
+                </div>
+                <div className="settings__list__item__field">{todo.status}</div>
             </div>
             {showModal ? (
                 <Modal showModal={setShowModal}>

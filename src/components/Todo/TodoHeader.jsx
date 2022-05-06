@@ -65,9 +65,9 @@ const TodoHeader = ({ todo }) => {
 
     return (
         <div className={`todo__header`}>
-            {status === "test" ? <FailIcon /> : null}
-            {status !== "completed" ? <SuccessIcon /> : null}
-            {showModal ? (
+            {status === "test" && <FailIcon />}
+            {status !== "completed" && <SuccessIcon />}
+            {showModal && (
                 <Modal showModal={setShowModal}>
                     {dialogBoxType === "task__fail" ? (
                         <DialogBox
@@ -83,7 +83,7 @@ const TodoHeader = ({ todo }) => {
                         />
                     )}
                 </Modal>
-            ) : null}
+            )}
         </div>
     );
 };

@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTodo } from "../../redux/todosSlice";
+
 import Dropdown from "../Dropdown";
 import Input from "../Input";
 import Button from "../Button";
 import Alert from "../Alert";
-import Modal from "../Modal";
+import LabelPicker from "../LabelPicker";
 
 import { GetAllUsers } from "../../selectors";
 
@@ -16,12 +17,16 @@ const TodoInput = ({ className, setShowTodoInput }) => {
     const [inputValue, setInputValue] = useState("");
     const [dropdownValue, setDropdownValue] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
+    const [labelIdList, setLabelIdList] = useState([]);
 
     const users = GetAllUsers();
 
     const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
     const inputChangeHandler = (e) => setInputValue(e.target.value);
     const showTodoHandler = (e) => setShowTodoInput(false);
+    const labelHandler = (labelId) => {
+        setLabelIdList((prevState) => [...prevState, labelId]);
+    };
 
     const addButtonHandler = () => {
         if (inputValue === "") {
@@ -33,7 +38,13 @@ const TodoInput = ({ className, setShowTodoInput }) => {
             return;
         }
 
-        dispatch(addTodo({ task: inputValue, userId: dropdownValue }));
+        dispatch(
+            addTodo({
+                task: inputValue,
+                userId: dropdownValue,
+                labelIdList: labelIdList,
+            })
+        );
         setInputValue("");
         setDropdownValue("");
         setWarningMessage("");
@@ -69,6 +80,9 @@ const TodoInput = ({ className, setShowTodoInput }) => {
                     placeholder="Select a user"
                     items={dropdownItems}
                 />
+
+                <LabelPicker labelHandler={labelHandler} />
+
                 <div className="todo__input__footer">
                     <Button
                         children="Cancel"

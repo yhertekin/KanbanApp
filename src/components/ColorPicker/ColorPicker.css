@@ -1,31 +1,34 @@
 .colorpicker {
-    @apply grid gap-1 grid-cols-3 grid-rows-2 w-full h-20;
+    @apply grid gap-1 grid-cols-6 w-full h-10;
 }
 
+.colorpicker__item {
+    @apply rounded-md;
+}
 .colorpicker__item:hover {
     @apply scale-110;
 }
 
 .colorpicker--blue {
-    @apply bg-blue-400 rounded-md;
+    @apply bg-blue-200;
 }
 
 .colorpicker--red {
-    @apply bg-red-400 rounded-md;
+    @apply bg-red-200;
 }
 
 .colorpicker--green {
-    @apply bg-green-400 rounded-md;
+    @apply bg-green-200;
 }
 
 .colorpicker--yellow {
-    @apply bg-yellow-400 rounded-md;
+    @apply bg-yellow-200;
 }
 
 .colorpicker--teal {
-    @apply bg-teal-400 rounded-md;
+    @apply bg-teal-200;
 }
 
 .colorpicker--purple {
-    @apply bg-purple-400 rounded-md;
+    @apply bg-purple-200 rounded-md;
 }

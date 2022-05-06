@@ -33,7 +33,7 @@ function App() {
                                 element={<RegisterPage />}
                             />
                             <Route
-                                path="/settings"
+                                path="/settings/*"
                                 element={<SettingsPage />}
                             />
                         </Routes>

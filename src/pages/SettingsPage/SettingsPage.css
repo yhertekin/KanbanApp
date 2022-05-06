@@ -1,0 +1,15 @@
+.settings__page__header {
+    @apply text-3xl font-bold;
+}
+
+.settings__page__links {
+    @apply my-3;
+}
+
+.settings__page__link {
+    @apply mr-1 px-2 py-1 rounded-md text-lg;
+}
+
+.settings__page__link:hover {
+    @apply bg-gray-200;
+}

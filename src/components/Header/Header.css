@@ -1,5 +1,5 @@
 .header {
-    @apply p-3 text-white h-12 bg-blue-500 flex justify-between items-center;
+    @apply p-5 text-black h-16 bg-white flex justify-between items-center shadow-md mb-5;
 }
 
 .header__profile {
@@ -19,7 +19,7 @@
 }
 
 .header__menu {
-    @apply z-10 absolute h-auto w-72 text-black bg-white border top-10 mt-4 right-1 px-4 rounded flex flex-col;
+    @apply z-10 absolute shadow-md h-auto w-72 font-medium text-black bg-white border top-10 mt-4 mr-4 right-1 px-4 rounded-lg flex flex-col;
 }
 
 .header__menu__item {

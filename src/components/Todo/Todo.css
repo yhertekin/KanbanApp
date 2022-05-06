@@ -1,5 +1,5 @@
 .todo {
-    @apply border rounded-sm mt-2 w-full overflow-hidden shadow-sm font-Monoserrat;
+    @apply rounded-lg mt-2 w-full overflow-hidden shadow-md font-Montserrat  bg-white;
 }
 /* 
 .todo:hover {
@@ -17,15 +17,20 @@
 } */
 
 .todo__content {
-    @apply px-2 py-4 h-auto font-bold break-words overflow-auto bg-gray-50;
+    @apply p-3 h-auto break-words overflow-auto font-Poppins;
 }
 
 .todo__footer {
-    @apply w-full mt-4 h-16 px-2 flex justify-between items-end text-sm;
+    @apply w-full flex justify-between items-end text-sm;
 }
-/* .todo__footer__username {
-    @apply mb-2;
-} */
+
+.todo__footer__username__container {
+    @apply w-7 h-7 bg-blue-400 flex justify-center items-center rounded-full;
+}
+.todo__footer__username {
+    @apply text-xs text-white;
+}
+
 .todo__footer__label-list {
     @apply mt-2 flex items-center justify-start;
 }

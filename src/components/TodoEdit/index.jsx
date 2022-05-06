@@ -14,9 +14,10 @@ import Modal from "../Modal";
 import DialogBox from "../DialogBox";
 import { FindUserById, GetAllUsers, GetLoggedInUser } from "../../selectors";
 import { formatDate } from "../../functions";
+import LabelPicker from "../LabelPicker";
+import Label from "../LabelPicker/Label";
 
 import "./TodoEdit.css";
-import LabelPicker from "../LabelPicker";
 
 const TodoEdit = ({ todo }) => {
     const dispatch = useDispatch();
@@ -34,6 +35,10 @@ const TodoEdit = ({ todo }) => {
     const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
     const inputChangeHandler = (e) => setInputValue(e.target.value);
     const buttonHandler = () => {
+        if (todo.status !== "review") {
+            setWarningMessage("Status must be review");
+            return;
+        }
         if (!inputValue) {
             setWarningMessage("Input field can not be empty!");
             return;
@@ -115,6 +120,7 @@ const TodoEdit = ({ todo }) => {
                         <Alert message={warningMessage} variant="danger" />
                     )}
                     <LabelPicker todo={todo} />
+
                     <Input
                         value={inputValue}
                         onChange={inputChangeHandler}

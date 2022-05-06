@@ -5,9 +5,10 @@ import { FaUserAlt } from "react-icons/fa";
 
 import IconButton from "../IconButton";
 import { logoutUser } from "../../redux/usersSlice";
+import { GetLoggedInUser } from "../../selectors";
 
 const Menu = ({ setShowMenu }) => {
-    const loggedInUser = useSelector((state) => state.users.loggedInUser);
+    const loggedInUser = GetLoggedInUser();
     const dispatch = useDispatch();
 
     const stopClosing = (e) => {
@@ -42,7 +43,11 @@ const Menu = ({ setShowMenu }) => {
                 </div>
             </div>
             <div className="py-4" onClick={showMenuHandler}>
-                <Link to="/login" onClick={logoutHandler}>
+                <Link
+                    to="/login"
+                    onClick={logoutHandler}
+                    className="text-lg text-gray-600 hover:bg-gray-200 py-2 px-4 rounded-lg"
+                >
                     Logout
                 </Link>
             </div>

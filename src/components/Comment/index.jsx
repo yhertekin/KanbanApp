@@ -10,13 +10,13 @@ const Comment = ({ comment }) => {
 
     return (
         <div className="comment">
-            <div>{comment.text}</div>
             <Link to={`/profile/${user?.id}`}>
                 <div className="comment__profile">
-                    <FaUserAlt className="mr-2" />
+                    <FaUserAlt className="mr-2 opacity-75" />
                     <span>{user?.username}</span>
                 </div>
             </Link>
+            <div className="overflow-auto mr-2">{comment.text}</div>
         </div>
     );
 };

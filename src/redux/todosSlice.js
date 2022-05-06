@@ -25,7 +25,7 @@ export const todosSlice = createSlice({
                 state.items = [action.payload, ...state.items];
                 updateStorage(state.items);
             },
-            prepare: ({ task, userId }) => {
+            prepare: ({ task, userId, labelIdList }) => {
                 const todo = {
                     id: nanoid(),
                     status: STATUS.REVIEW,
@@ -33,7 +33,7 @@ export const todosSlice = createSlice({
                     userId: userId,
                     createdAt: new Date(),
                     color: "yellow",
-                    labelList: [],
+                    labelIdList: labelIdList,
                     // color: "yellow"
                 };
                 return { payload: todo };
@@ -110,23 +110,6 @@ export const todosSlice = createSlice({
             todo.color = action.payload.color;
             updateStorage(state.items);
         },
-
-        addLabel: (state, action) => {
-            const todo = state.items.find(
-                (item) => item.id === action.payload.todoId
-            );
-            todo.labelList = [action.payload.label, ...todo.labelList];
-            updateStorage(state.items);
-        },
-        removeLabel: (state, action) => {
-            const todo = state.items.find(
-                (item) => item.id === action.payload.todoId
-            );
-            todo.labelList = todo.labelList.filter(
-                (label) => label.id !== action.payload.labelId
-            );
-            updateStorage(state.items);
-        },
     },
 });
 
@@ -139,7 +122,5 @@ export const {
     setStatusTest,
     setStatusCompleted,
     changeColor,
-    addLabel,
-    removeLabel,
 } = todosSlice.actions;
 export default todosSlice.reducer;

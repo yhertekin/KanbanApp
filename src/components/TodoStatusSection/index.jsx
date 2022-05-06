@@ -30,7 +30,12 @@ const TodoStatusSection = ({ status, todoList }) => {
         <div>
             <div className="status__section">
                 <header className="status__section__header">
-                    <span>{status.split(/\d|_/).join(" ").toUpperCase()}</span>
+                    <div>
+                        <span>
+                            {status.split(/\d|_/).join(" ").toUpperCase()}{" "}
+                        </span>
+                        <span className="opacity-25">({todoList.length})</span>
+                    </div>
                     {showTodos ? <ArrowUp /> : <ArrowDown />}
                 </header>
 
