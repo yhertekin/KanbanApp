@@ -1,5 +1,5 @@
 .label {
-    @apply mr-1 px-2 py-1 text-sm text-black inline-block rounded-md font-Poppins;
+    @apply mr-1 px-2 py-1 text-xs text-black inline-block rounded-md font-Poppins;
 }
 
 .label:hover {

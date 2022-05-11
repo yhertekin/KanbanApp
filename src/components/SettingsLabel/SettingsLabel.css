@@ -1,0 +1,15 @@
+.settings__label {
+    @apply mt-7 flex flex-col justify-center items-start w-6/12;
+}
+
+.settings__label__create {
+    @apply w-full;
+}
+
+.settings__label__create__header {
+    @apply opacity-75 mb-2;
+}
+
+.settings__label__create__input {
+    @apply w-full;
+}

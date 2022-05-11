@@ -1,7 +1,6 @@
 .label__list {
-    @apply w-fit;
+    @apply w-fit my-1;
 }
 
 .label__list__item {
-    @apply mb-1;
 }

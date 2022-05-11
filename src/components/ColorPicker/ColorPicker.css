@@ -1,12 +1,19 @@
 .colorpicker {
-    @apply grid gap-1 grid-cols-6 w-full h-10;
+    @apply flex justify-start items-center h-10;
+}
+
+.checked {
+    @apply border-2 border-blue-600;
 }
 
 .colorpicker__item {
-    @apply rounded-md;
+    @apply rounded-full w-10 h-10 mr-3;
 }
 .colorpicker__item:hover {
     @apply scale-110;
+}
+.colorpicker__item:focus {
+    @apply border border-blue-600;
 }
 
 .colorpicker--blue {
@@ -30,5 +37,5 @@
 }
 
 .colorpicker--purple {
-    @apply bg-purple-200 rounded-md;
+    @apply bg-purple-200;
 }

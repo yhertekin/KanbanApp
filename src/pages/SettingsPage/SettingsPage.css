@@ -1,15 +1,23 @@
-.settings__page__header {
+.settings {
+    @apply w-full;
+}
+
+.settings__header {
     @apply text-3xl font-bold;
 }
 
-.settings__page__links {
-    @apply my-3;
+.settings__links {
+    @apply my-3 select-none;
 }
 
-.settings__page__link {
-    @apply mr-1 px-2 py-1 rounded-md text-lg;
+.settings__link {
+    @apply mr-1 px-2 py-1 text-lg font-medium;
 }
 
-.settings__page__link:hover {
-    @apply bg-gray-200;
+.settings__link:hover {
+    @apply settings__link--active;
+}
+
+.settings__link--active {
+    @apply text-blue-600 border-b-2 border-blue-600;
 }

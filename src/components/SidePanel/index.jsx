@@ -80,14 +80,14 @@ const SidePanel = ({ showSidePanel, setShowSidePanel }) => {
                             <span className="ml-1">Create</span>
                         </Button>
                     )}
-                    {showTodoInput ? (
+                    {showTodoInput && (
                         <Modal showModal={setShowTodoInput}>
                             <TodoInput
                                 setShowTodoInput={setShowTodoInput}
                                 className="text-black"
                             />
                         </Modal>
-                    ) : null}
+                    )}
                 </div>
                 <div className="mb-5">
                     <Link className="side-panel__link" to="/settings">

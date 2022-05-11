@@ -9,9 +9,9 @@ import Button from "../Button";
 import Alert from "../Alert";
 
 import { GetLabels } from "../../selectors";
+import { removeCheckedFromColors } from "../../functions";
 
-const LabelInput = () => {
-    const [showColorPicker, setShowColorPicker] = useState(true);
+const LabelInput = ({ className }) => {
     const [warningMessage, setWarningMessage] = useState("");
     const [text, setText] = useState("");
     const [color, setColor] = useState("");
@@ -31,20 +31,40 @@ const LabelInput = () => {
             return;
         }
         setWarningMessage("");
+
         dispatch(addLabel({ color: color, text: text }));
+        setText("");
+        setColor("");
+
+        // ferhat abiye sor
+        removeCheckedFromColors();
     };
 
     return (
-        <div>
+        <div className={className ?? ""}>
             {warningMessage && (
-                <Alert message={warningMessage} variant="warning" />
+                <Alert
+                    message={warningMessage}
+                    variant="danger"
+                    className="mb-1"
+                />
             )}
-            <Input onChange={textChangeHandler} placeholder="Label Text" />
-            <div onClick={() => setShowColorPicker((prevState) => !prevState)}>
-                Pick a Label color
-            </div>
-            {showColorPicker && <ColorPicker pickColor={colorClickHandler} />}
-            <Button onClick={addLabelHandler}>Create</Button>
+            <h2 className="opacity-75 mb-2">Label name</h2>
+            <Input
+                onChange={textChangeHandler}
+                placeholder="Label Text"
+                className="outline-blue-600"
+                value={text}
+            />
+            <div className="opacity-75 mt-5 mb-2">Pick a Label color</div>
+            <ColorPicker pickColor={colorClickHandler} />
+            <Button
+                className="mt-5 w-full"
+                onClick={addLabelHandler}
+                variant="primary"
+            >
+                Create
+            </Button>
         </div>
     );
 };

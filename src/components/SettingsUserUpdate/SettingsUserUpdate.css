@@ -1,0 +1,29 @@
+.settings__user__update {
+    @apply mt-2 ml-5 border p-2 rounded-md shadow-sm;
+}
+
+.settings__user__update:hover {
+    @apply border-blue-600;
+}
+.settings__user__update__inputs {
+    @apply grid grid-cols-10 grid-rows-2 gap-2;
+}
+
+.settings__user__update__input__username {
+    @apply col-span-9 outline-blue-600;
+}
+
+.settings__user__update__input__email {
+    @apply col-span-9 outline-blue-600;
+}
+
+.settings__user__update__remove {
+    @apply row-start-1 row-span-2 col-start-10 flex justify-center items-center flex-col p-2 select-none;
+}
+
+.settings__user__update__update {
+    @apply mt-2 p-2 flex justify-center items-center select-none;
+}
+.settings__user__update__update > span {
+    @apply ml-2;
+}

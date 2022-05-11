@@ -10,10 +10,12 @@ const LabelPicker = ({ labelHandler }) => {
         <div className="label-picker">
             {labels.map((label) => (
                 <Label
-                    className="label-picker__item"
+                    className={`label-picker__item ${
+                        label.isIn && "opacity-25"
+                    }`}
                     key={label.id}
                     label={label}
-                    onClick={() => labelHandler(label.id)}
+                    onClick={(e) => labelHandler(e, label.id)}
                 />
             ))}
         </div>

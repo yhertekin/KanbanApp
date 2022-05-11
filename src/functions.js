@@ -4,3 +4,8 @@ export const formatDate = (date) => {
         ? `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
         : null;
 };
+
+export const removeCheckedFromColors = () => {
+    const colors = Array.from(document.querySelectorAll(".colorpicker__item"));
+    colors.forEach((color) => color.classList.remove("checked"));
+};

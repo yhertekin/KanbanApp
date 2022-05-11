@@ -1,6 +1,6 @@
 .side-panel {
     @apply z-10 h-full top-0 -left-80 flex flex-col w-80 bg-white fixed p-3 transition
-     ease-linear duration-200 text-gray-600 text-lg font-Rubik font-medium;
+     ease-linear duration-200 text-gray-600 text-lg font-Rubik font-medium select-none;
 }
 
 .side-panel--open {
@@ -41,5 +41,5 @@
 }
 
 .side-panel__create-button {
-    @apply flex justify-center items-center w-24 ml-3 mt-3;
+    @apply flex justify-center items-center w-24 ml-2 mt-3;
 }

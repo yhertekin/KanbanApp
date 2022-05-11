@@ -11,9 +11,11 @@ import LabelPicker from "../LabelPicker";
 import { GetAllUsers } from "../../selectors";
 
 import "./TodoInput.css";
+import LabelList from "../LabelList";
 
 const TodoInput = ({ className, setShowTodoInput }) => {
     const dispatch = useDispatch();
+
     const [inputValue, setInputValue] = useState("");
     const [dropdownValue, setDropdownValue] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
@@ -21,11 +23,28 @@ const TodoInput = ({ className, setShowTodoInput }) => {
 
     const users = GetAllUsers();
 
+    const dropdownItems = users.map((user) => ({
+        key: user.id,
+        value: user.username,
+    }));
+
     const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
     const inputChangeHandler = (e) => setInputValue(e.target.value);
     const showTodoHandler = (e) => setShowTodoInput(false);
-    const labelHandler = (labelId) => {
-        setLabelIdList((prevState) => [...prevState, labelId]);
+
+    const labelHandler = (e, labelId) => {
+        const isLabelCurrent = labelIdList.find((id) => id === labelId);
+        console.log("event: ", e);
+
+        if (isLabelCurrent) {
+            setLabelIdList((prevState) => [
+                ...prevState.filter((id) => id !== labelId),
+            ]);
+            e.target.classList.remove("opacity-50");
+        } else {
+            setLabelIdList((prevState) => [...prevState, labelId]);
+            e.target.classList.add("opacity-50");
+        }
     };
 
     const addButtonHandler = () => {
@@ -51,11 +70,6 @@ const TodoInput = ({ className, setShowTodoInput }) => {
         setShowTodoInput(false);
     };
 
-    const dropdownItems = users.map((user) => ({
-        key: user.id,
-        value: user.username,
-    }));
-
     return (
         <div className={`todo__input ${className ?? ""}`}>
             {warningMessage && (
@@ -80,7 +94,7 @@ const TodoInput = ({ className, setShowTodoInput }) => {
                     placeholder="Select a user"
                     items={dropdownItems}
                 />
-
+                <LabelList labelIdList={labelIdList} />
                 <LabelPicker labelHandler={labelHandler} />
 
                 <div className="todo__input__footer">

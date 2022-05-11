@@ -1,5 +1,5 @@
 .todo {
-    @apply rounded-lg mt-2 w-full overflow-hidden shadow-md font-Montserrat  bg-white;
+    @apply rounded-lg mt-3 mb-2 w-full overflow-hidden shadow-sm font-Montserrat  bg-white;
 }
 /* 
 .todo:hover {
@@ -21,7 +21,7 @@
 }
 
 .todo__footer {
-    @apply w-full flex justify-between items-end text-sm;
+    @apply w-full flex justify-between items-end text-sm mt-2;
 }
 
 .todo__footer__username__container {

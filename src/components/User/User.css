@@ -3,11 +3,11 @@ li {
 }
 
 .user {
-    @apply grid items-center grid-cols-6 bg-gray-200 p-2 mt-1 rounded-md;
+    @apply grid items-center grid-cols-6 bg-gray-50 p-2 mt-1 rounded-md;
 }
 
 .user:hover {
-    @apply bg-gray-300;
+    @apply bg-gray-100;
 }
 
 .buttons {

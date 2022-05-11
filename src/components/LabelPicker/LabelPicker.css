@@ -1,9 +1,7 @@
 .label-picker {
-    @apply mt-1;
 }
 
 .label-picker__item {
-    @apply m-1;
 }
 
 .label-picker__item:hover {
