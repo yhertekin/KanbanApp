@@ -13,11 +13,13 @@ import SidePanel from "../SidePanel";
 import Input from "../Input";
 
 import "./Header.css";
+import CustomLink from "../CustomLink";
 const Header = () => {
     const [showSidePanel, setShowSidePanel] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
 
     const loggedInUser = GetLoggedInUser();
+    console.log(loggedInUser);
 
     const showSidePanelHandler = () => setShowSidePanel(true);
 
@@ -41,7 +43,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            {loggedInUser && (
+            {!isEmptyObject(loggedInUser) && (
                 <div className="flex w-500 items-center justify-between">
                     <IconButton
                         Icon={CgMenuLeft}
@@ -53,11 +55,29 @@ const Header = () => {
                         showSidePanel={showSidePanel}
                         setShowSidePanel={setShowSidePanel}
                     />
+                    {/* {showTodo && (
+                        <Button
+                            className="side-panel__create-button"
+                            onClick={showCreateTodoHandler}
+                            variant="none"
+                        >
+                            <MdCreate />
+                            <span className="ml-1">Create</span>
+                        </Button>
+                    )}
+                    {showTodoInput && (
+                        <Modal showModal={setShowTodoInput}>
+                            <TodoInput
+                                setShowTodoInput={setShowTodoInput}
+                                className="text-black"
+                            />
+                        </Modal>
+                    )} */}
                 </div>
             )}
 
             <div className="ml-auto">
-                {loggedInUser ? (
+                {!isEmptyObject(loggedInUser) ? (
                     <div className="flex items-center ">
                         <div className="mr-5 font-bold">
                             {loggedInUser.username}
@@ -71,18 +91,38 @@ const Header = () => {
                         {showMenu && <Menu setShowMenu={setShowMenu} />}
                     </div>
                 ) : (
-                    <div>
-                        <Link className="link" to="/login">
+                    <div className="flex">
+                        <CustomLink
+                            className="link"
+                            to="/login"
+                            matchedClass="link--active"
+                        >
                             Login
-                        </Link>
-                        <Link className="link" to="/register">
+                        </CustomLink>
+                        <CustomLink
+                            className="link"
+                            to="/register"
+                            matchedClass="link--active"
+                        >
                             Register
-                        </Link>
+                        </CustomLink>
                     </div>
                 )}
             </div>
         </header>
     );
 };
+
+function isEmptyObject(obj) {
+    if (
+        typeof obj === "object" &&
+        obj != null &&
+        Object.keys(obj).length !== 0
+    ) {
+        return false;
+    } else {
+        return true;
+    }
+}
 
 export default Header;

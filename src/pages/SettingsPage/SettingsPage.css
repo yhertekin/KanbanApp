@@ -7,7 +7,7 @@
 }
 
 .settings__links {
-    @apply my-3 select-none;
+    @apply my-3 select-none flex;
 }
 
 .settings__link {

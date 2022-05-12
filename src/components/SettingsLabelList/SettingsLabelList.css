@@ -16,9 +16,9 @@
     @apply border border-blue-600 rounded-md p-1;
 }
 .settings__labels__list__label__color {
-    @apply w-5 h-5 rounded-full;
+    @apply w-5 h-5 rounded-full shrink-0;
 }
 
 .settings__labels__list__label__text {
-    @apply ml-2;
+    @apply ml-2 text-ellipsis overflow-hidden whitespace-nowrap;
 }

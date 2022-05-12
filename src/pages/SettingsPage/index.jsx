@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, Routes, Route, useLocation } from "react-router-dom";
+import {
+    Link,
+    Routes,
+    Route,
+    useMatch,
+    useResolvedPath,
+} from "react-router-dom";
+import CustomLink from "../../components/CustomLink";
 
 import SettingsLabel from "../../components/SettingsLabel";
 import SettingsUserList from "../../components/SettingsUserList";
@@ -7,40 +14,24 @@ import SettingsUserList from "../../components/SettingsUserList";
 import "./SettingsPage.css";
 
 const SettingsPage = () => {
-    const onClickHandler = (e) => {};
-    const location = useLocation();
-
-    useEffect(() => {
-        Array.from(document.querySelectorAll(".settings__link")).forEach(
-            (item) => item.classList.remove("settings__link--active")
-        );
-        const path = location.pathname.split("/")[2];
-
-        if (!path) return;
-        document
-            .querySelector("." + path)
-            .classList.add("settings__link--active");
-        // e.target.classList.add("settings__link--active");
-    }, [location]);
-
     return (
         <div className="settings">
             <h1 className="settings__header">Settings</h1>
             <div className="settings__links">
-                <Link
+                <CustomLink
                     to="/settings/labels"
-                    className="settings__link labels"
-                    onClick={onClickHandler}
+                    className="settings__link"
+                    matchedClass="settings__link--active"
                 >
                     Labels
-                </Link>
-                <Link
+                </CustomLink>
+                <CustomLink
                     to="/settings/users"
-                    className="settings__link users"
-                    onClick={onClickHandler}
+                    className="settings__link"
+                    matchedClass="settings__link--active"
                 >
                     Users
-                </Link>
+                </CustomLink>
             </div>
 
             <Routes>

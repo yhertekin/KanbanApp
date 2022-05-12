@@ -5,20 +5,24 @@
 .settings__user__update:hover {
     @apply border-blue-600;
 }
-.settings__user__update__inputs {
-    @apply grid grid-cols-10 grid-rows-2 gap-2;
-}
+/* .settings__user__update__inputs {
+    @apply;
+} */
 
 .settings__user__update__input__username {
-    @apply col-span-9 outline-blue-600;
+    @apply outline-blue-600 mb-2;
 }
 
 .settings__user__update__input__email {
-    @apply col-span-9 outline-blue-600;
+    @apply outline-blue-600;
 }
 
 .settings__user__update__remove {
-    @apply row-start-1 row-span-2 col-start-10 flex justify-center items-center flex-col p-2 select-none;
+    @apply mt-2 p-2 flex justify-center items-center p-2 select-none;
+}
+
+.settings__user__update__remove > span {
+    @apply ml-2;
 }
 
 .settings__user__update__update {

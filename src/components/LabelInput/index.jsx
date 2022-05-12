@@ -19,7 +19,7 @@ const LabelInput = ({ className }) => {
     const dispatch = useDispatch();
 
     const textChangeHandler = (e) => setText(e.target.value);
-    const colorClickHandler = (e) => setColor(e.target.getAttribute("value"));
+    const colorClickHandler = (color) => setColor(color);
 
     const addLabelHandler = () => {
         if (text === "") {

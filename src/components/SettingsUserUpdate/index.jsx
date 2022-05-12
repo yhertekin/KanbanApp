@@ -68,24 +68,26 @@ const SettingsUserUpdate = ({ user, setShowUpdateUser }) => {
                         name="email"
                         className="settings__user__update__input__email"
                     />
-                    <Button
-                        onClick={removeUserHandler}
-                        variant="danger"
-                        className="settings__user__update__remove"
-                    >
-                        <FaTrash className="text-xl" />
-                        <span>Delete User</span>
-                    </Button>
                 </div>
             )}
-            <Button
-                variant="primary"
-                onClick={updateUserHandler}
-                className="settings__user__update__update"
-            >
-                <FaPaperPlane />
-                <span>Update</span>
-            </Button>
+            <div className="flex justify-between">
+                <Button
+                    variant="primary"
+                    onClick={updateUserHandler}
+                    className="settings__user__update__update"
+                >
+                    <FaPaperPlane />
+                    <span>Update</span>
+                </Button>
+                <Button
+                    onClick={removeUserHandler}
+                    variant="danger"
+                    className="settings__user__update__remove"
+                >
+                    <FaTrash className="text-xl" />
+                    <span>Delete User</span>
+                </Button>
+            </div>
         </div>
     );
 };

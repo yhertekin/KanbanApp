@@ -70,24 +70,6 @@ const SidePanel = ({ showSidePanel, setShowSidePanel }) => {
                         <span>To-do</span>
                         {showTodo ? <ArrowUp /> : <ArrowDown />}
                     </div>
-                    {showTodo && (
-                        <Button
-                            className="side-panel__create-button"
-                            onClick={showCreateTodoHandler}
-                            variant="none"
-                        >
-                            <MdCreate />
-                            <span className="ml-1">Create</span>
-                        </Button>
-                    )}
-                    {showTodoInput && (
-                        <Modal showModal={setShowTodoInput}>
-                            <TodoInput
-                                setShowTodoInput={setShowTodoInput}
-                                className="text-black"
-                            />
-                        </Modal>
-                    )}
                 </div>
                 <div className="mb-5">
                     <Link className="side-panel__link" to="/settings">
