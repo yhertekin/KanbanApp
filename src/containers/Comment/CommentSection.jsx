@@ -1,8 +1,9 @@
-import CommentInput from "../CommentInput";
-import CommentList from "../CommentList";
-
+//custom
+import CommentCreateForm from "./CommentCreateForm";
+import CommentList from "./CommentList";
 import { GetAllComments, GetLoggedInUser } from "../../selectors";
-
+//third
+//css
 import "./CommentSection.css";
 
 const CommentSection = ({ todoId }) => {
@@ -11,7 +12,7 @@ const CommentSection = ({ todoId }) => {
 
     return (
         <div className="comment-section">
-            <CommentInput todoId={todoId} userId={loggedInUser.id} />
+            <CommentCreateForm todoId={todoId} userId={loggedInUser.id} />
             <CommentList
                 comments={comments.filter(
                     (comment) => comment.todoId === todoId

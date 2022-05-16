@@ -1,8 +1,9 @@
-import LabelInput from "../../components/LabelInput";
-import SettingsLabelList from "../../components/SettingsLabelList";
-
+//custom
+import LabelCreateForm from "../Label/LabelCreateForm";
+import SettingsLabelList from "./SettingsLabelList";
 import { GetAllLabels } from "../../selectors";
-
+//third
+//css
 import "./SettingsLabel.css";
 
 const SettingsLabel = () => {
@@ -10,7 +11,7 @@ const SettingsLabel = () => {
     return (
         <div className="settings-label">
             <div className="settings-label__create">
-                <LabelInput className="settings-label__create__input" />
+                <LabelCreateForm className="settings-label__create__input" />
             </div>
             <div>
                 <SettingsLabelList labels={labels} />

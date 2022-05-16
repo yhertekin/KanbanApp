@@ -1,5 +1,7 @@
-import Comment from "../Comment";
-
+//custom
+import Comment from "./Comment";
+//third
+//css
 import "./CommentList.css";
 
 const CommentList = ({ comments }) => {

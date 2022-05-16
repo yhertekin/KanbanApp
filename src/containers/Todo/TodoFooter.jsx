@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-import { BiComment } from "react-icons/bi";
-import { FaCommentAlt } from "react-icons/fa";
-
-import "./Todo.css";
 import { useState } from "react";
-import { FindUserById, GetLoggedInUser } from "../../selectors";
-import IconButton from "../IconButton";
-import CommentSection from "../CommentSection";
+//custom
+import IconButton from "../../components/IconButton";
+import CommentSection from "../Comment/CommentSection";
+import { FindUserById } from "../../selectors";
+//third
+import { Link } from "react-router-dom";
+import { FaCommentAlt } from "react-icons/fa";
+//css
+import "./TodoFooter.css";
 
 const TodoFooter = ({ todo }) => {
     const [toggleCommentSection, setToggleCommentSection] = useState(false);

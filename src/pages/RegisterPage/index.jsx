@@ -1,4 +1,7 @@
-import UserRegister from "../../components/UserRegister";
+//Custom
+import UserRegisterForm from "../../containers/User/UserRegisterForm";
+//third
+//css
 import "./RegisterPage.css";
 
 const RegisterPage = () => {
@@ -7,7 +10,7 @@ const RegisterPage = () => {
             <div className="font-Major text-7xl mb-10 mt-7 drop-shadow-md">
                 TASKER
             </div>
-            <UserRegister />
+            <UserRegisterForm />
         </div>
     );
 };

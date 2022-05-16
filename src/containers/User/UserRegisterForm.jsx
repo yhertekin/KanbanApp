@@ -1,14 +1,15 @@
 import { useState } from "react";
+//custom
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import Dropdown from "../../components/Dropdown";
+import Alert from "../../components/Alert";
+import { addUser } from "../../redux/usersSlice";
+//third
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
-import { addUser } from "../../redux/usersSlice";
-import Button from "../Button";
-import Input from "../Input";
-import Dropdown from "../Dropdown";
-import Alert from "../Alert";
-
-import "./UserRegister.css";
+//css
+import "./UserRegisterForm.css";
 
 const UserRegisterForm = () => {
     const [warningMessage, setWarningMessage] = useState("");

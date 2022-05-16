@@ -1,7 +1,9 @@
+//custom
+import User from "../../containers/User/User";
+//thid
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import User from "../../components/User";
+//css
 
 const ProfilePage = () => {
     const { id } = useParams();

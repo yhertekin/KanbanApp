@@ -1,12 +1,13 @@
+//custom
+import Input from "../../components/Input";
+import Button from "../../components/Button";
+import Alert from "../../components/Alert";
+import { addUser } from "../../redux/usersSlice";
+//third
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { addUser } from "../../redux/usersSlice";
-import Input from "../Input";
-import Button from "../Button";
-import Alert from "../Alert";
-
-import "./UserInput.css";
+//css
+import "./UserCreateForm.css";
 
 const UserCreateForm = () => {
     const dispatch = useDispatch();

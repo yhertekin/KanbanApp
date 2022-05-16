@@ -1,14 +1,15 @@
 import { useState } from "react";
+//custom
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import Alert from "../../components/Alert";
+import { addComment } from "../../redux/commentsSlice";
+import { GetLoggedInUser } from "../../selectors";
+//third
 import { useDispatch } from "react-redux";
 import { RiSendPlaneLine } from "react-icons/ri";
-
-import { addComment } from "../../redux/commentsSlice";
-import Button from "../Button";
-import Input from "../Input";
-import Alert from "../Alert";
-import { GetLoggedInUser } from "../../selectors";
-
-import "./CommentInput.css";
+//css
+import "./CommentCreateForm.css";
 
 const CommentCreateForm = ({ todoId, userId }) => {
     const [text, setText] = useState("");

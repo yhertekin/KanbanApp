@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { FaCheck, FaTimes } from "react-icons/fa";
-
+//custom
+import IconButton from "../../components/IconButton";
+import Modal from "../../components/Modal";
+import DialogBox from "../../components/Modal/DialogBox";
 import {
     setStatusTest,
     setStatusInProgress,
     setStatusCompleted,
 } from "../../redux/todosSlice";
-import IconButton from "../../components/IconButton";
-import Modal from "../../components/Modal";
-import DialogBox from "../../components/DialogBox";
-
-import "./Todo.css";
+//third
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { FaCheck, FaTimes } from "react-icons/fa";
+//css
+import "./TodoHeader.css";
 
 const TodoHeader = ({ todo }) => {
     const [showModal, setShowModal] = useState(false);
@@ -66,7 +67,7 @@ const TodoHeader = ({ todo }) => {
     return (
         <div className={`todo-header`}>
             <div className="flex justify-between items-start mb-1">
-                <div>{todo.task}</div>
+                <div className="ml-auto">{todo.task}</div>
                 {status === "test" && <FailIcon />}
                 {status !== "completed" && <SuccessIcon />}
             </div>

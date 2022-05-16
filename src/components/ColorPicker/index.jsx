@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { removeCheckedFromColors } from "../../functions";
 import "./ColorPicker.css";
 
 const colorList = ["blue", "red", "green", "yellow", "teal", "purple"];

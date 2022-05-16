@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+//custom
+import ColorPicker from "../../components/ColorPicker";
+import Button from "../../components/Button";
+import Alert from "../../components/Alert";
+import Input from "../../components/Input";
 import { addLabel } from "../../redux/labelsSlice";
-
-import Input from "../Input";
-import Dropdown from "../Dropdown";
-import ColorPicker from "../ColorPicker";
-import Button from "../Button";
-import Alert from "../Alert";
-
-import { GetLabels } from "../../selectors";
 import { removeCheckedFromColors } from "../../functions";
+//third
+import { useDispatch } from "react-redux";
+//css
+import "./LabelCreateForm.css";
 
 const LabelCreateForm = ({ className }) => {
     const [warningMessage, setWarningMessage] = useState("");

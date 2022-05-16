@@ -1,7 +1,5 @@
 import { AiOutlineClose } from "react-icons/ai";
-
 import IconButton from "../IconButton";
-
 import "./Modal.css";
 
 const Modal = ({ children, showModal }) => {

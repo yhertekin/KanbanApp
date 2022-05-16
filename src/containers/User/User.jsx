@@ -1,18 +1,18 @@
 import { useState } from "react";
+//custom
+import TodoList from "../Todo/TodoList";
+import Alert from "../../components/Alert";
+import IconButton from "../../components/IconButton";
+import Modal from "../../components/Modal";
+import DialogBox from "../../components/Modal/DialogBox";
+import { removeUser } from "../../redux/usersSlice";
+import { GetAllTodos, GetLoggedInUser } from "../../selectors";
+//third
 import { useDispatch } from "react-redux";
 import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
-
-import { removeUser } from "../../redux/usersSlice";
-import TodoList from "../TodoList";
-import Alert from "../../components/Alert";
-import IconButton from "../../components/IconButton";
-import Modal from "../../components/Modal";
-import DialogBox from "../../components/DialogBox";
-
-import { GetAllTodos, GetLoggedInUser } from "../../selectors";
-
+//css
 import "./User.css";
 
 const User = ({ user }) => {

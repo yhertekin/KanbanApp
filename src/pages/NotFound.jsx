@@ -1,4 +1,8 @@
+//custom
+//third
 import { Link } from "react-router-dom";
+//css
+
 const NotFound = () => {
     return (
         <div>

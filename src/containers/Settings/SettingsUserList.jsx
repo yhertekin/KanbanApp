@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-
-import SettingsUser from "../SettingsUser";
-import Input from "../Input";
-import SettingsUserUpdate from "../SettingsUserUpdate";
-
+//custom
+import SettingsUser from "./SettingsUser";
+import Input from "../../components/Input";
+import SettingsUserUpdateForm from "./SettingsUserUpdateForm";
 import { GetAllUsers } from "../../selectors";
-
+//third
+//css
 import "./SettingsUserList.css";
 
 const SettingsUserList = () => {
@@ -49,7 +49,7 @@ const SettingsUserList = () => {
                 </div>
                 <div>
                     {showUpdateUser && (
-                        <SettingsUserUpdate
+                        <SettingsUserUpdateForm
                             user={currentUser}
                             setShowUpdateUser={setShowUpdateUser}
                         />

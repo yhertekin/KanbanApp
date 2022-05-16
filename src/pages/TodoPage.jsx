@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+//custom
+import TodoList from "../containers/Todo/TodoList";
 import { GetAllTodos, GetLoggedInUser } from "../selectors";
-
-import TodoList from "./../components/TodoList";
+//third
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+//css
 
 const TodoPage = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const todos = GetAllTodos();
     const loggedInUser = GetLoggedInUser();

@@ -1,5 +1,5 @@
 import { GetAllUsers } from "../../selectors";
-import User from "../User";
+import User from "./User";
 
 const UserList = () => {
     const users = GetAllUsers();

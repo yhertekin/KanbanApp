@@ -1,7 +1,8 @@
+//custom
+import IconButton from "../../components/IconButton";
+//third
 import { GrUserSettings } from "react-icons/gr";
-
-import IconButton from "../IconButton";
-
+//css
 import "./SettingsUser.css";
 
 const SettingsUser = ({ user, setShowUpdateUser, setCurrentUser }) => {

@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux";
+//custom
+import { FindUserById } from "../../selectors";
+//third
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
-import { FindUserById } from "../../selectors";
-
+//css
 import "./Comment.css";
 
 const Comment = ({ comment }) => {

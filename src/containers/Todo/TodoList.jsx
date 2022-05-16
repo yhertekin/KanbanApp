@@ -1,4 +1,7 @@
-import TodoStatusSection from "../TodoStatusSection";
+//custom
+import TodoStatusSection from "./TodoStatusSection";
+//third
+//css
 import "./TodoList.css";
 
 const TodoList = ({ todos }) => {

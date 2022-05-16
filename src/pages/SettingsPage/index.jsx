@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
-import {
-    Link,
-    Routes,
-    Route,
-    useMatch,
-    useResolvedPath,
-} from "react-router-dom";
+//custom
 import CustomLink from "../../components/CustomLink";
-
-import SettingsLabel from "../../components/SettingsLabel";
-import SettingsUserList from "../../components/SettingsUserList";
-
+import SettingsLabel from "../../containers/Settings/SettingsLabel";
+import SettingsUserList from "../../containers/Settings/SettingsUserList";
+//third
+import { Routes, Route } from "react-router-dom";
+//css
 import "./SettingsPage.css";
 
 const SettingsPage = () => {

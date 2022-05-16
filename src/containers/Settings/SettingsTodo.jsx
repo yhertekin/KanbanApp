@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { FiSettings } from "react-icons/fi";
-
-import IconButton from "../IconButton";
-import Modal from "../Modal";
-import TodoEdit from "../TodoEdit";
-
+import { useState } from "react";
+//custom
+import Modal from "../../components/Modal";
+import TodoEditForm from "../Todo/TodoEditForm";
+import IconButton from "../../components/IconButton";
 import { FindUserById } from "../../selectors";
 import { formatDate } from "../../functions";
-
+//third
+import { FiSettings } from "react-icons/fi";
+//css
 import "./SettingsTodo.css";
 
 const SettingsTodo = ({ todo }) => {
@@ -37,7 +37,7 @@ const SettingsTodo = ({ todo }) => {
             </div>
             {showModal ? (
                 <Modal showModal={setShowModal}>
-                    <TodoEdit todo={todo} setShowEditTodo={setShowModal} />
+                    <TodoEditForm todo={todo} setShowEditTodo={setShowModal} />
                 </Modal>
             ) : null}
         </>

@@ -1,7 +1,8 @@
+//custom
+import SettingsTodo from "./SettingsTodo";
 import { GetAllTodos } from "../../selectors";
-
-import SettingsTodo from "../SettingsTodo";
-
+//third
+//css
 import "./SettingsTodoList.css";
 
 const SettingsTodoList = () => {

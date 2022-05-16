@@ -1,14 +1,14 @@
+//custom
+import IconButton from "../../components/IconButton";
+import { logoutUser } from "../../redux/usersSlice";
+import { GetLoggedInUser } from "../../selectors";
+//third
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { CgMenuRight } from "react-icons/cg";
 import { FiSettings } from "react-icons/fi";
 import { HiOutlineHome, HiOutlineUsers, HiOutlineLogout } from "react-icons/hi";
-
-import IconButton from "../../components/IconButton";
-
-import { logoutUser } from "../../redux/usersSlice";
-import { GetLoggedInUser } from "../../selectors";
-
+//css
 import "./SidePanel.css";
 
 const SidePanel = ({ showSidePanel, setShowSidePanel }) => {

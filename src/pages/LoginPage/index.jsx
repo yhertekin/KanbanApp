@@ -1,7 +1,8 @@
+//custom
+import UserLoginForm from "../../containers/User/UserLoginForm";
+//third
 import { Link } from "react-router-dom";
-
-import UserLogin from "../../components/UserLogin";
-
+//css
 import "./LoginPage.css";
 
 const LoginPage = () => {
@@ -10,7 +11,7 @@ const LoginPage = () => {
             <div className="font-Major text-7xl mb-10 text-shadow-lg drop-shadow-md">
                 TASKER
             </div>
-            <UserLogin />
+            <UserLoginForm />
             <div className="login__page__footer">
                 <p>Don't have an account yet?</p>
                 <Link to="/register" className="login__page__footer__link">

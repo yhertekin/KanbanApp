@@ -1,23 +1,22 @@
-import { useEffect, useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+//custom
+import Input from "../../components/Input";
+import Dropdown from "../../components/Dropdown";
+import Button from "../../components/Button";
+import Alert from "../../components/Alert";
+import IconButton from "../../components/IconButton";
+import Modal from "../../components/Modal";
+import DialogBox from "../../components/Modal/DialogBox";
+import LabelPicker from "../Label/LabelPicker";
+import { formatDate } from "../../functions";
+import { editTodo, removeTodo } from "../../redux/todosSlice";
+import { FindUserById, GetAllUsers, GetLoggedInUser } from "../../selectors";
+//third
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaUser, FaCalendarAlt, FaEdit, FaTrashAlt } from "react-icons/fa";
-
-import { editTodo, removeTodo } from "../../redux/todosSlice";
-import Input from "../Input";
-import Dropdown from "../Dropdown";
-import Button from "../Button";
-import Alert from "../Alert";
-import ColorPicker from "../ColorPicker";
-import IconButton from "../IconButton";
-import Modal from "../Modal";
-import DialogBox from "../DialogBox";
-import { FindUserById, GetAllUsers, GetLoggedInUser } from "../../selectors";
-import { formatDate } from "../../functions";
-import LabelPicker from "../LabelPicker";
-import Label from "../LabelPicker/Label";
-
-import "./TodoEdit.css";
+//css
+import "./TodoEditForm.css";
 
 const TodoEditForm = ({ todo }) => {
     const dispatch = useDispatch();

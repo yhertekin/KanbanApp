@@ -1,7 +1,9 @@
+//custom
 import TodoFooter from "./TodoFooter";
 import TodoHeader from "./TodoHeader";
-import LabelList from "../LabelList";
-
+import LabelList from "../Label/LabelList";
+//third
+//css
 import "./Todo.css";
 
 const Todo = ({ todo }) => {

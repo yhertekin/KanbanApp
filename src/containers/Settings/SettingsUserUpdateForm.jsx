@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+//custom
+import Button from "../../components/Button";
+import Input from "../../components/Input";
+import IconButton from "../../components/IconButton";
+import { updateUser, removeUser } from "../../redux/usersSlice";
+//third
 import { useDispatch } from "react-redux";
 import { FaTimes, FaTrash, FaPaperPlane } from "react-icons/fa";
-
-import { updateUser, removeUser } from "../../redux/usersSlice";
-import IconButton from "../IconButton";
-import Input from "../Input";
-
-import "./SettingsUserUpdate.css";
-import Button from "../Button";
+//css
+import "./SettingsUserUpdateForm.css";
 
 const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
     const dispatch = useDispatch();

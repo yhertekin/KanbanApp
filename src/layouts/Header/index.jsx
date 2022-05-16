@@ -1,20 +1,18 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+//custom
+import IconButton from "../../components/IconButton";
+import Menu from "./Menu";
+import SidePanel from "../SidePanel";
+import TodoCreateForm from "../../containers/Todo/TodoCreateForm";
+import Modal from "../../components/Modal";
+import Button from "../../components/Button";
+import CustomLink from "../../components/CustomLink";
+import { GetLoggedInUser } from "../../selectors";
+//third
 import { FaUserAlt } from "react-icons/fa";
 import { CgMenuLeft } from "react-icons/cg";
 import { MdCreate } from "react-icons/md";
-
-import { GetLoggedInUser } from "../../selectors";
-
-import IconButton from "../IconButton";
-import Menu from "./Menu";
-import SidePanel from "../SidePanel";
-import Input from "../Input";
-import TodoInput from "../TodoInput";
-import Modal from "../Modal";
-import Button from "../Button";
-import CustomLink from "../CustomLink";
+//css
 
 import "./Header.css";
 
@@ -106,7 +104,7 @@ const Header = () => {
             </div>
             {showTodoInput && (
                 <Modal showModal={setShowTodoInput}>
-                    <TodoInput
+                    <TodoCreateForm
                         setShowTodoInput={setShowTodoInput}
                         className="text-black"
                     />

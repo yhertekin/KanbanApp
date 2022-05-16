@@ -1,4 +1,7 @@
-import Alert from "../Alert";
+//custom
+import Alert from "../../components/Alert";
+//third
+//css
 import "./SettingsLabelList.css";
 
 const SettingsLabelList = ({ className, labels }) => {

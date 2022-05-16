@@ -1,4 +1,7 @@
-import UserList from "../components/UserList";
+//custom
+import UserList from "../containers/User/UserList";
+//third
+//css
 
 const UsersPage = () => {
     return (

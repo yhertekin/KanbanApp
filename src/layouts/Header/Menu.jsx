@@ -1,11 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
-import { FaUserAlt } from "react-icons/fa";
-
+//custom
 import IconButton from "../../components/IconButton";
 import { logoutUser } from "../../redux/usersSlice";
 import { GetLoggedInUser } from "../../selectors";
+//third
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
+//css
 
 const Menu = ({ setShowMenu }) => {
     const loggedInUser = GetLoggedInUser();

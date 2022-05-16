@@ -1,6 +1,8 @@
+//custom
 import { GetAllLabels } from "../../selectors";
-import Label from ".";
-
+import Label from "./Label";
+//third
+//css
 import "./LabelList.css";
 
 const LabelList = ({ className, labelIdList }) => {

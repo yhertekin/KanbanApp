@@ -1,9 +1,10 @@
+//custom
+import Todo from "./Todo";
+import IconButton from "../../components/IconButton";
+//third
 import { useState } from "react";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
-
-import Todo from ".";
-import IconButton from "../IconButton";
-
+//css
 import "./TodoStatusSection.css";
 
 const TodoStatusSection = ({ status, todoList }) => {
