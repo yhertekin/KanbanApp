@@ -1,0 +1,35 @@
+.todo {
+    @apply rounded-lg mt-3 mb-2 w-full overflow-hidden shadow-sm font-Montserrat  bg-white;
+}
+
+.todo__content {
+    @apply p-3 h-auto break-words overflow-auto font-Poppins;
+}
+
+.edit__icon {
+    @apply text-lg mr-auto;
+}
+
+.todo--blue {
+    @apply bg-blue-400;
+}
+
+.todo--yellow {
+    @apply bg-yellow-400;
+}
+
+.todo--red {
+    @apply bg-red-400;
+}
+
+.todo--green {
+    @apply bg-green-400;
+}
+
+.todo--teal {
+    @apply bg-teal-400;
+}
+
+.todo--purple {
+    @apply bg-purple-400;
+}

@@ -1,0 +1,11 @@
+.settings-user-list {
+    @apply mt-7;
+}
+
+.settings-user-list__search {
+    @apply mb-2 w-6/12 outline-blue-600 shadow-sm;
+}
+
+.settings-user-list__container {
+    @apply grid grid-cols-2;
+}

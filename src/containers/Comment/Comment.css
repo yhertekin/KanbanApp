@@ -1,0 +1,16 @@
+.comment {
+    @apply p-2 mt-2 shadow-md rounded-sm;
+}
+.comment:hover {
+    @apply hover:bg-stone-200;
+}
+
+.comment__profile {
+    @apply flex justify-start items-center opacity-75;
+}
+.comment__profile__icon {
+    @apply mr-2 opacity-75;
+}
+.comment__text {
+    @apply overflow-auto mr-2;
+}

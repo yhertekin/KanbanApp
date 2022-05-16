@@ -1,0 +1,40 @@
+.settings-user-update {
+    @apply mt-2 ml-5 border p-2 rounded-md shadow-sm;
+}
+
+.settings-user-update:hover {
+    @apply border-blue-600;
+}
+
+.settings-user-update__header {
+    @apply flex;
+}
+.settings-user-update__header__text {
+    @apply text-2xl mb-3;
+}
+.settings-user-update__header__icon {
+    @apply text-xl ml-auto mt-2 mb-2;
+}
+
+.settings-user-update__input__username {
+    @apply outline-blue-600 mb-2;
+}
+
+.settings-user-update__input__email {
+    @apply outline-blue-600;
+}
+
+.settings-user-update__remove {
+    @apply mt-2 p-2 flex justify-center items-center p-2 select-none;
+}
+
+.settings-user-update__remove > span {
+    @apply ml-2;
+}
+
+.settings-user-update__update {
+    @apply mt-2 p-2 flex justify-center items-center select-none;
+}
+.settings-user-update__update > span {
+    @apply ml-2;
+}

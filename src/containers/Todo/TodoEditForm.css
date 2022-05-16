@@ -1,0 +1,11 @@
+.todo-edit-form {
+    @apply flex pl-2;
+}
+
+.todo-edit-form__content {
+    @apply mr-4;
+}
+
+.todo-edit-form__list__item {
+    @apply bg-black text-white py-1 px-2 my-1 rounded-sm;
+}

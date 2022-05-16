@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import data from "../data/todoData.json";
 
 const updateStorage = (newState) => {
     localStorage.setItem("todoList", JSON.stringify(newState));

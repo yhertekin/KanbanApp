@@ -1,0 +1,15 @@
+.comment-create-form__alert {
+    @apply mb-1;
+}
+
+.comment-create-form__footer {
+    @apply w-full flex justify-between items-center mt-1 font-bold;
+}
+
+.comment-create-form__footer__button {
+    @apply w-full flex justify-center items-center;
+}
+
+.comment-create-form__footer__button__icon {
+    @apply text-lg mr-2;
+}

@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import users from "../data/userData.json";
 
 const updateStorage = (item, newState) => {
     localStorage.setItem(item, JSON.stringify(newState));

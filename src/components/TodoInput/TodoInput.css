@@ -1,7 +1,0 @@
-.todo__input {
-    @apply rounded-md bg-white h-auto w-96 flex flex-col justify-between;
-}
-
-.todo__input__footer {
-    @apply flex justify-between items-center mt-2;
-}

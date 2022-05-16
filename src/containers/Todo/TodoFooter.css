@@ -1,0 +1,17 @@
+.todo-footer {
+    @apply w-full flex justify-between items-end text-sm mt-2;
+}
+
+.todo-footer__username__container {
+    @apply w-7 h-7 bg-blue-400 flex justify-center items-center rounded-full;
+}
+.todo-footer__username {
+    @apply text-xs text-white;
+}
+
+.todo-footer__label-list {
+    @apply mt-2 flex items-center justify-start;
+}
+.todo-footer__date {
+    @apply flex items-center justify-self-start text-gray-400;
+}

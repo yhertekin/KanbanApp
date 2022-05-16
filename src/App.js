@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
+import NotFound from "./pages/NotFound";
 
 import "./App.css";
 
@@ -36,6 +37,7 @@ function App() {
                                 path="/settings/*"
                                 element={<SettingsPage />}
                             />
+                            <Route path="*" element={<NotFound />} />
                         </Routes>
                     </div>
                 </Router>

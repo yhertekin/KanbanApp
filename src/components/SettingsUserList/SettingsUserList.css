@@ -1,7 +1,0 @@
-.settings__user__list {
-    @apply mt-7;
-}
-
-.settings__user__list__search {
-    @apply mb-2 w-6/12 outline-blue-600 shadow-sm;
-}

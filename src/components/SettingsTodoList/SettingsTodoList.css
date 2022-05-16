@@ -1,7 +1,0 @@
-.settings__todo__list {
-    @apply border p-3 rounded-md mt-3 font-Montserrat;
-}
-
-.settings__todo__list__header {
-    @apply grid grid-cols-4 text-center border-b border-slate-200 pt-2 pb-4 font-bold text-black/50;
-}

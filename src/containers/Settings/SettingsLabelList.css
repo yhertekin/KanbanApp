@@ -1,0 +1,27 @@
+.settings-label__list__container {
+    @apply mt-5;
+}
+
+.settings-label-list__header {
+    @apply font-bold;
+}
+.settings-label-list__alarm {
+    @apply w-full mt-1;
+}
+.settings-label-list__list {
+    @apply mt-2 grid grid-cols-4 gap-2;
+}
+
+.settings-label-list__list__item {
+    @apply flex justify-start items-center border p-1 rounded-md;
+}
+.settings-label-list__list__item:hover {
+    @apply border border-blue-600 rounded-md p-1;
+}
+.settings-label-list__list__item--color {
+    @apply w-5 h-5 rounded-full shrink-0;
+}
+
+.settings-label-list__list__item--text {
+    @apply ml-2 text-ellipsis overflow-hidden whitespace-nowrap;
+}

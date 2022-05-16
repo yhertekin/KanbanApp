@@ -1,9 +1,0 @@
-.label-picker {
-}
-
-.label-picker__item {
-}
-
-.label-picker__item:hover {
-    @apply cursor-pointer;
-}

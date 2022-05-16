@@ -1,0 +1,7 @@
+.todo-create-form {
+    @apply rounded-md bg-white h-auto w-96 flex flex-col justify-between;
+}
+
+.todo-create-form__footer {
+    @apply flex justify-between items-center mt-2;
+}

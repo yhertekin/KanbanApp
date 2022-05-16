@@ -1,0 +1,11 @@
+.todo-status-section {
+    @apply flex flex-col shadow-md my-2 rounded-lg;
+}
+
+.todo-status-section__header {
+    @apply h-11 flex justify-between items-center py-1 px-2 bg-gray-50 text-black font-bold rounded-t-sm;
+}
+
+.todo-status-section__content {
+    @apply px-2 pb-2 bg-gray-50;
+}

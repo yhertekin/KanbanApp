@@ -1,0 +1,105 @@
+// ferhat abiye sor
+// sadece tek bir dosyamı olmalı stiller styles içine taşınmalı mı / Alert.jsx
+Components 
+|--Alert
+|  |--index.jsx
+|  |--Alert.css
+|--Button
+|  |--index.jsx
+|  |--Button.css
+|--ColorPicker
+|  |--index.jsx
+|  |--ColorPicker.css
+|--CustomLink
+|  |--index.jsx
+|  |--CustomLink.css
+|--Dropdown
+|  |--index.jsx
+|  |--Dropdown.css
+|--IconButton
+|  |--index.jsx
+|  |--IconButton.css
+|--Input
+|  |--index.jsx
+|  |--Input.css
+|--Modal // ferhat abiye sor
+|  |--index.jsx
+|  |--Alert.css
+    |--DialogBox  // ferhat abiye sor
+    |  |--index.jsx
+
+
+
+Layouts
+|--Header
+|  |--index.jsx
+|  |--Header.css
+|--SidePanel
+|  |--index.jsx
+|  |--SidePanel.css
+
+
+
+Containers
+|--Comment
+|  |--Comment \ Comment.jsx
+|  |--CommentInput \ CommentCreateForm.jsx
+|  |--CommentList \ CommentList.jsx
+|  |--CommentSection \ CommentSection.jsx
+|--Label
+|  |--Label \ Label.jsx
+|  |--LabelInput \ LabelCreateForm.jsx
+|  |--LabelList \ LabelList.jsx
+|  |--LabelPicker \ LabelPicker.jsx
+|--Settings
+|  |--SettingsLabel \ SettingsLabel.jsx
+|  |--SettingsLabelList \ SettingsLabelList.jsx
+|  |--SettingsTodo \ SettingsTodo.jsx
+|  |--SettingsTodoList \ SettingsTodoList.jsx
+|  |--SettingsUser \ SettingsUser.jsx
+|  |--SettingsUserList \ SettingsUserList.jsx
+|  |--SettingsUserUpdate \ SettingsUpdateForm.jsx
+|--Todo
+|  |--Todo \ Todo.jsx
+|  |--TodoEdit \ TodoEditForm.jsx
+|  |--TodoInput \ TodoCreateForm.jsx
+|  |--TodoList \ TodoList.jsx
+|  |--TodoStatusSection \ TodoStatusSection.jsx
+|--User
+|  |--User \ User.jsx
+|  |--UserInput \ UserCreateForm.jsx
+|  |--UserList \ UserList.jsx
+|  |--UserLogin \ UserLoginForm.jsx
+|  |--UserRegister \ UserRegisterForm.jsx
+
+Styles
+|--Comment
+|  |--Comment.css  
+|  |--CommentCreateForm.css
+|  |--CommentList.css
+|  |--CommentSection.css
+|--Label
+|  |--Label.css
+|  |--LabelCreateForm.css
+|  |--LabelList.css
+|  |--LabelPicker.css
+|--Settings
+|  |--SettingsLabel.css
+|  |--SettingsLabelList.css
+|  |--SettingsTodo.css
+|  |--SettingsTodoList.css
+|  |--SettingsUser.css
+|  |--SettingsUserList.css
+|  |--SettingsUserUpdateForm.css
+|--Todo
+|  |--Todo.css
+|  |--TodoForm.css
+|  |--TodoCreateForm.css
+|  |--TodoList.css
+|  |--TodoStatusSection.css
+|--User
+|  |--User.css
+|  |--UserCreateForm.css
+|  |--UserList.css
+|  |--UserLoginForm.css
+|  |--UserRegisterForm.css

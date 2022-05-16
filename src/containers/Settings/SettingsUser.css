@@ -1,0 +1,19 @@
+.settings-user {
+    @apply grid grid-cols-3 mt-2 border p-2 rounded-md shadow-sm;
+}
+
+.settings-user:hover {
+    @apply border-blue-600;
+}
+
+.settings-user__username {
+    @apply mr-auto;
+}
+
+.settings-user__email {
+    @apply justify-self-start;
+}
+
+.settings-user__icon {
+    @apply ml-auto;
+}
