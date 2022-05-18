@@ -2,6 +2,7 @@
 import CustomLink from "../../components/CustomLink";
 import SettingsLabel from "../../containers/Settings/SettingsLabel";
 import SettingsUserList from "../../containers/Settings/SettingsUserList";
+import SettingsProjects from "../../containers/Settings/SettingsProjects";
 //third
 import { Routes, Route } from "react-router-dom";
 //css
@@ -26,11 +27,19 @@ const SettingsPage = () => {
                 >
                     Users
                 </CustomLink>
+                <CustomLink
+                    to="/settings/projects"
+                    className="settings__link"
+                    matchedClass="settings__link--active"
+                >
+                    Projects
+                </CustomLink>
             </div>
 
             <Routes>
                 <Route path="/labels" element={<SettingsLabel />} />
                 <Route path="/users" element={<SettingsUserList />} />
+                <Route path="/projects" element={<SettingsProjects />} />
             </Routes>
         </div>
     );

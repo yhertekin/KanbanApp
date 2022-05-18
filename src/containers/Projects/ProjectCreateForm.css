@@ -1,0 +1,11 @@
+.project-create-form {
+    @apply w-6/12 mr-7;
+}
+
+.project-create-form__header {
+    @apply font-bold my-2;
+}
+
+.project-create-form__input {
+    @apply my-2;
+}

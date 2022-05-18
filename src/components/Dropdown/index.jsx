@@ -3,7 +3,7 @@ import "./Dropdown.css";
 const Dropdown = ({ className, items, placeholder, ...props }) => {
     return (
         <select className={`dropdown ${className ?? ""}`} {...props}>
-            <option value="" className="dropdown__option">
+            <option value="" className="dropdown__option" disabled>
                 {placeholder}
             </option>
             {items.map((item) => (

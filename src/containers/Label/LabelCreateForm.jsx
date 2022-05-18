@@ -10,6 +10,7 @@ import { removeCheckedFromColors } from "../../functions";
 import { useDispatch } from "react-redux";
 //css
 import "./LabelCreateForm.css";
+import { GetCurrentProject } from "../../selectors";
 
 const LabelCreateForm = ({ className }) => {
     const [warningMessage, setWarningMessage] = useState("");
@@ -17,6 +18,7 @@ const LabelCreateForm = ({ className }) => {
     const [color, setColor] = useState("");
 
     const dispatch = useDispatch();
+    const currentProject = GetCurrentProject();
 
     const textChangeHandler = (e) => setText(e.target.value);
     const colorClickHandler = (color) => setColor(color);
@@ -32,11 +34,13 @@ const LabelCreateForm = ({ className }) => {
         }
         setWarningMessage("");
 
-        dispatch(addLabel({ color: color, text: text }));
+        dispatch(
+            addLabel({ color: color, text: text, projectId: currentProject.id })
+        );
         setText("");
         setColor("");
 
-        removeCheckedFromColors();
+        // removeCheckedFromColors();
     };
 
     return (
@@ -48,7 +52,7 @@ const LabelCreateForm = ({ className }) => {
                     className="label-create-form__alert"
                 />
             )}
-            <h2 className="label-create-form__label-name">Label name</h2>
+            <h2 className="label-create-form__label-name">Create Label</h2>
             <Input
                 onChange={textChangeHandler}
                 placeholder="Label Text"
@@ -64,7 +68,7 @@ const LabelCreateForm = ({ className }) => {
                 onClick={addLabelHandler}
                 variant="primary"
             >
-                Create
+                Create Label
             </Button>
         </div>
     );

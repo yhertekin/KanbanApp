@@ -66,11 +66,9 @@ const TodoHeader = ({ todo }) => {
 
     return (
         <div className={`todo-header`}>
-            <div className="flex justify-between items-start mb-1">
-                <div className="ml-auto">{todo.task}</div>
-                {status === "test" && <FailIcon />}
-                {status !== "completed" && <SuccessIcon />}
-            </div>
+            <div className="mr-auto">{todo.task}</div>
+            {status === "test" && <FailIcon />}
+            {status !== "completed" && <SuccessIcon />}
             {showModal && (
                 <Modal showModal={setShowModal}>
                     {dialogBoxType === "task__fail" ? (

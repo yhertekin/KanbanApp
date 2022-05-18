@@ -1,3 +1,4 @@
+import { useState } from "react";
 //custom
 import LabelList from "../Label/LabelList";
 import Dropdown from "../../components/Dropdown";
@@ -5,10 +6,9 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Alert from "../../components/Alert";
 import LabelPicker from "../Label/LabelPicker";
-import { GetAllUsers } from "../../selectors";
+import { GetAllUsers, GetCurrentProject } from "../../selectors";
 import { addTodo } from "../../redux/todosSlice";
 //third
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 //css
 import "./TodoCreateForm.css";
@@ -22,6 +22,7 @@ const TodoCreateForm = ({ className, setShowTodoInput }) => {
     const [labelIdList, setLabelIdList] = useState([]);
 
     const users = GetAllUsers();
+    const currentProject = GetCurrentProject();
 
     const dropdownItems = users.map((user) => ({
         key: user.id,
@@ -62,6 +63,7 @@ const TodoCreateForm = ({ className, setShowTodoInput }) => {
                 task: inputValue,
                 userId: dropdownValue,
                 labelIdList: labelIdList,
+                projectId: currentProject.id,
             })
         );
         setInputValue("");

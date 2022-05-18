@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //css
 import "./UserRegisterForm.css";
+import { GetCurrentProject } from "../../selectors";
+import { current } from "@reduxjs/toolkit";
 
 const UserRegisterForm = () => {
     const [warningMessage, setWarningMessage] = useState("");
@@ -22,6 +24,8 @@ const UserRegisterForm = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const currentProject = GetCurrentProject();
 
     const userTypes = [
         { key: "user", value: "user" },

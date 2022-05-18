@@ -1,12 +1,12 @@
 //custom
-import { GetAllLabels } from "../../selectors";
+import { GetAllLabels, GetCurrentProjectLabels } from "../../selectors";
 import Label from "./Label";
 //third
 //css
 import "./LabelPicker.css";
 
 const LabelPicker = ({ labelHandler }) => {
-    const labels = GetAllLabels();
+    const labels = GetCurrentProjectLabels();
 
     return (
         <div className="label-picker">

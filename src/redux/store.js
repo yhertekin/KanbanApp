@@ -3,6 +3,7 @@ import todosSlice from "./todosSlice";
 import usersSlice from "./usersSlice";
 import commentsSlice from "./commentsSlice";
 import labelsSlice from "./labelsSlice";
+import projectsSlice from "./projectsSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
         users: usersSlice,
         comments: commentsSlice,
         labels: labelsSlice,
+        projects: projectsSlice,
     },
 });

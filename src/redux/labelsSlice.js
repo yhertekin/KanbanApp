@@ -13,21 +13,15 @@ export const labelsSlice = createSlice({
         addLabel: (state, action) => {
             const label = {
                 id: nanoid(),
-                // todoId: action.payload.todoId,
-                // isIn: false,
                 text: action.payload.text,
                 color: action.payload.color,
+                projectId: action.payload.projectId,
             };
             state.items = [label, ...state.items];
             updateStorage(state.items);
         },
-        toggleIsIn: (state, action) => {
-            const id = action.payload;
-            const label = state.items.find((label) => label.id === id);
-            label.isIn = !label.isIn;
-        },
     },
 });
 
-export const { addLabel, toggleIsIn } = labelsSlice.actions;
+export const { addLabel } = labelsSlice.actions;
 export default labelsSlice.reducer;

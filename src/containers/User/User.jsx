@@ -6,7 +6,11 @@ import IconButton from "../../components/IconButton";
 import Modal from "../../components/Modal";
 import DialogBox from "../../components/Modal/DialogBox";
 import { removeUser } from "../../redux/usersSlice";
-import { GetAllTodos, GetLoggedInUser } from "../../selectors";
+import {
+    GetAllTodos,
+    GetCurrentProjectTodos,
+    GetLoggedInUser,
+} from "../../selectors";
 //third
 import { useDispatch } from "react-redux";
 import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
@@ -20,7 +24,7 @@ const User = ({ user }) => {
     const [showTodos, setShowTodos] = useState(false);
     const [showUserRemoveAlert, setShowUserRemoveAlert] = useState(false);
 
-    const todoList = GetAllTodos();
+    const todoList = GetCurrentProjectTodos();
     const loggedInUser = GetLoggedInUser();
 
     const todos = todoList.filter((todo) => todo.userId === user.id);

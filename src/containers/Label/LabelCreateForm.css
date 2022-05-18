@@ -2,7 +2,7 @@
     @apply mb-1;
 }
 .label-create-form__label-name {
-    @apply opacity-75 mb-2;
+    @apply opacity-75 mb-2 font-bold;
 }
 .label-create-form__label-input {
     @apply outline-blue-600;
@@ -12,5 +12,5 @@
 }
 
 .label-create-form__button {
-    @apply mt-5 w-full;
+    @apply mt-5 px-2;
 }

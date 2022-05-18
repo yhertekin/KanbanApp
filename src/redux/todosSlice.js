@@ -24,7 +24,7 @@ export const todosSlice = createSlice({
                 state.items = [action.payload, ...state.items];
                 updateStorage(state.items);
             },
-            prepare: ({ task, userId, labelIdList }) => {
+            prepare: ({ task, userId, labelIdList, projectId }) => {
                 const todo = {
                     id: nanoid(),
                     status: STATUS.REVIEW,
@@ -33,6 +33,7 @@ export const todosSlice = createSlice({
                     createdAt: new Date(),
                     color: "yellow",
                     labelIdList: labelIdList,
+                    projectId: projectId,
                     // color: "yellow"
                 };
                 return { payload: todo };

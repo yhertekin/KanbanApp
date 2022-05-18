@@ -1,13 +1,13 @@
 //custom
 import LabelCreateForm from "../Label/LabelCreateForm";
 import SettingsLabelList from "./SettingsLabelList";
-import { GetAllLabels } from "../../selectors";
+import { GetAllLabels, GetCurrentProjectLabels } from "../../selectors";
 //third
 //css
 import "./SettingsLabel.css";
 
 const SettingsLabel = () => {
-    const labels = GetAllLabels();
+    const labels = GetCurrentProjectLabels();
     return (
         <div className="settings-label">
             <div className="settings-label__create">
