@@ -1,5 +1,5 @@
 .btn {
-    @apply p-1 rounded-md border;
+    @apply rounded-md border;
 }
 
 .btn--primary {

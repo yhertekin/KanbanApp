@@ -32,6 +32,7 @@ const ProjectPicker = ({ className }) => {
                 items={dropdownItems}
                 placeholder="Select a project"
                 onChange={dropdownOnChange}
+                className="shadow-md outline-blue-600"
             />
         </div>
     );

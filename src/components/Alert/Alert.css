@@ -1,5 +1,5 @@
 .alert {
-    @apply p-1 rounded-md border text-white;
+    @apply py-1 px-2 rounded-md border text-white;
 }
 .alert--primary {
     @apply alert bg-blue-500;

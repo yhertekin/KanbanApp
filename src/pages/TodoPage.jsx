@@ -28,7 +28,7 @@ const TodoPage = () => {
         <div>
             {currentProject ? (
                 <>
-                    <h1 className="font-bold text-3xl">
+                    <h1 className="font-bold text-3xl mb-5 mt-7">
                         {currentProject.name}
                     </h1>
                     <TodoList todos={todos} />

@@ -7,10 +7,11 @@ import { GetAllProjects } from "../../selectors";
 import SettingsProject from "./SettingsProject";
 //third
 import { FiSettings } from "react-icons/fi";
+
 //css
 import "./SettingsUserList.css";
 
-const SettingsProjectList = () => {
+const SettingsProjectList = ({ className }) => {
     const [search, setSearch] = useState("");
 
     const projects = GetAllProjects();
@@ -31,13 +32,14 @@ const SettingsProjectList = () => {
     useEffect(() => setFilteredProjects(() => projects), [projects]);
 
     return (
-        <div className="">
+        <div className={className ?? ""}>
+            <h2 className="text-2xl my-2">Projects</h2>
             <div className="">
                 <Input
                     value={search}
                     onChange={searchHandler}
                     placeholder="Search"
-                    className="my-2"
+                    className="my-2 outline-blue-600"
                 />
                 <div className=" ">
                     <div>

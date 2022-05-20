@@ -16,6 +16,7 @@ const LabelCreateForm = ({ className }) => {
     const [warningMessage, setWarningMessage] = useState("");
     const [text, setText] = useState("");
     const [color, setColor] = useState("");
+    const [selectedColor, setSelecteColor] = useState("");
 
     const dispatch = useDispatch();
     const currentProject = GetCurrentProject();
@@ -39,34 +40,31 @@ const LabelCreateForm = ({ className }) => {
         );
         setText("");
         setColor("");
-
-        // removeCheckedFromColors();
+        setSelecteColor("");
     };
 
     return (
-        <div className={`label-create-form ${className ?? ""}`}>
+        <div className={`${className ?? ""}`}>
             {warningMessage && (
-                <Alert
-                    message={warningMessage}
-                    variant="danger"
-                    className="label-create-form__alert"
-                />
+                <Alert message={warningMessage} variant="danger" />
             )}
-            <h2 className="label-create-form__label-name">Create Label</h2>
+            <h2 className="text-2xl my-2">Create Label</h2>
             <Input
                 onChange={textChangeHandler}
                 placeholder="Label Text"
-                className="label-create-form__label-input"
                 value={text}
+                className="mt-2"
             />
-            <div className="label-create-form__label-text">
-                Pick a Label color
-            </div>
-            <ColorPicker pickColor={colorClickHandler} />
+            <div className="mt-4 mb-2">Pick a Label color</div>
+            <ColorPicker
+                pickColor={colorClickHandler}
+                selectedColor={selectedColor}
+                setSelecteColor={setSelecteColor}
+            />
             <Button
-                className="label-create-form__button"
                 onClick={addLabelHandler}
                 variant="primary"
+                className="py-1 px-2 my-4 w-full"
             >
                 Create Label
             </Button>

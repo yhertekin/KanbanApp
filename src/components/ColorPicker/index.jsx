@@ -3,8 +3,7 @@ import "./ColorPicker.css";
 
 const colorList = ["blue", "red", "green", "yellow", "teal", "purple"];
 
-const ColorPicker = ({ pickColor }) => {
-    const [selectedColor, setSelecteColor] = useState("");
+const ColorPicker = ({ pickColor, selectedColor, setSelecteColor }) => {
     const onClickHandler = (color) => {
         setSelecteColor(color);
         pickColor(color);

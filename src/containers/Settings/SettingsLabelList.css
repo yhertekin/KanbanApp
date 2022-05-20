@@ -3,20 +3,20 @@
 }
 
 .settings-label-list__header {
-    @apply font-bold;
+    @apply text-2xl mt-2;
 }
 .settings-label-list__alarm {
     @apply w-full mt-1;
 }
 .settings-label-list__list {
-    @apply mt-2 grid grid-cols-4 gap-2;
+    @apply flex flex-row flex-wrap mt-2;
 }
 
 .settings-label-list__list__item {
-    @apply flex justify-start items-center border p-1 rounded-md;
+    @apply flex justify-start items-center border py-1 px-2 rounded-md mr-2 my-2 w-max;
 }
 .settings-label-list__list__item:hover {
-    @apply border border-blue-600 rounded-md p-1;
+    @apply border border-blue-600 rounded-md;
 }
 .settings-label-list__list__item--color {
     @apply w-5 h-5 rounded-full shrink-0;

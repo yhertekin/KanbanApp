@@ -1,9 +1,5 @@
 .settings-user-update {
-    @apply mt-2 ml-5 border p-2 rounded-md shadow-sm;
-}
-
-.settings-user-update:hover {
-    @apply border-blue-600;
+    @apply mt-2 pt-2 border-t;
 }
 
 .settings-user-update__header {
@@ -25,7 +21,7 @@
 }
 
 .settings-user-update__remove {
-    @apply mt-2 p-2 flex justify-center items-center p-2 select-none;
+    @apply mt-2 py-1 px-2 h-9 flex justify-center items-center select-none;
 }
 
 .settings-user-update__remove > span {
@@ -33,7 +29,7 @@
 }
 
 .settings-user-update__update {
-    @apply mt-2 p-2 flex justify-center items-center select-none;
+    @apply mt-2 py-1 px-2 h-9 flex justify-center items-center select-none;
 }
 .settings-user-update__update > span {
     @apply ml-2;

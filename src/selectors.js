@@ -25,6 +25,7 @@ export const GetCommentById = (id) => {
 
 //todo selectors start
 export const GetAllTodos = () => useSelector((state) => state.todos.items);
+// ferhat abiye sor
 // export const GetTodoById = (todoId) => {
 //     const todoList = GetAllTodos();
 //     return todoList.find((todo) => todo.id === todoId);

@@ -1,5 +1,5 @@
 .modal {
-    @apply fixed flex justify-center items-center bg-black w-screen h-full top-0 left-0 bg-opacity-50;
+    @apply fixed flex justify-center items-center bg-black w-screen h-full top-0 left-0 bg-opacity-50 z-50;
 }
 
 .modal__close {

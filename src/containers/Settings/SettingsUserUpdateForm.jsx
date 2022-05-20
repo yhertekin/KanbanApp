@@ -38,22 +38,12 @@ const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
         setUpdateForm(() => ({ username: "", email: "" }));
     };
 
-    const CloseIcon = () => (
-        <IconButton
-            Icon={FaTimes}
-            onClick={() => setShowUpdateUser(false)}
-            variant="danger"
-            className="settings-user-update__header__icon"
-        />
-    );
-
     return (
         <div className="settings-user-update">
             <div className="settings-user-update__header">
                 <div className="settings-user-update__header__text">
                     Update User
                 </div>
-                <CloseIcon />
             </div>
             {user && (
                 <div className="settings-user-update__inputs">
@@ -75,20 +65,20 @@ const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
             )}
             <div className="flex justify-between">
                 <Button
-                    variant="primary"
-                    onClick={updateUserHandler}
-                    className="settings-user-update__update"
-                >
-                    <FaPaperPlane />
-                    <span>Update</span>
-                </Button>
-                <Button
                     onClick={removeUserHandler}
                     variant="danger"
                     className="settings-user-update__remove"
                 >
                     <FaTrash className="text-xl" />
                     <span>Delete User</span>
+                </Button>
+                <Button
+                    variant="primary"
+                    onClick={updateUserHandler}
+                    className="settings-user-update__update"
+                >
+                    <FaPaperPlane />
+                    <span>Update</span>
                 </Button>
             </div>
         </div>

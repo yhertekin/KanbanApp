@@ -9,11 +9,11 @@ import "./SettingsLabel.css";
 const SettingsLabel = () => {
     const labels = GetCurrentProjectLabels();
     return (
-        <div className="settings-label">
-            <div className="settings-label__create">
-                <LabelCreateForm className="settings-label__create__input" />
+        <div className="flex flex-col lg:flex-row">
+            <div className="p-2 w-full">
+                <LabelCreateForm className="" />
             </div>
-            <div>
+            <div className="p-2 w-full">
                 <SettingsLabelList labels={labels} />
             </div>
         </div>
