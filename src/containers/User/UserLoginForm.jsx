@@ -71,7 +71,11 @@ const UserLoginForm = () => {
                 onChange={onChangeHandler}
                 placeholder="Password"
             />
-            <Button onClick={onSubmitHandler} variant="primary">
+            <Button
+                onClick={onSubmitHandler}
+                variant="primary"
+                className="py-1 px-2"
+            >
                 Login
             </Button>
         </div>

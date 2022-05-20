@@ -4,11 +4,19 @@ import SettingsLabel from "../../containers/Settings/SettingsLabel";
 import SettingsUserList from "../../containers/Settings/SettingsUserList";
 import SettingsProjects from "../../containers/Settings/SettingsProjects";
 //third
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 //css
 import "./SettingsPage.css";
+import { useEffect } from "react";
 
 const SettingsPage = () => {
+    //ferhat abiye sor
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        navigate("/settings/labels");
+    }, []);
+
     return (
         <div className="settings">
             <h1 className="settings__header">Settings</h1>

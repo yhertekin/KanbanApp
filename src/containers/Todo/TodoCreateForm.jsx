@@ -104,13 +104,13 @@ const TodoCreateForm = ({ className, setShowTodoInput }) => {
                         children="Cancel"
                         variant="danger"
                         onClick={showTodoHandler}
-                        className="w-5/12"
+                        className="w-5/12 py-1 px-2"
                     />
                     <Button
                         children="Add"
                         variant="primary"
                         onClick={addButtonHandler}
-                        className="w-5/12"
+                        className="w-5/12 py-1 px-2"
                     />
                 </div>
             </div>

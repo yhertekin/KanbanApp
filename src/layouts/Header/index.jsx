@@ -59,7 +59,7 @@ const Header = () => {
                         setShowSidePanel={setShowSidePanel}
                     />
                     <Button
-                        className="header__create__button"
+                        className="header__create__button py-1 px-2"
                         onClick={setShowTodoInput}
                         variant="none"
                     >

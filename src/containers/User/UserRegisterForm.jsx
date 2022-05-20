@@ -77,14 +77,18 @@ const UserRegisterForm = () => {
                 onChange={onChangeHandler}
                 placeholder="Password"
             />
-            <Dropdown
+            {/* <Dropdown
                 name="userType"
                 value={registerForm.userType}
                 onChange={onChangeHandler}
                 placeholder="Select user type"
                 items={userTypes}
-            />
-            <Button onClick={onSubmitHandler} variant="primary">
+            /> */}
+            <Button
+                onClick={onSubmitHandler}
+                variant="primary"
+                className="py-1 px-2"
+            >
                 Register
             </Button>
         </div>

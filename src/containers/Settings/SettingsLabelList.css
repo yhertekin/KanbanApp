@@ -6,14 +6,14 @@
     @apply text-2xl mt-2;
 }
 .settings-label-list__alarm {
-    @apply w-full mt-1;
+    @apply w-full mt-2;
 }
 .settings-label-list__list {
     @apply flex flex-row flex-wrap mt-2;
 }
 
 .settings-label-list__list__item {
-    @apply flex justify-start items-center border py-1 px-2 rounded-md mr-2 my-2 w-max;
+    @apply flex justify-start items-center border py-1 px-2 rounded-md mr-2 mt-2 w-max;
 }
 .settings-label-list__list__item:hover {
     @apply border border-blue-600 rounded-md;

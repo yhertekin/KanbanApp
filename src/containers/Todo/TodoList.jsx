@@ -8,7 +8,7 @@ const TodoList = ({ todos }) => {
     const statusList = ["review", "in_progress", "test", "completed"];
 
     return (
-        <div className="todo-list">
+        <div className="todo-list p-2">
             {statusList.map((status, index) => (
                 <TodoStatusSection
                     key={index}

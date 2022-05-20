@@ -39,6 +39,11 @@ const SettingsProjectUpdateForm = ({ project, setShowUpdateProject }) => {
     };
 
     const updateProjectHandler = () => {
+        if (updateForm.name === "") {
+            setWarningMessage("Please provide the project name!");
+            return;
+        }
+        setWarningMessage("");
         dispatch(updateProject({ id: project.id, ...updateForm }));
         setUpdateForm(() => ({ name: "" }));
     };
@@ -50,6 +55,7 @@ const SettingsProjectUpdateForm = ({ project, setShowUpdateProject }) => {
             );
             return;
         }
+        setWarningMessage("");
         dispatch(removeProject(project.id));
         setUpdateForm(() => ({ name: "" }));
     };

@@ -26,19 +26,10 @@ const TodoPage = () => {
 
     return (
         <div>
-            {currentProject ? (
-                <>
-                    <h1 className="font-bold text-3xl mb-5 mt-7">
-                        {currentProject.name}
-                    </h1>
-                    <TodoList todos={todos} />
-                </>
-            ) : (
-                <div>
-                    <div className="text-3xl font-bold mb-3">Projects</div>
-                    <ProjectPicker />
-                </div>
-            )}
+            <h1 className="font-bold text-3xl mb-5 mt-7 p-2">
+                {currentProject.name}
+            </h1>
+            <TodoList todos={todos} />
         </div>
     );
 };
