@@ -3,9 +3,9 @@ import "./ColorPicker.css";
 
 const colorList = ["blue", "red", "green", "yellow", "teal", "purple"];
 
-const ColorPicker = ({ pickColor, selectedColor, setSelecteColor }) => {
+const ColorPicker = ({ pickColor, selectedColor, setSelectedColor }) => {
     const onClickHandler = (color) => {
-        setSelecteColor(color);
+        setSelectedColor(color);
         pickColor(color);
     };
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 //custom
 import IconButton from "../../components/IconButton";
 import CommentSection from "../Comment/CommentSection";
-import { FindUserById } from "../../selectors";
+import { useUser } from "../../context/UserContext";
 //third
 import { Link } from "react-router-dom";
 import { FaCommentAlt } from "react-icons/fa";
@@ -11,10 +11,12 @@ import "./TodoFooter.css";
 
 const TodoFooter = ({ todo }) => {
     const [toggleCommentSection, setToggleCommentSection] = useState(false);
-    const user = FindUserById(todo.userId);
+    const { getUserById } = useUser();
 
     const commentSectionHandler = () =>
         setToggleCommentSection((prevState) => !prevState);
+
+    const user = getUserById(todo.participant);
 
     const formattedUsername = user?.username.slice(0, 2).toUpperCase();
 

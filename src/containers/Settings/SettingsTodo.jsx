@@ -3,7 +3,6 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import TodoEditForm from "../Todo/TodoEditForm";
 import IconButton from "../../components/IconButton";
-import { FindUserById } from "../../selectors";
 import { formatDate } from "../../functions";
 //third
 import { FiSettings } from "react-icons/fi";
@@ -12,7 +11,6 @@ import "./SettingsTodo.css";
 
 const SettingsTodo = ({ todo }) => {
     const [showModal, setShowModal] = useState(false);
-    const user = FindUserById(todo.userId);
 
     const EditIcon = () => (
         <IconButton

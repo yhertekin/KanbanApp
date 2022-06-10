@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 //custom
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import IconButton from "../../components/IconButton";
-import {
-    updateProject,
-    removeProject,
-    updateCurrentProject,
-} from "../../redux/projectsSlice";
-import { GetCurrentProject } from "../../selectors";
+import Alert from "../../components/Alert";
+import { useUser } from "../../context/UserContext";
+import { updateProject, removeProject } from "../../redux/projectsSlice";
 //third
-import { useDispatch } from "react-redux";
-import {
-    FaTimes,
-    FaTrash,
-    FaPaperPlane,
-    FaToggleOn,
-    FaToggleOff,
-} from "react-icons/fa";
+import { FaTimes, FaTrash, FaPaperPlane } from "react-icons/fa";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+
 //css
 import "./SettingsUserUpdateForm.css";
-import Alert from "../../components/Alert";
 
-const SettingsProjectUpdateForm = ({ project, setShowUpdateProject }) => {
-    const dispatch = useDispatch();
+const SettingsProjectUpdateForm = ({
+    project,
+    currentProject,
+    setShowUpdateProject,
+}) => {
     const [updateForm, setUpdateForm] = useState({
-        name: project.name,
+        projectName: project.projectName,
     });
     const [warningMessage, setWarningMessage] = useState(false);
-    const currentProject = GetCurrentProject();
+
+    const { updateCurrentProject } = useUser();
+    const dispatch = useDispatch();
 
     const formChangeHandler = (e) => {
         setUpdateForm((prevState) => ({
@@ -39,13 +35,13 @@ const SettingsProjectUpdateForm = ({ project, setShowUpdateProject }) => {
     };
 
     const updateProjectHandler = () => {
-        if (updateForm.name === "") {
+        if (updateForm.projectName === "") {
             setWarningMessage("Please provide the project name!");
             return;
         }
         setWarningMessage("");
-        dispatch(updateProject({ id: project.id, ...updateForm }));
-        setUpdateForm(() => ({ name: "" }));
+        dispatch(updateProject({ projectId: project.id, updateForm }));
+        setUpdateForm(() => ({ projectName: "" }));
     };
 
     const removeProjectHandler = () => {
@@ -57,25 +53,9 @@ const SettingsProjectUpdateForm = ({ project, setShowUpdateProject }) => {
         }
         setWarningMessage("");
         dispatch(removeProject(project.id));
-        setUpdateForm(() => ({ name: "" }));
+        setUpdateForm(() => ({ projectName: "" }));
     };
 
-    const CloseIcon = () => (
-        <IconButton
-            Icon={FaTimes}
-            onClick={() => setShowUpdateProject(false)}
-            variant="danger"
-            className="text-xl"
-        />
-    );
-
-    const ToggleCurrentProject = () => (
-        <IconButton
-            Icon={currentProject.id === project.id ? BsToggleOn : BsToggleOff}
-            className="text-xl"
-            onClick={() => dispatch(updateCurrentProject(project.id))}
-        />
-    );
     return (
         <div className="mt-2 pt-2 border-t">
             <div className="text-2xl mb-1">Update Project</div>
@@ -90,15 +70,25 @@ const SettingsProjectUpdateForm = ({ project, setShowUpdateProject }) => {
                         />
                     )}
                     <Input
-                        value={updateForm.name}
+                        value={updateForm.projectName}
                         onChange={formChangeHandler}
                         placeholder="Project Name"
-                        name="name"
+                        name="projectName"
                         className="mt-2"
                     />
                     <div className="flex justify-between items-center border-b pb-1 my-2">
                         <span>Current Project</span>
-                        <ToggleCurrentProject />
+
+                        <div
+                            className="text-xl hover:cursor-pointer"
+                            onClick={() => updateCurrentProject(project.id)}
+                        >
+                            {currentProject?.id === project.id ? (
+                                <BsToggleOn />
+                            ) : (
+                                <BsToggleOff />
+                            )}
+                        </div>
                     </div>
                 </div>
             )}

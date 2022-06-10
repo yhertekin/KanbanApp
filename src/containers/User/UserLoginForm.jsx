@@ -3,26 +3,24 @@ import { useEffect, useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Alert from "../../components/Alert";
-import { loginUser } from "../../redux/usersSlice";
-import { GetAllUsers, GetLoggedInUser } from "../../selectors";
+import { useUser } from "../../context/UserContext";
 //third
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //css
 import "./UserLoginForm.css";
 
+const formInitial = { email: "", password: "" };
+
 const UserLoginForm = () => {
-    const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+    const [loginForm, setLoginForm] = useState(formInitial);
     const [warningMessage, setWarningMessage] = useState("");
 
-    const loggedInUser = GetLoggedInUser();
-    const users = GetAllUsers();
+    const { users, loggedInUser, loginUser } = useUser();
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (loggedInUser.username) {
+        if (loggedInUser?.username) {
             navigate("/");
         }
     }, [loggedInUser]);
@@ -42,14 +40,17 @@ const UserLoginForm = () => {
             setWarningMessage("Please fill in all fields");
             return;
         }
-
-        const user = users.find((user) => user.email === loginForm.email);
+        console.log(users);
+        const user = users?.find((user) => user.email === loginForm.email);
+        console.log(user);
         if (!user || loginForm.password !== user.password) {
             setWarningMessage("Email or password is wrong! Failed to login.");
-        } else {
-            dispatch(loginUser(user));
-            setWarningMessage("");
+            return;
         }
+
+        setWarningMessage("");
+        loginUser(user.id);
+        setLoginForm(formInitial);
     };
 
     return (

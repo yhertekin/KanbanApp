@@ -1,17 +1,26 @@
-//custom
+import { useEffect, lazy, Suspense } from "react";
 import CustomLink from "../../components/CustomLink";
-import SettingsLabel from "../../containers/Settings/SettingsLabel";
-import SettingsUserList from "../../containers/Settings/SettingsUserList";
-import SettingsProjects from "../../containers/Settings/SettingsProjects";
-//third
 import { Routes, Route, useNavigate } from "react-router-dom";
-//css
+
 import "./SettingsPage.css";
-import { useEffect } from "react";
+import { useUser } from "../../context/UserContext";
+import { SelectProjectById } from "../../selectors";
+
+const SettingsLabel = lazy(() =>
+    import("../../containers/Settings/SettingsLabel")
+);
+const SettingsUserList = lazy(() =>
+    import("../../containers/Settings/SettingsUserList")
+);
+const SettingsProjects = lazy(() =>
+    import("../../containers/Settings/SettingsProjects")
+);
 
 const SettingsPage = () => {
-    //ferhat abiye sor
     const navigate = useNavigate();
+
+    const { loggedInUser } = useUser();
+    const currentProject = SelectProjectById(loggedInUser.currentProject);
 
     useEffect(() => {
         navigate("/settings/labels");
@@ -44,11 +53,28 @@ const SettingsPage = () => {
                 </CustomLink>
             </div>
 
-            <Routes>
-                <Route path="/labels" element={<SettingsLabel />} />
-                <Route path="/users" element={<SettingsUserList />} />
-                <Route path="/projects" element={<SettingsProjects />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    <Route
+                        path="/labels"
+                        element={
+                            <SettingsLabel currentProject={currentProject} />
+                        }
+                    />
+                    <Route
+                        path="/users"
+                        element={
+                            <SettingsUserList currentProject={currentProject} />
+                        }
+                    />
+                    <Route
+                        path="/projects"
+                        element={
+                            <SettingsProjects currentProject={currentProject} />
+                        }
+                    />
+                </Routes>
+            </Suspense>
         </div>
     );
 };

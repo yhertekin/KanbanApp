@@ -1,16 +1,16 @@
 //custom
 import ProjectCreateForm from "../Projects/ProjectCreateForm";
-import ProjectPicker from "../Projects/ProjectPicker";
 import SettingsProjectList from "./SettingsProjectList";
-import { GetCurrentProject } from "../../selectors";
 //third
 //css
 
-const SettingsProjects = () => {
-    const currentProject = GetCurrentProject();
+const SettingsProjects = ({ currentProject, ...props }) => {
     return (
         <div className="flex flex-col-reverse lg:flex-row w-full">
-            <SettingsProjectList className="w-full p-2" />
+            <SettingsProjectList
+                className="w-full p-2"
+                currentProject={currentProject}
+            />
             <ProjectCreateForm className="w-full p-2" />
         </div>
     );

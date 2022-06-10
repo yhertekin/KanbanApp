@@ -1,5 +1,5 @@
 .todo-status-section {
-    @apply flex flex-col shadow-md my-2 rounded-lg;
+    @apply flex flex-col shadow-md my-1 rounded-lg;
 }
 
 .todo-status-section__header {

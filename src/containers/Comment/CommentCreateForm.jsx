@@ -3,20 +3,17 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Alert from "../../components/Alert";
-import { addComment } from "../../redux/commentsSlice";
-import { GetLoggedInUser } from "../../selectors";
 //third
-import { useDispatch } from "react-redux";
 import { RiSendPlaneLine } from "react-icons/ri";
 //css
 import "./CommentCreateForm.css";
+import { nanoid } from "nanoid";
+import { useTodo } from "../../context/TodoContext";
 
 const CommentCreateForm = ({ todoId, userId }) => {
     const [text, setText] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
-
-    const dispatch = useDispatch();
-    const loggedInUser = GetLoggedInUser();
+    const { appendComment } = useTodo();
 
     const buttonHandler = () => {
         if (text === "") {
@@ -24,13 +21,13 @@ const CommentCreateForm = ({ todoId, userId }) => {
             return;
         }
         setWarningMessage("");
-        dispatch(addComment({ text, userId, todoId }));
+        appendComment(todoId, { id: nanoid(), text: text, user: userId });
         setText("");
     };
 
     const inputChangeHandler = (e) => setText(e.target.value);
 
-    return loggedInUser?.id ? (
+    return userId ? (
         <div className="comment-create-form">
             {warningMessage ? (
                 <Alert

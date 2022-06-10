@@ -1,14 +1,14 @@
 //custom
-import { FindUserById } from "../../selectors";
 //third
 import { Link } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
+import { useUser } from "../../context/UserContext";
 //css
 import "./Comment.css";
 
 const Comment = ({ comment }) => {
-    const user = FindUserById(comment.userId);
-
+    const { getUserById } = useUser();
+    const user = getUserById(comment.user);
     return (
         <div className="comment">
             <Link to={`/profile/${user?.id}`}>

@@ -4,9 +4,10 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Alert from "../../components/Alert";
 import { createProject } from "../../redux/projectsSlice";
+import { useUser } from "../../context/UserContext";
 //third
-import { useDispatch } from "react-redux";
 import { MdOutlineCreate } from "react-icons/md";
+import { useDispatch } from "react-redux";
 //css
 import "./ProjectCreateForm.css";
 
@@ -15,6 +16,8 @@ const formInitial = { projectName: "" };
 const ProjectCreateForm = ({ className }) => {
     const [form, setForm] = useState(formInitial);
     const [warningMessage, setWarningMessage] = useState("");
+
+    const { loggedInUser } = useUser();
     const dispatch = useDispatch();
 
     const onChangeHandler = (e) => {
@@ -30,7 +33,12 @@ const ProjectCreateForm = ({ className }) => {
             return;
         }
         setWarningMessage("");
-        dispatch(createProject(form));
+        dispatch(
+            createProject({
+                ...form,
+                creater: loggedInUser.id,
+            })
+        );
         setForm(formInitial);
     };
 

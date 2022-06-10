@@ -7,7 +7,7 @@
 }
 
 .comment-create-form__footer__button {
-    @apply w-full flex justify-center items-center;
+    @apply w-full flex justify-center items-center py-1;
 }
 
 .comment-create-form__footer__button__icon {

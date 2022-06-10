@@ -1,23 +1,21 @@
 //custom
 import CommentCreateForm from "./CommentCreateForm";
 import CommentList from "./CommentList";
-import { GetAllComments, GetLoggedInUser } from "../../selectors";
+import { useUser } from "../../context/UserContext";
 //third
 //css
 import "./CommentSection.css";
+import { useTodo } from "../../context/TodoContext";
 
 const CommentSection = ({ todoId }) => {
-    const comments = GetAllComments();
-    const loggedInUser = GetLoggedInUser();
+    const { loggedInUser } = useUser();
+    const { getComments } = useTodo();
+    const comments = getComments(todoId);
 
     return (
         <div className="comment-section">
-            <CommentCreateForm todoId={todoId} userId={loggedInUser.id} />
-            <CommentList
-                comments={comments.filter(
-                    (comment) => comment.todoId === todoId
-                )}
-            />
+            <CommentCreateForm todoId={todoId} userId={loggedInUser?.id} />
+            <CommentList comments={comments} />
         </div>
     );
 };

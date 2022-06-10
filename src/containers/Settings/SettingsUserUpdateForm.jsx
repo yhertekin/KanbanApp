@@ -2,20 +2,19 @@ import { useEffect, useState } from "react";
 //custom
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import IconButton from "../../components/IconButton";
-import { updateUser, removeUser } from "../../redux/usersSlice";
+import { useUser } from "../../context/UserContext";
 //third
-import { useDispatch } from "react-redux";
-import { FaTimes, FaTrash, FaPaperPlane } from "react-icons/fa";
+import { FaTrash, FaPaperPlane } from "react-icons/fa";
 //css
 import "./SettingsUserUpdateForm.css";
 
 const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
-    const dispatch = useDispatch();
     const [updateForm, setUpdateForm] = useState({
         username: user.username,
         email: user.email,
     });
+
+    const { updateUser, removeUser } = useUser();
 
     useEffect(() => {
         setUpdateForm({ username: user.username, email: user.email });
@@ -29,12 +28,12 @@ const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
     };
 
     const updateUserHandler = () => {
-        dispatch(updateUser({ id: user.id, ...updateForm }));
+        updateUser({ userId: user.id, updateForm: updateForm });
         setUpdateForm(() => ({ username: "", email: "" }));
     };
 
     const removeUserHandler = () => {
-        dispatch(removeUser(user.id));
+        removeUser(user.id);
         setUpdateForm(() => ({ username: "", email: "" }));
     };
 

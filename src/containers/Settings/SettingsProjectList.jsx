@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 //custom
 import Input from "../../components/Input";
-import SettingsProjectUpdateForm from "./SettingsProjectUpdateForm";
-import IconButton from "../../components/IconButton";
-import { GetAllProjects } from "../../selectors";
 import SettingsProject from "./SettingsProject";
+import { useUser } from "../../context/UserContext";
+import { SelectProjectsByUserId } from "../../selectors";
 //third
-import { FiSettings } from "react-icons/fi";
 
 //css
 import "./SettingsUserList.css";
 
-const SettingsProjectList = ({ className }) => {
+const SettingsProjectList = ({ currentProject, className, ...props }) => {
     const [search, setSearch] = useState("");
-
-    const projects = GetAllProjects();
+    const { loggedInUser } = useUser();
+    const projects = SelectProjectsByUserId(loggedInUser.id);
     const [filteredProjects, setFilteredProjects] = useState(projects);
-    const [currentProject, setCurrentProject] = useState(null);
 
     const searchHandler = (e) => {
         setFilteredProjects(() =>
             projects.filter((project) =>
-                project.name
+                project.projectName
                     .toLowerCase()
                     .includes(e.target.value.toLowerCase())
             )
         );
+
         setSearch(e.target.value);
     };
 
-    useEffect(() => setFilteredProjects(() => projects), [projects]);
+    useEffect(() => {
+        setFilteredProjects(projects);
+    }, [projects]);
 
     return (
         <div className={className ?? ""}>
@@ -46,6 +46,7 @@ const SettingsProjectList = ({ className }) => {
                         {filteredProjects?.map((project) => (
                             <SettingsProject
                                 project={project}
+                                currentProject={currentProject}
                                 key={project.id}
                             />
                         ))}

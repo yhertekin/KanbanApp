@@ -11,7 +11,7 @@ const Todo = ({ todo }) => {
         <div className="todo">
             <div className="todo__content">
                 <TodoHeader todo={todo} />
-                <LabelList labelIdList={todo.labelIdList} className="mb-5" />
+                <LabelList labels={todo.labels} className="mb-5" />
                 <TodoFooter todo={todo} />
             </div>
         </div>

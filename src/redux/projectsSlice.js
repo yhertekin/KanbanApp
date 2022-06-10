@@ -1,65 +1,86 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-
-const updateStorage = (newState) => {
-    localStorage.setItem("projects", JSON.stringify(newState));
-};
-
+import { updateLocalStorage, getItemFromLocalStorage } from "../functions";
 export const projectsSlice = createSlice({
     name: "projects",
     initialState: {
-        items: JSON.parse(localStorage.getItem("projects")) || [],
-        currentProject:
-            JSON.parse(localStorage.getItem("currentProject")) || {},
+        items: getItemFromLocalStorage("projects") || [],
     },
     reducers: {
-        createProject: {
-            reducer: (state, action) => {
-                state.items = [action.payload, ...state.items];
-                updateStorage(state.items);
-            },
-            prepare: ({ projectName }) => {
-                const project = {
-                    id: nanoid(),
-                    name: projectName,
-                    createdAt: new Date(),
-                };
-                return { payload: project };
-            },
-        },
-
-        updateCurrentProject: (state, action) => {
-            const id = action.payload;
-            const project = state.items.find((item) => item.id === id);
-            state.currentProject = project;
-            localStorage.setItem("currentProject", JSON.stringify(project));
-        },
-
-        updateProject: (state, action) => {
-            const id = action.payload.id;
-            const projectIndex = state.items.findIndex(
-                (project) => project.id === id
-            );
-            state.items[projectIndex] = {
-                ...state.items[projectIndex],
-                ...action.payload,
+        createProject: (state, action) => {
+            const project = {
+                id: action.payload.id ?? nanoid(),
+                projectName: action.payload.projectName,
+                creater: action.payload.creater,
+                participants: [],
+                labels: [],
             };
-
-            updateStorage(state.items);
+            //************** non-serializable hatası verdi
+            // action.payload.callback && action.payload.callback(project.id);
+            //*************
+            state.items = [project, ...state.items];
+            updateLocalStorage("projects", state.items);
         },
 
         removeProject: (state, action) => {
-            const id = action.payload;
-            state.items = state.items.filter((project) => project.id !== id);
-            console.log("project state.items", state.items);
-            updateStorage(state.items);
+            const projectId = action.payload;
+            state.items = state.items.filter((item) => item.id !== projectId);
+            updateLocalStorage("projects", state.items);
+        },
+
+        updateProject: (state, action) => {
+            const index = state.items.findIndex(
+                (item) => item.id === action.payload.projectId
+            );
+            state.items[index] = {
+                ...state.items[index],
+                ...action.payload.updateForm,
+            };
+            updateLocalStorage("projects", state.items);
+        },
+
+        // updateCurrentProject: (state, action) => {
+        //     const { id, creater } = action.payload;
+        //     state.items = state.items.map((project) => {
+        //         if (project.creater === creater) {
+        //             project.current = project.id === id;
+        //         }
+        //         return project;
+        //     });
+        //     updateLocalStorage("projects", state.items);
+        // },
+
+        appendParticipantToProject: (state, action) => {
+            const { projectId, participantId } = action.payload;
+            const index = state.items.findIndex(
+                (item) => item.id === projectId
+            );
+            state.items[index].participants = [
+                ...state.items[index].participants,
+                participantId,
+            ];
+            updateLocalStorage("projects", state.items);
+        },
+
+        appendLabelToProject: (state, action) => {
+            const { projectId } = action.payload;
+            const index = state.items.findIndex(
+                (item) => item.id === projectId
+            );
+            state.items[index].labels = [
+                ...state.items[index].labels,
+                action.payload.label,
+            ];
+            updateLocalStorage("projects", state.items);
         },
     },
 });
 
 export const {
     createProject,
+    removeProject,
     updateCurrentProject,
     updateProject,
-    removeProject,
+    appendParticipantToProject,
+    appendLabelToProject,
 } = projectsSlice.actions;
 export default projectsSlice.reducer;

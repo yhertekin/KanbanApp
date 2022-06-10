@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.icon {
-    @apply hover:cursor-pointer;
-}
 
 .icon:hover {
-    @apply opacity-20;
+    @apply opacity-20 cursor-pointer;
 }
 
 .icon-primary {

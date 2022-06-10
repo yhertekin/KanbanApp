@@ -2,35 +2,27 @@ import { useState } from "react";
 //custom
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import Dropdown from "../../components/Dropdown";
 import Alert from "../../components/Alert";
-import { addUser } from "../../redux/usersSlice";
+import { useUser } from "../../context/UserContext";
 //third
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //css
 import "./UserRegisterForm.css";
-import { GetCurrentProject } from "../../selectors";
-import { current } from "@reduxjs/toolkit";
+
+const formInitial = {
+    username: "",
+    email: "",
+    password: "",
+    userType: "admin",
+};
 
 const UserRegisterForm = () => {
     const [warningMessage, setWarningMessage] = useState("");
-    const [registerForm, setRegisterForm] = useState({
-        username: "",
-        email: "",
-        password: "",
-        userType: "",
-    });
+    const [registerForm, setRegisterForm] = useState(formInitial);
 
-    const dispatch = useDispatch();
+    const { users, createUser } = useUser();
+
     const navigate = useNavigate();
-
-    const currentProject = GetCurrentProject();
-
-    const userTypes = [
-        { key: "user", value: "user" },
-        { key: "admin", value: "admin" },
-    ];
 
     const onChangeHandler = (e) => {
         setRegisterForm((prevState) => ({
@@ -47,8 +39,13 @@ const UserRegisterForm = () => {
             setWarningMessage("Please fill in all fields");
             return;
         }
+        if (users?.find((user) => user.email === registerForm.email)) {
+            setWarningMessage("Email already registered!");
+            return;
+        }
         setWarningMessage("");
-        dispatch(addUser(registerForm));
+        createUser(registerForm);
+        setRegisterForm(formInitial);
         navigate("/login");
     };
 
@@ -77,13 +74,7 @@ const UserRegisterForm = () => {
                 onChange={onChangeHandler}
                 placeholder="Password"
             />
-            {/* <Dropdown
-                name="userType"
-                value={registerForm.userType}
-                onChange={onChangeHandler}
-                placeholder="Select user type"
-                items={userTypes}
-            /> */}
+
             <Button
                 onClick={onSubmitHandler}
                 variant="primary"

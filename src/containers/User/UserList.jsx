@@ -1,12 +1,12 @@
-import { GetAllUsers } from "../../selectors";
 import User from "./User";
+import { useUser } from "../../context/UserContext";
 
 const UserList = () => {
-    const users = GetAllUsers();
-
+    const { loggedInUser } = useUser();
+    const users = loggedInUser.currentProject.participants;
     return (
         <ul>
-            {users.map((user, index) => (
+            {users?.map((user, index) => (
                 <User key={index} user={user} />
             ))}
         </ul>

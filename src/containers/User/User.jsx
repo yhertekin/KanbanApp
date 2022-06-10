@@ -5,14 +5,10 @@ import Alert from "../../components/Alert";
 import IconButton from "../../components/IconButton";
 import Modal from "../../components/Modal";
 import DialogBox from "../../components/Modal/DialogBox";
-import { removeUser } from "../../redux/usersSlice";
-import {
-    GetAllTodos,
-    GetCurrentProjectTodos,
-    GetLoggedInUser,
-} from "../../selectors";
+import { useTodo } from "./../../context/TodoContext";
+import { useUser } from "../../context/UserContext";
+import { SelectCurrentProject } from "../../selectors";
 //third
-import { useDispatch } from "react-redux";
 import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
 import { BiShowAlt, BiHide } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -20,15 +16,15 @@ import { Link } from "react-router-dom";
 import "./User.css";
 
 const User = ({ user }) => {
-    const dispatch = useDispatch();
     const [showTodos, setShowTodos] = useState(false);
     const [showUserRemoveAlert, setShowUserRemoveAlert] = useState(false);
-
-    const todoList = GetCurrentProjectTodos();
-    const loggedInUser = GetLoggedInUser();
-
-    const todos = todoList.filter((todo) => todo.userId === user.id);
+    const { loggedInUser, removeUser } = useUser();
+    const { currentProject } = loggedInUser;
+    const { getTodos } = useTodo();
+    const todoList = getTodos(currentProject.id);
+    const todos = todoList.filter((todo) => todo.participantId === user.id);
     const todoCount = todos.length;
+
     let iconType = showTodos ? BiShowAlt : BiHide;
 
     const toogleShowTodos = () => setShowTodos((prevState) => !prevState);
@@ -70,7 +66,7 @@ const User = ({ user }) => {
                                         text={`Are you sure to remove ${user.username}?`}
                                         setCancelButton={setShowUserRemoveAlert}
                                         setConfirmButton={() =>
-                                            dispatch(removeUser(user.id))
+                                            removeUser(user.id)
                                         }
                                     />
                                 </Modal>

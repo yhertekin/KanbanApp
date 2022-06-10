@@ -4,22 +4,19 @@ import ColorPicker from "../../components/ColorPicker";
 import Button from "../../components/Button";
 import Alert from "../../components/Alert";
 import Input from "../../components/Input";
-import { addLabel } from "../../redux/labelsSlice";
-import { removeCheckedFromColors } from "../../functions";
-//third
 import { useDispatch } from "react-redux";
+import { nanoid } from "nanoid";
+//third
 //css
 import "./LabelCreateForm.css";
-import { GetCurrentProject } from "../../selectors";
+import { appendLabelToProject } from "../../redux/projectsSlice";
 
-const LabelCreateForm = ({ className }) => {
+const LabelCreateForm = ({ currentProject, className, ...props }) => {
     const [warningMessage, setWarningMessage] = useState("");
     const [text, setText] = useState("");
     const [color, setColor] = useState("");
-    const [selectedColor, setSelecteColor] = useState("");
-
+    const [selectedColor, setSelectedColor] = useState("");
     const dispatch = useDispatch();
-    const currentProject = GetCurrentProject();
 
     const textChangeHandler = (e) => setText(e.target.value);
     const colorClickHandler = (color) => setColor(color);
@@ -34,13 +31,19 @@ const LabelCreateForm = ({ className }) => {
             return;
         }
         setWarningMessage("");
+        const label = {
+            id: nanoid(),
+            text: text,
+            color: color,
+        };
 
         dispatch(
-            addLabel({ color: color, text: text, projectId: currentProject.id })
+            appendLabelToProject({ projectId: currentProject.id, label: label })
         );
+
         setText("");
         setColor("");
-        setSelecteColor("");
+        setSelectedColor("");
     };
 
     return (
@@ -59,7 +62,7 @@ const LabelCreateForm = ({ className }) => {
             <ColorPicker
                 pickColor={colorClickHandler}
                 selectedColor={selectedColor}
-                setSelecteColor={setSelecteColor}
+                setSelectedColor={setSelectedColor}
             />
             <Button
                 onClick={addLabelHandler}

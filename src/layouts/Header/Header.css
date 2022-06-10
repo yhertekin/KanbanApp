@@ -1,5 +1,5 @@
 .header {
-    @apply p-5 text-black h-16 bg-white flex justify-between items-center shadow-md mb-5;
+    @apply p-5 text-black h-16 bg-white flex justify-between items-center shadow-sm mb-5;
 }
 
 .header__profile {

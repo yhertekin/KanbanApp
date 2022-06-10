@@ -1,15 +1,10 @@
+import { useState } from "react";
 //custom
 import IconButton from "../../components/IconButton";
 import Modal from "../../components/Modal";
 import DialogBox from "../../components/Modal/DialogBox";
-import {
-    setStatusTest,
-    setStatusInProgress,
-    setStatusCompleted,
-} from "../../redux/todosSlice";
+import { useTodo } from "../../context/TodoContext";
 //third
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { FaCheck, FaTimes } from "react-icons/fa";
 //css
 import "./TodoHeader.css";
@@ -18,8 +13,13 @@ const TodoHeader = ({ todo }) => {
     const [showModal, setShowModal] = useState(false);
     const [dialogBoxType, setDialogBoxType] = useState("task__success");
 
-    const dispatch = useDispatch();
     const { id, status } = todo;
+    const {
+        setStatusReview,
+        setStatusInProgress,
+        setStatusTest,
+        setStatusCompleted,
+    } = useTodo();
 
     const SuccessIcon = () => (
         <IconButton
@@ -46,20 +46,20 @@ const TodoHeader = ({ todo }) => {
     );
 
     const taskFailedDialogHandler = () => {
-        dispatch(setStatusInProgress(id));
+        setStatusInProgress(id);
     };
 
     const taskSuccessDialogHandler = () => {
         setDialogBoxType("task__success");
         switch (status) {
             case "review":
-                dispatch(setStatusInProgress(id));
+                setStatusInProgress(id);
                 break;
             case "in_progress":
-                dispatch(setStatusTest(id));
+                setStatusTest(id);
                 break;
             case "test":
-                dispatch(setStatusCompleted(id));
+                setStatusCompleted(id);
                 break;
         }
     };
