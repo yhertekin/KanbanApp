@@ -33,11 +33,11 @@ const SettingsTodo = ({ todo }) => {
                 </div>
                 <div className="settings-todo__status">{todo.status}</div>
             </div>
-            {showModal ? (
+            {showModal && (
                 <Modal showModal={setShowModal}>
                     <TodoEditForm todo={todo} setShowEditTodo={setShowModal} />
                 </Modal>
-            ) : null}
+            )}
         </>
     );
 };

@@ -51,7 +51,7 @@ const LabelCreateForm = ({ currentProject, className, ...props }) => {
             {warningMessage && (
                 <Alert message={warningMessage} variant="danger" />
             )}
-            <h2 className="text-2xl my-2">Create Label</h2>
+            <h2 className="text-xl my-2">Create Label</h2>
             <Input
                 onChange={textChangeHandler}
                 placeholder="Label Text"

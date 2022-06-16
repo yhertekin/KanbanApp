@@ -8,7 +8,7 @@ import Alert from "../../components/Alert";
 import LabelPicker from "../Label/LabelPicker";
 import { TodoContext, useTodo } from "../../context/TodoContext";
 import { useUser } from "../../context/UserContext";
-import eventBus from "../../EventBus";
+import eventBus, { actionNames } from "../../EventBus";
 
 //third
 //css
@@ -29,9 +29,7 @@ const TodoCreateForm = ({ className, setShowTodoInput }) => {
 
     useEffect(() => {
         if (added) {
-            eventBus.dispatch("todoAdded", {
-                todos: todos,
-            });
+            eventBus.dispatch(actionNames.addTodo, { todos: todos });
             setShowTodoInput(false);
         }
     }, [added]);

@@ -11,6 +11,7 @@ export const UserProvider = ({ children }) => {
     const [loggedInUser, setLoggedInUser] = useState(
         getItemFromLocalStorage("loggedInUser") || null
     );
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -49,8 +50,18 @@ export const UserProvider = ({ children }) => {
 
     const updateUser = ({ userId, updateForm }) => {
         const index = users.findIndex((user) => user.id === userId);
-        users[index] = { ...users[index], ...updateForm };
-        setUsers([...users]);
+
+        if (loggedInUser.id === userId) {
+            setLoggedInUser(() => ({
+                ...users[index],
+                ...updateForm,
+            }));
+        }
+
+        setUsers((prevState) => {
+            prevState[index] = { ...prevState[index], ...updateForm };
+            return [...prevState];
+        });
     };
 
     const loginUser = (userId) => {
@@ -82,13 +93,26 @@ export const UserProvider = ({ children }) => {
             projectName: project.projectName,
         };
 
-        console.log("notification:", notification);
         const index = users.findIndex((user) => user.id === receiverId);
-        console.log("user context - index: ", index);
         users[index].notifications = [
             notification,
             ...users[index].notifications,
         ];
+        setUsers([...users]);
+    };
+
+    const removeNotification = ({ userId, notificationId }) => {
+        console.log("remove notification user context");
+        const index = users.findIndex((user) => user.id === userId);
+        users[index].notifications = users[index].notifications.filter(
+            (n) => n.id !== notificationId
+        );
+        if (userId === loggedInUser.id) {
+            loggedInUser.notifications = loggedInUser.notifications.filter(
+                (n) => n.id !== notificationId
+            );
+            setLoggedInUser(() => ({ ...loggedInUser }));
+        }
         setUsers([...users]);
     };
 
@@ -103,6 +127,7 @@ export const UserProvider = ({ children }) => {
         getUserById,
         updateCurrentProject,
         sendNotification,
+        removeNotification,
     };
 
     return (

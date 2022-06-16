@@ -3,11 +3,11 @@
 }
 
 .settings__header {
-    @apply text-3xl font-bold p-2 md:px-0;
+    @apply text-3xl font-bold px-2;
 }
 
 .settings__links {
-    @apply my-3 select-none flex p-2 md:p-0;
+    @apply my-3 select-none flex px-2 md:p-0;
 }
 
 .settings__link {

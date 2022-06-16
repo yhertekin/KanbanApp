@@ -7,7 +7,7 @@ import Modal from "../../components/Modal";
 import DialogBox from "../../components/Modal/DialogBox";
 import { useTodo } from "./../../context/TodoContext";
 import { useUser } from "../../context/UserContext";
-import { SelectCurrentProject } from "../../selectors";
+import { SelectProjectById } from "../../selectors";
 //third
 import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
 import { BiShowAlt, BiHide } from "react-icons/bi";
@@ -18,11 +18,10 @@ import "./User.css";
 const User = ({ user }) => {
     const [showTodos, setShowTodos] = useState(false);
     const [showUserRemoveAlert, setShowUserRemoveAlert] = useState(false);
+
     const { loggedInUser, removeUser } = useUser();
-    const { currentProject } = loggedInUser;
-    const { getTodos } = useTodo();
-    const todoList = getTodos(currentProject.id);
-    const todos = todoList.filter((todo) => todo.participantId === user.id);
+    const { todos } = useTodo();
+    const todoList = todos.filter((todo) => todo.participantId === user.id);
     const todoCount = todos.length;
 
     let iconType = showTodos ? BiShowAlt : BiHide;
@@ -77,7 +76,7 @@ const User = ({ user }) => {
             </div>
             {showTodos &&
                 (todoCount !== 0 ? (
-                    <TodoList todos={todos} />
+                    <TodoList todos={todoList} />
                 ) : (
                     <Alert
                         message="There is not any task here."

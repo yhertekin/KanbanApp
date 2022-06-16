@@ -12,3 +12,5 @@ export const updateLocalStorage = (storageName, state) => {
 export const getItemFromLocalStorage = (storageName) => {
     return JSON.parse(localStorage.getItem(storageName));
 };
+
+export const isAdmin = (user, project) => user?.id === project?.creater || null;

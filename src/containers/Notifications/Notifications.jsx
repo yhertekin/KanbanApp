@@ -5,42 +5,62 @@ import Modal from "../../components/Modal";
 import DialogBox from "../../components/Modal/DialogBox";
 import { useUser } from "../../context/UserContext";
 import { appendParticipantToProject } from "../../redux/projectsSlice";
-const Notifications = () => {
-    const { loggedInUser, getUserById } = useUser();
-
+const Notifications = ({ className }) => {
     const [showModal, setShowModal] = useState(false);
-    const dispatch = useDispatch();
-    const declineHandler = () => {};
+    const { loggedInUser, getUserById, removeNotification } = useUser();
 
-    const acceptHandler = ({ projectId, participantId }) => {
+    const dispatch = useDispatch();
+
+    const declineHandler = ({ notificationId: notificationId }) => {
+        removeNotification({
+            userId: loggedInUser.id,
+            notificationId: notificationId,
+        });
+        console.log(loggedInUser.id, notificationId);
+        setShowModal(false);
+    };
+
+    const acceptHandler = ({ projectId, participantId, notificationId }) => {
         dispatch(
             appendParticipantToProject({
                 projectId,
                 participantId,
             })
         );
+        removeNotification({
+            userId: loggedInUser.id,
+            notificationId: notificationId,
+        });
+        setShowModal(false);
     };
 
     return (
-        <div className="flex-col">
+        <div className={className}>
             {loggedInUser.notifications.map((notification) => (
-                <div className="my-1">
+                <div className="my-1" key={notification.id}>
                     <div
+                        className="flex justify-start items-center rounded-md hover:bg-gray-100 p-2"
                         onClick={() => setShowModal((prevState) => !prevState)}
                     >
-                        You have been invited to a new project!
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                        <span> You have an invitation!</span>
                     </div>
                     {showModal && (
                         <Modal showModal={setShowModal}>
                             <DialogBox
-                                text={`Hi, ${loggedInUser.username}\n${
+                                text={`Hi ${loggedInUser.username}, ${
                                     getUserById(notification.sender).username
                                 } invites you to ${notification.projectName}`}
-                                setCancelButton={declineHandler}
+                                setCancelButton={() =>
+                                    declineHandler({
+                                        notificationId: notification.id,
+                                    })
+                                }
                                 setConfirmButton={() =>
                                     acceptHandler({
                                         projectId: notification.projectId,
                                         participantId: loggedInUser.id,
+                                        notificationId: notification.id,
                                     })
                                 }
                             />

@@ -44,8 +44,8 @@ const ProjectCreateForm = ({ className }) => {
 
     return (
         <div className={className ?? ""}>
-            <h2 className="text-2xl my-2">Create a project</h2>
-            <div className="border rounded-md p-2 mt-4">
+            <h2 className="text-xl">Create a project</h2>
+            <div className=" ">
                 {warningMessage && (
                     <Alert
                         message={warningMessage}

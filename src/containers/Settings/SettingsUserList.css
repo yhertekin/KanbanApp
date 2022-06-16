@@ -3,7 +3,7 @@
 }
 
 .settings-user-list__search {
-    @apply my-2 outline-blue-600 shadow-sm lg:w-6/12;
+    @apply mt-2 outline-blue-600 shadow-sm;
 }
 
 .settings-user-list__container {

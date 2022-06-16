@@ -12,12 +12,20 @@ const DialogBox = ({ text, setCancelButton, setConfirmButton }) => {
 
     return (
         <div className="">
-            <p className="text-lg">{text}</p>
-            <div className="grid grid-cols-2 w-full gap-2 mt-2">
-                <Button onClick={cancelButtonHandler} variant="danger">
+            <p className="text-lg font-bold">{text}</p>
+            <div className="flex justify-center items-center mt-4">
+                <Button
+                    onClick={cancelButtonHandler}
+                    variant="danger"
+                    className="w-full mr-4 py-1"
+                >
                     No
                 </Button>
-                <Button onClick={confirmButtonHandler} variant="primary">
+                <Button
+                    onClick={confirmButtonHandler}
+                    variant="primary"
+                    className="w-full py-1"
+                >
                     Yes
                 </Button>
             </div>

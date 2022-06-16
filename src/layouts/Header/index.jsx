@@ -8,7 +8,7 @@ import Modal from "../../components/Modal";
 import Button from "../../components/Button";
 import CustomLink from "../../components/CustomLink";
 import { TodoContext, TodoProvider } from "../../context/TodoContext";
-import { getItemFromLocalStorage } from "../../functions";
+import { isAdmin } from "../../functions";
 
 //third
 import { FaUserAlt } from "react-icons/fa";
@@ -18,15 +18,20 @@ import { MdCreate } from "react-icons/md";
 
 import "./Header.css";
 import { useUser } from "../../context/UserContext";
+import { SelectProjectById } from "../../selectors";
 
 const Header = () => {
     const [showSidePanel, setShowSidePanel] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [showTodoInput, setShowTodoInput] = useState(false);
+
     const { loggedInUser } = useUser();
+    const currentProject = SelectProjectById(loggedInUser?.currentProject);
 
     const showSidePanelHandler = () => setShowSidePanel(true);
     const notificationCount = loggedInUser?.notifications.length || 0;
+
+    const admin = isAdmin(loggedInUser, currentProject);
 
     const handleShowMenu = (e) => {
         e.preventDefault();
@@ -60,14 +65,16 @@ const Header = () => {
                         showSidePanel={showSidePanel}
                         setShowSidePanel={setShowSidePanel}
                     />
-                    <Button
-                        className="header__create__button py-1 px-2"
-                        onClick={setShowTodoInput}
-                        variant="none"
-                    >
-                        <MdCreate />
-                        <span className="ml-1">Create</span>
-                    </Button>
+                    {admin && (
+                        <Button
+                            className="header__create__button py-1 px-2"
+                            onClick={setShowTodoInput}
+                            variant="none"
+                        >
+                            <MdCreate />
+                            <span className="ml-1">Create</span>
+                        </Button>
+                    )}
                 </div>
             )}
 

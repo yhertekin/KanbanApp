@@ -7,7 +7,7 @@ import { SelectCurrentProject } from "../../selectors";
 import { getItemFromLocalStorage } from "../../functions";
 import { useTodo } from "../../context/TodoContext";
 import { useEffect } from "react";
-import eventBus from "../../EventBus";
+import eventBus, { actionNames } from "../../EventBus";
 
 const statusList = ["review", "in_progress", "test", "completed"];
 
@@ -15,8 +15,8 @@ const TodoList = ({ currentProject }) => {
     const { todos, setTodos } = useTodo();
 
     useEffect(() => {
-        eventBus.on("todoAdded", (data) => setTodos(data.todos));
-        return eventBus.remove("todoAdded");
+        eventBus.on(actionNames.addTodo, (data) => setTodos(data.todos));
+        return () => eventBus.remove(actionNames.addTodo);
     }, []);
 
     console.log("todoList todos: ", todos);

@@ -4,6 +4,9 @@
 .alert--primary {
     @apply alert bg-blue-500;
 }
+.alert--info {
+    @apply alert bg-green-500;
+}
 .alert--secondary {
     @apply alert bg-yellow-500;
 }
@@ -16,6 +19,9 @@
 
 .alert--primary:hover {
     @apply bg-blue-600;
+}
+.alert--info:hover {
+    @apply bg-green-600;
 }
 .alert--secondary:hover {
     @apply bg-yellow-600;

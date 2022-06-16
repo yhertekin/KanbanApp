@@ -1,13 +1,22 @@
 const eventBus = {
     on(event, callback) {
-        document.addEventListener(event, (e) => callback(e.detail));
+        if (!this.events[event]) this.events[event] = callback;
     },
     dispatch(event, data) {
-        document.dispatchEvent(new CustomEvent(event, { detail: data }));
+        if (this.events[event]) this.events[event](data);
     },
-    remove(event, callback) {
-        document.removeEventListener(event, callback);
+    remove(event) {
+        if (this.events[event]) delete this.events[event];
     },
+
+    events: {},
 };
 
+export const actionNames = {
+    addTodo: "addToo",
+};
 export default eventBus;
+
+//  isimleri aynı gelmesin
+// kontrol edilsin
+// action names export import

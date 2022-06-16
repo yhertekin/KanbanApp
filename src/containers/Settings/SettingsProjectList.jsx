@@ -33,13 +33,13 @@ const SettingsProjectList = ({ currentProject, className, ...props }) => {
 
     return (
         <div className={className ?? ""}>
-            <h2 className="text-2xl my-2">Projects</h2>
+            <h2 className="text-xl">Project List</h2>
             <div className="">
                 <Input
                     value={search}
                     onChange={searchHandler}
                     placeholder="Search"
-                    className="my-2 outline-blue-600"
+                    className="mt-2 outline-blue-600"
                 />
                 <div className=" ">
                     <div>

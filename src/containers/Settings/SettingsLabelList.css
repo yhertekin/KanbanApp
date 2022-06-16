@@ -1,15 +1,15 @@
-.settings-label__list__container {
+/* .settings-label__list__container {
     @apply mt-5;
-}
+} */
 
 .settings-label-list__header {
-    @apply text-2xl mt-2;
+    @apply text-xl mt-2;
 }
 .settings-label-list__alarm {
     @apply w-full mt-2;
 }
 .settings-label-list__list {
-    @apply flex flex-row flex-wrap mt-2;
+    @apply flex flex-row flex-wrap;
 }
 
 .settings-label-list__list__item {

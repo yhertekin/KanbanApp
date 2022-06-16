@@ -7,9 +7,6 @@ import { FiSettings } from "react-icons/fi";
 const SettingsProject = ({ project, currentProject, ...props }) => {
     const [showUpdateProject, setShowUpdateProject] = useState(false);
 
-    console.log("settings project - project:", project);
-    console.log("settings project - currentProject:", currentProject);
-
     return (
         <div className="relative">
             {project.id === currentProject.id && (
@@ -25,7 +22,7 @@ const SettingsProject = ({ project, currentProject, ...props }) => {
 
             <div
                 key={project.id}
-                className="border p-2 rounded-md my-2 hover:border-blue-600"
+                className="border rounded-md my-2 hover:border-blue-600 p-2"
             >
                 <div className="flex justify-center items-center font-bold">
                     <div>{project.projectName}</div>

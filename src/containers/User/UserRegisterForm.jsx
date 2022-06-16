@@ -13,7 +13,6 @@ const formInitial = {
     username: "",
     email: "",
     password: "",
-    userType: "admin",
 };
 
 const UserRegisterForm = () => {

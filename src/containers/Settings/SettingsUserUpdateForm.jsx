@@ -7,14 +7,24 @@ import { useUser } from "../../context/UserContext";
 import { FaTrash, FaPaperPlane } from "react-icons/fa";
 //css
 import "./SettingsUserUpdateForm.css";
+import { useDispatch } from "react-redux";
+import {
+    removeParticipantFromProject,
+    updateCurrentProject,
+} from "../../redux/projectsSlice";
+import { SelectProjectById, SelectProjectsByUserId } from "../../selectors";
+import Modal from "../../components/Modal";
+import DialogBox from "../../components/Modal/DialogBox";
 
-const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
+const SettingsUserUpdateForm = ({ user }) => {
     const [updateForm, setUpdateForm] = useState({
         username: user.username,
         email: user.email,
     });
-
-    const { updateUser, removeUser } = useUser();
+    const [showModal, setShowModal] = useState(false);
+    const { updateUser, loggedInUser } = useUser();
+    const dispatch = useDispatch();
+    const currentProject = SelectProjectById(loggedInUser.currentProject);
 
     useEffect(() => {
         setUpdateForm({ username: user.username, email: user.email });
@@ -32,8 +42,14 @@ const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
         setUpdateForm(() => ({ username: "", email: "" }));
     };
 
-    const removeUserHandler = () => {
-        removeUser(user.id);
+    const removeUserHandler = (user) => {
+        dispatch(
+            removeParticipantFromProject({
+                projectId: currentProject.id,
+                participantId: user.id,
+            })
+        );
+
         setUpdateForm(() => ({ username: "", email: "" }));
     };
 
@@ -44,14 +60,14 @@ const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
                     Update User
                 </div>
             </div>
-            {user && (
+            {user?.id === loggedInUser.id && (
                 <div className="settings-user-update__inputs">
                     <Input
                         value={updateForm.username}
                         onChange={formChangeHandler}
                         placeholder="Username"
                         name="username"
-                        className="settings-user-update__input__username"
+                        className="settings-user-update__input__username mt-3"
                     />
                     <Input
                         value={updateForm.email}
@@ -63,23 +79,36 @@ const SettingsUserUpdateForm = ({ user, setShowUpdateUser }) => {
                 </div>
             )}
             <div className="flex justify-between">
-                <Button
-                    onClick={removeUserHandler}
-                    variant="danger"
-                    className="settings-user-update__remove"
-                >
-                    <FaTrash className="text-xl" />
-                    <span>Delete User</span>
-                </Button>
-                <Button
-                    variant="primary"
-                    onClick={updateUserHandler}
-                    className="settings-user-update__update"
-                >
-                    <FaPaperPlane />
-                    <span>Update</span>
-                </Button>
+                {user.id !== loggedInUser.id && (
+                    <Button
+                        onClick={() => setShowModal(true)}
+                        variant="danger"
+                        className="settings-user-update__remove w-full"
+                    >
+                        <FaTrash />
+                        <span>Delete User</span>
+                    </Button>
+                )}
+                {user.id === loggedInUser.id && (
+                    <Button
+                        variant="primary"
+                        onClick={updateUserHandler}
+                        className="settings-user-update__update w-full"
+                    >
+                        <FaPaperPlane />
+                        <span>Update</span>
+                    </Button>
+                )}
             </div>
+            {showModal && (
+                <Modal showModal={setShowModal}>
+                    <DialogBox
+                        text={`Are you sure you want to remove ${user.username} from the project?`}
+                        setCancelButton={() => setShowModal(false)}
+                        setConfirmButton={() => removeUserHandler(user)}
+                    />
+                </Modal>
+            )}
         </div>
     );
 };

@@ -6,7 +6,7 @@
     @apply flex;
 }
 .settings-user-update__header__text {
-    @apply text-2xl mb-3;
+    @apply text-2xl;
 }
 .settings-user-update__header__icon {
     @apply text-xl ml-auto mt-2 mb-2;
@@ -21,7 +21,7 @@
 }
 
 .settings-user-update__remove {
-    @apply mt-2 py-1 px-2 h-9 flex justify-center items-center select-none;
+    @apply mt-2 py-2 px-2 h-9 flex justify-center items-center select-none;
 }
 
 .settings-user-update__remove > span {
@@ -29,7 +29,7 @@
 }
 
 .settings-user-update__update {
-    @apply mt-2 py-1 px-2 h-9 flex justify-center items-center select-none;
+    @apply mt-2 py-2 px-2 h-9 flex justify-center items-center select-none;
 }
 .settings-user-update__update > span {
     @apply ml-2;

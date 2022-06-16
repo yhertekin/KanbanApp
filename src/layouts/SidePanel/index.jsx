@@ -47,34 +47,18 @@ const SidePanel = ({ showSidePanel, setShowSidePanel }) => {
                                 Dashboard
                             </span>
                         </Link>
-                        {loggedInUser?.userType === "admin" && (
-                            <>
-                                <Link
-                                    className="side-panel__link"
-                                    to="/users"
-                                    onClick={showSidePanelHandler}
-                                >
-                                    <HiOutlineUsers className="side-panel__icon" />
-                                    <span className="side-panel__link__text">
-                                        Team
-                                    </span>
-                                </Link>
-                            </>
-                        )}
                     </div>
                     <div className="mb-5">
-                        {loggedInUser?.userType === "admin" && (
-                            <Link
-                                className="side-panel__link"
-                                to="/settings"
-                                onClick={showSidePanelHandler}
-                            >
-                                <FiSettings className="side-panel__icon" />
-                                <span className="side-panel__link__text">
-                                    Settings
-                                </span>
-                            </Link>
-                        )}
+                        <Link
+                            className="side-panel__link"
+                            to="/settings"
+                            onClick={showSidePanelHandler}
+                        >
+                            <FiSettings className="side-panel__icon" />
+                            <span className="side-panel__link__text">
+                                Settings
+                            </span>
+                        </Link>
                         <Link
                             className="side-panel__link"
                             to="/login"

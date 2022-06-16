@@ -1,13 +1,13 @@
 import {
     SelectProjectsByUserId,
     SelectAllProjects,
-    // SelectCurrentProject,
     SelectProjectById,
+    SelectProjectsByCreater,
 } from "./projectSelector";
 
 export {
     SelectProjectsByUserId,
     SelectAllProjects,
-    // SelectCurrentProject,
+    SelectProjectsByCreater,
     SelectProjectById,
 };

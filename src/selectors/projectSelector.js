@@ -25,6 +25,14 @@ export const SelectProjectsByUserId = (userId) => {
     );
 };
 
+export const SelectProjectsByCreater = (userId) => {
+    const projects = SelectAllProjects();
+    return useMemo(
+        () => projects.filter((project) => project.creater === userId),
+        [projects, userId]
+    );
+};
+
 // export const SelectCurrentProject = () => {
 //     const loggedInUser = getItemFromLocalStorage("loggedInUser");
 //     const projects = SelectProjectsByUserId(loggedInUser.id);

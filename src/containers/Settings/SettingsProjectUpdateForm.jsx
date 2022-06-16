@@ -13,6 +13,9 @@ import { useDispatch } from "react-redux";
 
 //css
 import "./SettingsUserUpdateForm.css";
+import { isAdmin } from "../../functions";
+import Modal from "../../components/Modal";
+import DialogBox from "../../components/Modal/DialogBox";
 
 const SettingsProjectUpdateForm = ({
     project,
@@ -23,8 +26,10 @@ const SettingsProjectUpdateForm = ({
         projectName: project.projectName,
     });
     const [warningMessage, setWarningMessage] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const { updateCurrentProject } = useUser();
+    const { updateCurrentProject, loggedInUser } = useUser();
+    const admin = isAdmin(loggedInUser, project);
     const dispatch = useDispatch();
 
     const formChangeHandler = (e) => {
@@ -44,7 +49,7 @@ const SettingsProjectUpdateForm = ({
         setUpdateForm(() => ({ projectName: "" }));
     };
 
-    const removeProjectHandler = () => {
+    const deleteButtonHandler = () => {
         if (currentProject.id === project.id) {
             setWarningMessage(
                 "You can not remove the current project!\nPlease change the current project before you remove it."
@@ -52,13 +57,18 @@ const SettingsProjectUpdateForm = ({
             return;
         }
         setWarningMessage("");
+        setShowModal(true);
+    };
+
+    const removeProjectHandler = () => {
         dispatch(removeProject(project.id));
         setUpdateForm(() => ({ projectName: "" }));
+        setShowModal(false);
     };
 
     return (
-        <div className="mt-2 pt-2 border-t">
-            <div className="text-2xl mb-1">Update Project</div>
+        <div className="mt-2 border-t">
+            <div className="text-2xl my-2">Update Project</div>
             {/* <CloseIcon /> */}
             {project && (
                 <div className="">
@@ -69,13 +79,15 @@ const SettingsProjectUpdateForm = ({
                             className="whitespace-pre-wrap mt-2"
                         />
                     )}
-                    <Input
-                        value={updateForm.projectName}
-                        onChange={formChangeHandler}
-                        placeholder="Project Name"
-                        name="projectName"
-                        className="mt-2"
-                    />
+                    {admin && (
+                        <Input
+                            value={updateForm.projectName}
+                            onChange={formChangeHandler}
+                            placeholder="Project Name"
+                            name="projectName"
+                            className="mt-2"
+                        />
+                    )}
                     <div className="flex justify-between items-center border-b pb-1 my-2">
                         <span>Current Project</span>
 
@@ -92,24 +104,35 @@ const SettingsProjectUpdateForm = ({
                     </div>
                 </div>
             )}
-            <div className="flex justify-between">
-                <Button
-                    onClick={removeProjectHandler}
-                    variant="danger"
-                    className="flex justify-center items-center h-9 py-1 px-2"
-                >
-                    <FaTrash className="mr-1" />
-                    <span>Delete Project</span>
-                </Button>
-                <Button
-                    variant="primary"
-                    onClick={updateProjectHandler}
-                    className="flex justify-center items-center h-9 py-1 px-2"
-                >
-                    <FaPaperPlane className="mr-1" />
-                    <span>Update</span>
-                </Button>
-            </div>
+            {admin && (
+                <div className="flex justify-between">
+                    <Button
+                        onClick={deleteButtonHandler}
+                        variant="danger"
+                        className="flex justify-center items-center h-9 py-1 px-2"
+                    >
+                        <FaTrash className="mr-1" />
+                        <span>Delete Project</span>
+                    </Button>
+                    <Button
+                        variant="primary"
+                        onClick={updateProjectHandler}
+                        className="flex justify-center items-center h-9 py-1 px-2"
+                    >
+                        <FaPaperPlane className="mr-1" />
+                        <span>Update</span>
+                    </Button>
+                </div>
+            )}
+            {showModal && (
+                <Modal showModal={setShowModal}>
+                    <DialogBox
+                        text={`Do you want to remove ${project.projectName}?`}
+                        setCancelButton={() => setShowModal(false)}
+                        setConfirmButton={removeProjectHandler}
+                    />
+                </Modal>
+            )}
         </div>
     );
 };

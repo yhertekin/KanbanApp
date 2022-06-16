@@ -14,9 +14,7 @@ export const projectsSlice = createSlice({
                 participants: [],
                 labels: [],
             };
-            //************** non-serializable hatası verdi
-            // action.payload.callback && action.payload.callback(project.id);
-            //*************
+
             state.items = [project, ...state.items];
             updateLocalStorage("projects", state.items);
         },
@@ -38,17 +36,6 @@ export const projectsSlice = createSlice({
             updateLocalStorage("projects", state.items);
         },
 
-        // updateCurrentProject: (state, action) => {
-        //     const { id, creater } = action.payload;
-        //     state.items = state.items.map((project) => {
-        //         if (project.creater === creater) {
-        //             project.current = project.id === id;
-        //         }
-        //         return project;
-        //     });
-        //     updateLocalStorage("projects", state.items);
-        // },
-
         appendParticipantToProject: (state, action) => {
             const { projectId, participantId } = action.payload;
             const index = state.items.findIndex(
@@ -58,6 +45,17 @@ export const projectsSlice = createSlice({
                 ...state.items[index].participants,
                 participantId,
             ];
+            updateLocalStorage("projects", state.items);
+        },
+
+        removeParticipantFromProject: (state, action) => {
+            const { projectId, participantId } = action.payload;
+            const index = state.items.findIndex(
+                (item) => item.id === projectId
+            );
+            state.items[index].participants = state.items[
+                index
+            ].participants.filter((pId) => pId !== participantId);
             updateLocalStorage("projects", state.items);
         },
 
@@ -82,5 +80,6 @@ export const {
     updateProject,
     appendParticipantToProject,
     appendLabelToProject,
+    removeParticipantFromProject,
 } = projectsSlice.actions;
 export default projectsSlice.reducer;

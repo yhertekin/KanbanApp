@@ -1,5 +1,5 @@
 .settings-user {
-    @apply flex flex-col mt-2 border p-2 rounded-md shadow-sm w-full lg:w-6/12;
+    @apply flex flex-col mt-2 border p-2 rounded-md shadow-sm w-full;
 }
 
 .settings-user:hover {
