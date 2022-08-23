@@ -14,3 +14,4 @@ export const getItemFromLocalStorage = (storageName) => {
 };
 
 export const isAdmin = (user, project) => user?.id === project?.creater || null;
+//utilities

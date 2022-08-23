@@ -49,7 +49,7 @@ const SettingsLabel = ({ currentProject, ...props }) => {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full mt-2">
                     <Alert
                         message={"You are not the admin of this project!"}
                         variant="danger"

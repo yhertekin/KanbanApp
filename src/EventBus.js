@@ -17,6 +17,3 @@ export const actionNames = {
 };
 export default eventBus;
 
-//  isimleri aynı gelmesin
-// kontrol edilsin
-// action names export import

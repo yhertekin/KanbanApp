@@ -9,6 +9,7 @@ import Button from "../../components/Button";
 import CustomLink from "../../components/CustomLink";
 import { TodoContext, TodoProvider } from "../../context/TodoContext";
 import { isAdmin } from "../../functions";
+import Dropdown from "../../components/Dropdown";
 
 //third
 import { FaUserAlt } from "react-icons/fa";
@@ -18,15 +19,17 @@ import { MdCreate } from "react-icons/md";
 
 import "./Header.css";
 import { useUser } from "../../context/UserContext";
-import { SelectProjectById } from "../../selectors";
-
+import { SelectProjectById, SelectProjectsByUserId } from "../../selectors";
+import { updateCurrentProject } from "../../redux/projectsSlice";
 const Header = () => {
     const [showSidePanel, setShowSidePanel] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [showTodoInput, setShowTodoInput] = useState(false);
+    const [dropdownValue, setDropdownValue] = useState("");
 
-    const { loggedInUser } = useUser();
+    const { loggedInUser, updateCurrentProject } = useUser();
     const currentProject = SelectProjectById(loggedInUser?.currentProject);
+    const allProjects = SelectProjectsByUserId(loggedInUser?.id);
 
     const showSidePanelHandler = () => setShowSidePanel(true);
     const notificationCount = loggedInUser?.notifications.length || 0;
@@ -51,6 +54,24 @@ const Header = () => {
         };
     }, []);
 
+    useEffect(() => {
+        if (dropdownValue) {
+            updateCurrentProject(dropdownValue);
+        }
+    }, [dropdownValue]);
+
+    useEffect(() => {
+        setDropdownValue(() => loggedInUser?.currentProject || "");
+    }, [loggedInUser?.currentProject]);
+
+    const dropdownItems =
+        allProjects?.map((project) => ({
+            key: project.id,
+            value: project.projectName,
+        })) || [];
+
+    const dropdownChangeHandler = (e) => setDropdownValue(e.target.value);
+
     return (
         <header className="header">
             {!isEmptyObject(loggedInUser) && (
@@ -60,28 +81,36 @@ const Header = () => {
                         className="text-2xl"
                         onClick={showSidePanelHandler}
                     />
-
+                    <div className="flex justify-center items-center">
+                        <Dropdown
+                            items={dropdownItems}
+                            className="ml-5"
+                            placeholder="Change Project"
+                            onChange={dropdownChangeHandler}
+                            value={dropdownValue}
+                        />
+                        {admin && (
+                            <Button
+                                className="header__create__button py-1 px-2"
+                                onClick={setShowTodoInput}
+                                variant="none"
+                            >
+                                <MdCreate />
+                                <span className="ml-1">Create</span>
+                            </Button>
+                        )}
+                    </div>
                     <SidePanel
                         showSidePanel={showSidePanel}
                         setShowSidePanel={setShowSidePanel}
                     />
-                    {admin && (
-                        <Button
-                            className="header__create__button py-1 px-2"
-                            onClick={setShowTodoInput}
-                            variant="none"
-                        >
-                            <MdCreate />
-                            <span className="ml-1">Create</span>
-                        </Button>
-                    )}
                 </div>
             )}
 
             <div className="ml-auto">
                 {!isEmptyObject(loggedInUser) ? (
                     <div className="flex items-center ">
-                        <div className="mr-5 font-bold">
+                        <div className="hidden md:block mr-5 font-bold">
                             {loggedInUser.username}
                         </div>
                         <div

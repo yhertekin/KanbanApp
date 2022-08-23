@@ -19,8 +19,7 @@ const TodoList = ({ currentProject }) => {
         return () => eventBus.remove(actionNames.addTodo);
     }, []);
 
-    console.log("todoList todos: ", todos);
-
+    
     const todoList = todos.filter((todo) => todo.project === currentProject.id);
 
     return (

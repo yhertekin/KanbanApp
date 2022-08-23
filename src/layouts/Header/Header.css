@@ -35,5 +35,5 @@
 }
 
 .header__create__button {
-    @apply flex justify-center items-center w-24 ml-7;
+    @apply bg-blue-600 text-white flex justify-center items-center w-24 ml-2;
 }

@@ -32,12 +32,3 @@ export const SelectProjectsByCreater = (userId) => {
         [projects, userId]
     );
 };
-
-// export const SelectCurrentProject = () => {
-//     const loggedInUser = getItemFromLocalStorage("loggedInUser");
-//     const projects = SelectProjectsByUserId(loggedInUser.id);
-//     return useMemo(
-//         () => projects.find((project) => project.current),
-//         [projects, loggedInUser]
-//     );
-// };
